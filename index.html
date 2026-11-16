@@ -706,7 +706,7 @@ a.card:hover .btn,a.btn:hover{background:var(--lime);color:var(--ink);box-shadow
 @media (max-width:900px){.hf-cv{height:clamp(440px,120vw,620px)}.hf-cv .p2,.hf-cv .p3{display:none}.hf-cv .p1{width:min(62vw,300px)}.hf-cv .cv-chip{font-size:10px;padding:7px 11px}.hf-cv .cv-no{display:none}}
 @media (prefers-reduced-motion:reduce){.hf-nums b::after{transition:none}.hf-w{background-size:100% 100%,100% 100%}}
 /* Healthify + Kolesa: the top bar takes the new home look while these cases are open (scoped, the home and other cases are untouched) */
-html:has(:is(#healthify,#kolesa,#aezakmiso).on),html:has(:is(#healthify,#kolesa,#aezakmiso).on) body{background:#F6F5F1}
+html:has(:is(#healthify,#kolesa).on),html:has(:is(#healthify,#kolesa).on) body{background:#F6F5F1}
 .hf-toc{top:68px}
 /* ================= KOLESA CASE: trust layer for the buyer, in the new home look ================= */
 .kl{--k-ink:#0A0B0D;--k-paper:#F6F5F1;--k-line:#DCDCD5;--k-mute:#8D929B;--k-dark:#0E0E10;--k-dl:#26262B;--k-soft:#B8BCC4;--k-blue:#2E7DFF;--k-amber:#F5A623;--ease:cubic-bezier(.16,1,.3,1);background:var(--k-paper);color:var(--k-ink);font-family:var(--body)}
@@ -1485,77 +1485,39 @@ html[lang=ru] :is(.kl-h1,.kl-h2){letter-spacing:-.02em;word-spacing:.04em}
   .aso-hero .bolt{width:120vw;right:-50%;top:2%;opacity:.16}
 }
 @media (prefers-reduced-motion:reduce){.aso [data-rv]{opacity:1;transform:none;transition:none}.aso-title .w{transform:none;transition:none}}
-/* ---- AezakmiSO · 2026-11 restyle to the new home: paper #F6F5F1, Archivo 600 headlines, Golos body, Martian Mono 12px labels,
-   22px cards. The product's own orange stays the content accent; product UI (live widget, browser frames, sidebar, demos) stays dark. ---- */
-@font-face{font-family:"ASO RF";src:url("fonts/roboto-flex-latin-full.woff2") format("woff2");font-weight:100 1000;font-display:swap;unicode-range:U+0000-024F,U+2000-22FF}
-@font-face{font-family:"ASO RF";src:url("fonts/roboto-flex-cyrillic-full.woff2") format("woff2");font-weight:100 1000;font-display:swap;unicode-range:U+0400-04FF}
+/* ---- AezakmiSO · own identity, from the product itself: dark #0C0E0F, one orange #FF4D29, the AEZAKMI SO wordmark and the
+   sign-in lightning; Roboto Flex ExtraBold caps for headlines and numbers, DM Sans (Golos for Cyrillic) for text, as in the tool ---- */
+@font-face{font-family:"ASO RF";src:url("fonts/roboto-flex-latin-full.woff2") format("woff2");font-weight:100 1000;font-stretch:25% 151%;font-display:swap;unicode-range:U+0000-024F,U+2000-22FF}
+@font-face{font-family:"ASO RF";src:url("fonts/roboto-flex-cyrillic-full.woff2") format("woff2");font-weight:100 1000;font-stretch:25% 151%;font-display:swap;unicode-range:U+0400-04FF}
 @font-face{font-family:"ASO DM";src:url("fonts/dm-sans-latin-wght.woff2") format("woff2");font-weight:400;font-display:swap;unicode-range:U+0000-024F,U+2000-22FF}
+@font-face{font-family:"ASO DM";src:url("fonts/dm-sans-latin-wght.woff2") format("woff2");font-weight:500;font-display:swap;unicode-range:U+0000-024F,U+2000-22FF}
+@font-face{font-family:"ASO DM";src:url("fonts/dm-sans-latin-wght.woff2") format("woff2");font-weight:600;font-display:swap;unicode-range:U+0000-024F,U+2000-22FF}
+@font-face{font-family:"ASO DM";src:url("fonts/golos-text-cyrillic-400-normal.woff2") format("woff2");font-weight:400;font-display:swap;unicode-range:U+0400-04FF}
+@font-face{font-family:"ASO DM";src:url("fonts/golos-text-cyrillic-500-normal.woff2") format("woff2");font-weight:500;font-display:swap;unicode-range:U+0400-04FF}
+@font-face{font-family:"ASO DM";src:url("fonts/golos-text-cyrillic-600-normal.woff2") format("woff2");font-weight:600;font-display:swap;unicode-range:U+0400-04FF}
 .aso-rf{font-family:"ASO RF",sans-serif;font-weight:800}
-.aso-dm{font-family:"ASO DM","Golos Text",sans-serif}
-.aso{--bg:#F6F5F1;--pan:#FFFFFF;--pan2:#EFEEE8;--ln:#E2E1DA;--ln2:#CFCEC6;--tx:#0A0B0D;--mu:#6B6D72;--ors:#FFE6DE;--ink:#0A0B0D;--lime:#C9F03C;
-  --cshadow:0 30px 60px -22px #0A0B0D59,0 3px 10px #0A0B0D1A;--hl:Archivo,"Golos Text",sans-serif;font-family:"Golos Text",sans-serif;--good:#10915A;--warn:#A87A00;--bad:#C2334D}
-/* product UI keeps the tool's dark palette */
-.aso-live,.aso-br,.aso-side,.aso-demo,.aso-vstage{--bg:#0C0E0F;--sb:#08090A;--pan:#15181A;--pan2:#1B1F22;--ln:#252A2E;--ln2:#353B40;--tx:#E8EDF1;--mu:#81878D;--ors:#30140F;
-  --good:#49E2A0;--warn:#E9BF42;--bad:#E26C82;color:var(--tx)}
-.aso .mono{font-size:12px;color:var(--mu)}
-.aso-pan{background:#EFEEE8}
-.aso-h,.aso-h3,.aso-answer,.aso-res b,.aso-meas .big,.aso-title{font-family:var(--hl);font-weight:600;font-stretch:100%;text-transform:none;letter-spacing:-.04em;line-height:.98}
-.aso-h .o{color:var(--or)}
-.aso-quote{font-family:var(--hl);font-weight:600;font-stretch:100%;text-transform:none;letter-spacing:-.03em;line-height:1.08;font-size:clamp(26px,2.8vw,40px);max-width:24em}
-.aso-side .logo{font-family:"ASO RF",sans-serif;font-weight:900;font-style:oblique 10deg;font-stretch:100%}
-.aso-p,.aso-card p,.aso-rview .q p,.aso-iaview .cap p{color:#4A4C51}
-.aso-stops span,.aso-note p,.aso-kit figcaption span{color:var(--mu)}
-.aso-rlist button i,.aso-stops i{background:var(--pan2)}
-.aso-rlist button[aria-pressed="true"],.aso-stops button[aria-pressed="true"]{background:var(--ors)}
-.aso-table tr.best td{color:var(--ink)}
-/* one radius for cards, pills for buttons */
-.aso-card,.aso-jobs,.aso-model,.aso-demo,.aso-br,.aso-side,.aso-live,.aso-vstage,.aso-table,.aso-kit figure,.aso-sw button,.aso-type{border-radius:22px}
-.aso-card,.aso-jobs,.aso-model,.aso-table,.aso-kit figure{background:var(--pan);border-color:var(--ln);box-shadow:0 1px 0 #0A0B0D0A}
-.aso-br,.aso-live,.aso-side,.aso-demo,.aso-vstage{box-shadow:var(--cshadow);border-color:#0A0B0D}
-.aso-table{overflow:hidden;border-collapse:separate;border-spacing:0;border:1px solid var(--ln)}
-.aso-btn,.aso-tag,.aso-seg,.aso-seg button,.aso-check,.aso-toc a{border-radius:99px}
-.aso-btn.ghost{border-color:var(--ln2);color:var(--ink)}
-/* hero */
-.aso-hero{background:var(--bg);color:var(--ink);padding:clamp(20px,3vw,36px) 0 0}
-.aso-hero .mono,.aso-back,.aso-tag{color:var(--ink)!important}
-.aso-tag{border-color:#0A0B0D33}
-.aso-tag i{background:var(--or)}
-.aso-hero .k{margin-top:clamp(28px,4.4vw,64px);color:var(--mu)!important}
-.aso-title{font-size:clamp(60px,10.4vw,168px);letter-spacing:-.05em;line-height:.9;margin-top:10px}
-.aso-title .sub{font-size:.36em;letter-spacing:-.04em;margin-top:.22em}
-.aso-lede{margin-top:clamp(20px,2.4vw,32px);max-width:46ch;font-size:clamp(18px,1.6vw,22px);line-height:1.45;color:#4A4C51}
-.aso-lede b{color:var(--ink);text-decoration:underline var(--lime) .14em;text-underline-offset:.1em;text-decoration-skip-ink:none}
-.aso-cvw{margin-top:clamp(32px,4.4vw,64px)}
-.aso-cv{position:relative;background:var(--or);border-radius:22px;clip-path:inset(0 round 22px);min-height:clamp(480px,46vw,700px);overflow:hidden;
-  box-shadow:var(--cshadow);display:flex;align-items:flex-end;padding:clamp(18px,2.4vw,36px)}
-.aso-cvw{position:relative}
-.aso-cvw::before{content:"";position:absolute;inset:0 var(--gutter);border-radius:22px;box-shadow:var(--cshadow);pointer-events:none}
-.aso-cvbolt{position:absolute;left:30%;top:-4%;height:112%;width:auto;fill:#020E04;pointer-events:none}
-.aso-cvru{position:absolute;left:clamp(18px,2.4vw,36px);top:clamp(52px,6vw,96px);font-family:"ASO RF",Archivo,sans-serif;font-weight:800;text-transform:uppercase;
-  font-size:clamp(44px,6.4vw,104px);line-height:1.04;color:#020E04;letter-spacing:-.01em}
-.aso-cvm{position:absolute;left:clamp(18px,2.4vw,36px);top:clamp(18px,2.4vw,32px);color:#020E04!important;opacity:.75}
-.aso-cv .aso-herorow{position:relative;width:100%;margin:0;display:flex;justify-content:flex-end}
-.aso-cv .aso-live{width:min(520px,100%)}
-.aso-facts{border-top:1px solid var(--ln);margin-top:clamp(28px,4vw,48px);padding-bottom:clamp(40px,6vw,80px)}
-.aso-facts dt{color:var(--mu)!important}
-/* chapter bar: lime marks the chapter you're in */
-.aso-toc{background:rgba(246,245,241,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--ln)}
-.aso-toc a{font-size:11px;color:var(--mu)}
-.aso-toc a:hover{color:var(--ink)}
-.aso-toc a.on{background:var(--lime);color:var(--ink)}
-.aso-toc .pr{background:var(--ink)}
-/* orange chapters stay the accent, as cards on paper */
-.aso-or{background:var(--bg)}
-.aso-or>.wrap{background:var(--or);border-radius:22px;padding:clamp(28px,4vw,64px);box-shadow:var(--cshadow)}
-.aso-or .aso-h,.aso-or .aso-h .o{color:#0A0B0D}
-.aso-res{border-radius:16px;overflow:hidden}
-.aso-res b{font-size:clamp(44px,5.4vw,84px)}
+.aso-dm{font-family:"ASO DM",sans-serif}
+.aso{--gol:"ASO DM",sans-serif;--rf:"ASO RF",sans-serif;font-family:var(--gol)}
+.aso,.aso *{font-synthesis:none}
+.aso-h,.aso-h3,.aso-answer,.aso-res b,.aso-quote,.aso-meas .big,.aso-title .sub{font-family:var(--rf);font-weight:800;font-stretch:100%;text-transform:uppercase;letter-spacing:-.01em}
+.aso-h{line-height:.95}
+.aso-h3{line-height:1.02}
+.aso-quote{line-height:1.05}
+.aso-side .logo{font-family:var(--rf);font-weight:900;font-style:oblique 10deg;font-stretch:100%}
+/* hero: the product's sign-in, full-bleed orange */
+.aso-hero .aso-hbolt{position:absolute;right:max(-2vw,calc(50% - 760px));top:-4%;height:112%;width:auto;fill:#020E04;pointer-events:none}
+.aso-hero,.aso-hero .mono,.aso-back,.aso-tag{color:#020E04!important}
+.aso-tag i{background:#020E04}
+.aso-tag{background:var(--or);position:relative;z-index:2}
+.aso-title{font-size:inherit;line-height:1;margin-top:clamp(16px,2vw,24px)}
+.aso-title .mask.aso-wm .w{display:block}
+.aso-wm svg{display:block;width:min(100%,clamp(320px,57vw,840px));height:auto}
+.aso-title .mask.aso-wm{padding-bottom:.4%}
+.aso-title .sub{display:block;font-size:clamp(30px,4.6vw,72px);line-height:1;margin-top:clamp(14px,1.6vw,22px)}
+.aso-lede{max-width:40ch}
+.aso-herorow{position:relative}
 .aso-vsteps{grid-template-columns:repeat(3,1fr)}
-.aso-vstage{border:0}
-@media (max-width:900px){.aso-cv{min-height:auto;flex-direction:column;align-items:stretch;padding-top:clamp(200px,52vw,320px)}.aso-cvbolt{left:auto;right:-14%;height:70%}
-  .aso-cv .aso-herorow{justify-content:stretch}.aso-cv .aso-live{width:100%}.aso-cvru{font-size:clamp(36px,10vw,56px)}}
-@media (max-width:640px){.aso-vsteps{grid-template-columns:1fr}}
-
+@media (max-width:640px){.aso-vsteps{grid-template-columns:1fr}.aso-hero .aso-hbolt{right:-40%;opacity:.22}}
 /* ================= HOME: the character that builds itself ================= */
 @font-face{font-family:"Golos Text";src:url("fonts/golos-text-cyrillic-800-normal.woff2") format("woff2");font-weight:800;font-display:swap;unicode-range:U+0400-04FF}
 @font-face{font-family:"Golos Text";src:url("fonts/golos-text-cyrillic-900-normal.woff2") format("woff2");font-weight:900;font-display:swap;unicode-range:U+0400-04FF}
@@ -1709,7 +1671,7 @@ html[lang=ru] :is(.kl-h1,.kl-h2){letter-spacing:-.02em;word-spacing:.04em}
 @media (max-width:460px){.nav .brand span{display:none}}
 @media (prefers-reduced-motion:reduce){.me-spin,.me-hint i,.me-caret{animation:none}}
 html[lang=ru] :is(.aso-h,.aso-h3,.aso-quote,.aso-title,.hf-h,.jk-h,.pf-h,.ab-h,.me-name,.idv-h){letter-spacing:-.01em;word-spacing:.06em}
-html[lang=ru] .aso-title .sub{font-size:.32em}
+html[lang=ru] .aso-title .sub{font-size:clamp(28px,4.2vw,64px)}
 /* ===== JKS case ===== */
 .jk{--n:#09090A;--p:#fff;--r:#E63323;--gr:#212124;--mu:#8C8C8C;--wide:"Archivo",sans-serif;--gt:"Golos Text",system-ui,sans-serif;background:var(--n);color:#fff;font-family:var(--gt)}
 .jk .mono{font-family:"Martian Mono",ui-monospace,Menlo,monospace}
@@ -2124,6 +2086,7 @@ html[lang=ru] .cv .cv-en,html:not([lang=ru]) .cv .cv-ru{display:none}
 <!-- ================= CASE ================= -->
 <main id="aezakmiso" class="view aso">
   <header class="aso-hero">
+    <svg class="aso-hbolt" viewBox="150 40 490 730" aria-hidden="true"><path d="M153.594 762L500.87 50L429.013 337.83L632.594 140.894L321.241 762L393.089 443.872L153.594 762Z"/></svg>
     <div class="wrap">
       <div class="top">
         <a class="aso-back mono" href="#work"><svg class="arr l" aria-hidden="true"><use href="#arr"/></svg>All work</a>
@@ -2131,24 +2094,17 @@ html[lang=ru] .cv .cv-en,html:not([lang=ru]) .cv .cv-ru{display:none}
       </div>
       <p class="mono k">Case study 01 · Internal tool · Design + build</p>
       <h1 class="aso-title" aria-label="AezakmiSO. See the store earlier.">
-        <span class="mask"><span class="w" style="--d:.05s">AezakmiSO</span></span>
+        <span class="mask aso-wm"><span class="w" style="--d:.05s"><svg viewBox="0 0 248 24" aria-hidden="true"><g fill="#020E04"><path fill-rule="evenodd" d="M29.8094 23.7888H19.3086L19.2747 20.6169H12.4931L10.7767 23.7888H0.275864L13.1484 0H29.5559L29.8094 23.7888ZM13.866 18.0795H19.2478L19.1438 8.32607L13.866 18.0795Z"/><path d="M59.5357 6.97804H45.4254L44.6681 9.83269H58.7785L57.6008 14.2733H43.4905L42.8174 16.8107H56.9277L55.077 23.7888H30.4657L36.7752 0H61.3865L59.5357 6.97804Z"/><path d="M73.8601 16.8107H86.7895L84.9388 23.7888H55.7332L74.1057 6.97804H60.8483L62.699 0H92.2328L73.8601 16.8107Z"/><path fill-rule="evenodd" d="M115.129 23.7888H104.628L104.594 20.6169H97.8124L96.096 23.7888H85.595L98.4676 0H114.875L115.129 23.7888ZM99.1851 18.0795H104.567L104.463 8.32607L99.1851 18.0795Z"/><path d="M126.614 23.7888H116.113L122.423 0H132.923L126.614 23.7888Z"/><path d="M140.216 11.8944L143.678 23.7888H133.23L129.769 11.8944L139.54 0H149.987L140.216 11.8944Z"/><path d="M166.818 8.9208L171.645 0H187.068L180.759 23.7888H170.258L173.413 11.8944L166.977 23.7888H158.773L158.646 11.8944L155.491 23.7888H144.99L151.3 0H166.723L166.818 8.9208Z"/><path d="M193.228 23.7888H182.728L189.037 0H199.538L193.228 23.7888Z"/></g><g transform="translate(203 0)"><path d="M6.75 0H45L38.25 24H0L6.75 0Z" fill="#020E04"/><path d="M10.4092 14.0054L10.4673 13.6733H13.771L13.7212 13.9307C13.6326 14.4232 13.7184 14.7912 13.9785 15.0347C14.2386 15.2782 14.637 15.3999 15.1738 15.3999C15.7106 15.3999 16.1395 15.2975 16.4604 15.0928C16.7814 14.888 16.9723 14.6113 17.0332 14.2627C17.1107 13.8477 17.0304 13.5378 16.7925 13.333C16.5601 13.1283 15.9126 12.8931 14.8501 12.6274C13.6659 12.3286 12.7611 11.8804 12.1357 11.2827C11.5104 10.6795 11.2863 9.86605 11.4634 8.84229C11.6681 7.68571 12.2658 6.78646 13.2563 6.14453C14.2469 5.5026 15.4644 5.18164 16.9087 5.18164C18.342 5.18164 19.4404 5.50814 20.2041 6.16113C20.9733 6.81413 21.2555 7.71061 21.0508 8.85059L20.9927 9.14941H17.772L17.8135 8.92529C17.891 8.50472 17.819 8.16715 17.5977 7.9126C17.3818 7.65804 17.0194 7.53076 16.5103 7.53076C15.9956 7.53076 15.5999 7.62207 15.3232 7.80469C15.0521 7.9873 14.8916 8.23633 14.8418 8.55176C14.7809 8.88932 14.8722 9.13281 15.1157 9.28223C15.3647 9.43164 16.0122 9.64746 17.0581 9.92969C18.2147 10.2451 19.1112 10.7044 19.7476 11.3076C20.384 11.9053 20.6025 12.7824 20.4033 13.939C20.182 15.1896 19.5566 16.1359 18.5273 16.7778C17.5036 17.4198 16.2529 17.7407 14.7754 17.7407C13.32 17.7407 12.1717 17.4308 11.3306 16.811C10.495 16.1912 10.1878 15.256 10.4092 14.0054ZM22.2541 11.8306L22.3786 11.0835C22.7327 9.10791 23.5158 7.63037 24.7277 6.65088C25.9451 5.66585 27.3812 5.17334 29.0358 5.17334C30.6794 5.17334 31.9438 5.66585 32.8293 6.65088C33.7202 7.63037 33.9886 9.10791 33.6344 11.0835L33.5016 11.8306C33.1585 13.8062 32.3699 15.2865 31.1359 16.2715C29.9074 17.251 28.4686 17.7407 26.8195 17.7407C25.1704 17.7407 23.9087 17.251 23.0343 16.2715C22.1655 15.2865 21.9054 13.8062 22.2541 11.8306ZM25.5329 12.2871C25.3392 13.3939 25.4001 14.1825 25.7155 14.6528C26.0365 15.1232 26.5456 15.3584 27.2428 15.3584C27.9401 15.3584 28.5378 15.1232 29.0358 14.6528C29.5338 14.1825 29.8797 13.3939 30.0734 12.2871L30.3639 10.6353C30.5631 9.52295 30.4967 8.73438 30.1647 8.26953C29.8327 7.79915 29.3153 7.56396 28.6125 7.56396C27.9152 7.56396 27.3258 7.79915 26.8444 8.26953C26.3629 8.73438 26.0226 9.52295 25.8234 10.6353L25.5329 12.2871Z" fill="#FF4D29"/></g></svg></span></span>
         <span class="mask sub"><span class="w" style="--d:.15s">See the store earlier.</span></span>
       </h1>
-      <p class="lede aso-lede">An in-house ASO dashboard for Google Play and the App Store. Nobody asked for it: I saw the hours going into manual store checks, then designed and built the tool. <b>30 people</b> in the company use it now.</p>
-    </div>
-    <div class="wrap aso-cvw"><div class="aso-cv">
-      <svg class="aso-cvbolt" viewBox="150 40 490 730" aria-hidden="true"><path d="M153.594 762L500.87 50L429.013 337.83L632.594 140.894L321.241 762L393.089 443.872L153.594 762Z"/></svg>
-      <div class="aso-cvru" aria-hidden="true">Видеть<br>стор<br>раньше</div>
-      <span class="aso-cvm mono" aria-hidden="true">App Store · Google Play</span>
       <div class="aso-herorow">
+        <p class="lede aso-lede">An in-house ASO dashboard for Google Play and the App Store. Nobody asked for it: I saw the hours going into manual store checks, then designed and built the tool. <b>30 people</b> in the company use it now.</p>
         <div class="aso-live" aria-label="Moves in search, demo">
           <div class="hd"><b>Moves in search</b><span id="asoAgo">checked 12 h ago</span></div>
           <div class="aso-moves"><ul id="asoMoves" aria-live="polite"></ul></div>
           <div class="ft"><button type="button" class="aso-check" id="asoCheck">Check now</button><div class="aso-bar"><i id="asoBar"></i></div><small class="mono" id="asoStat">35 searches</small></div>
         </div>
       </div>
-    </div></div>
-    <div class="wrap">
       <dl class="aso-facts">
         <div><dt class="mono">Role</dt><dd>Initiator, product designer, builder</dd></div>
         <div><dt class="mono">Users</dt><dd>Designers, releasers, product managers, leads</dd></div>
