@@ -61,18 +61,22 @@ h1,h2,h3{margin:0;font-family:var(--display);text-wrap:balance}
 .lime{background:var(--lime);color:var(--ink)}
 .bone{background:var(--bone);color:var(--ink)}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:20;background:var(--ink);border-bottom:1px solid var(--rule)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+/* nav: one top bar for every route (new home look). Sticky on a solid paper background; the home overrides it to a fixed transparent overlay. Cases offset their sticky chapter bars with var(--nav-h). */
+:root{--nav-h:68px}
+.nav{position:sticky;top:0;z-index:20;background:#F6F5F1E6;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:var(--nav-h)}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
 .brand svg{width:20px;height:20px;fill:var(--lime);flex:none}
-.nav ul{list-style:none;display:flex;align-items:center;gap:clamp(12px,2.4vw,28px);margin:0;padding:0}
-.nav a.link{text-decoration:none;color:var(--mute)}
-.nav a.link:hover{color:var(--text)}
-.nav a.cta{text-decoration:none;background:var(--lime);color:var(--ink);padding:9px 12px;font-weight:600}
-.nav a.cta:hover{background:var(--text)}
+.nav .brand{color:#0A0B0D;font-family:"Golos Text",sans-serif;font-weight:600;letter-spacing:0;text-transform:none;font-size:15px}
+.nav ul{list-style:none;display:flex;align-items:center;gap:clamp(12px,2.4vw,28px);margin:0;background:#ffffffc4;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:5px 5px 5px 16px;border-radius:99px;box-shadow:0 0 0 1px #0A0B0D12}
+.nav a.link{text-decoration:none;color:#3A3C40}
+.nav a.link:hover{color:#0A0B0D}
+.nav .lang button{color:#6B6D72;background:transparent}
+.nav .lang button[aria-pressed="true"]{color:#0A0B0D;background:transparent}
+.nav a.cta{text-decoration:none;border-radius:99px;background:#0A0B0D;color:#fff;padding:9px 16px;font-weight:600}
+.nav a.cta:hover{background:#2A2C30}
 
-.view{display:none;scroll-margin-top:64px}
+.view{display:none;scroll-margin-top:calc(var(--nav-h) + 8px)}
 .view.on{display:block}
 
 /* hero */
@@ -1056,7 +1060,7 @@ html[lang=ru] :is(.kl-h1,.kl-h2){letter-spacing:-.02em;word-spacing:.04em}
 .idv-btn.ghost{background:transparent;color:var(--tx);border:1px solid var(--ln);box-shadow:none}
 
 /* toc */
-.idv-toc{position:sticky;top:57px;z-index:15;background:rgba(20,20,20,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--ln)}
+.idv-toc{position:sticky;top:var(--nav-h);z-index:15;background:rgba(20,20,20,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--ln)}
 .idv-toc .in{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;padding:9px var(--gutter)}
 .idv-toc .in::-webkit-scrollbar{display:none}
 .idv-toc button{flex:none;border:0;background:none;font-family:var(--pix);font-weight:700;font-size:11px;text-transform:uppercase;color:#8A8A8A;padding:7px 10px;cursor:pointer;white-space:nowrap}
@@ -1255,7 +1259,7 @@ html[lang=ru] :is(.kl-h1,.kl-h2){letter-spacing:-.02em;word-spacing:.04em}
 .aso-facts dt{margin-bottom:6px;color:rgba(12,14,15,.7)!important}.aso-facts dd{margin:0;font-weight:600;line-height:1.4}
 
 /* toc + progress */
-.aso-toc{position:sticky;top:56px;z-index:20;background:rgba(12,14,15,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+.aso-toc{position:sticky;top:var(--nav-h);z-index:20;background:rgba(12,14,15,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
 .aso-toc .wrap{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;height:46px}
 .aso-toc .wrap::-webkit-scrollbar{display:none}
 .aso-toc a{flex:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);text-decoration:none;padding:7px 10px;border-radius:6px}
@@ -1477,7 +1481,7 @@ html[lang=ru] :is(.kl-h1,.kl-h2){letter-spacing:-.02em;word-spacing:.04em}
 @font-face{font-family:"Golos Text";src:url("fonts/golos-text-cyrillic-900-normal.woff2") format("woff2");font-weight:900;font-display:swap;unicode-range:U+0400-04FF}
 #home{--ink:#0C0D0F;--tx:#EDEEE8;--mu:#9A9E9F;--ln:rgba(237,238,232,.12);--lime:#C9F03C;background:var(--ink);color:var(--tx);font-family:Archivo,"Golos Text","Helvetica Neue",Arial,sans-serif}
 .me{height:1000vh;position:relative}
-.me-stick{position:sticky;top:56px;height:calc(100vh - 56px);overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(1200px 700px at 50% 55%,#17191C 0%,#0C0D0F 70%)}
+.me-stick{position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow:hidden;display:flex;flex-direction:column;background:radial-gradient(1200px 700px at 50% 55%,#17191C 0%,#0C0D0F 70%)}
 .me .mono{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
 .me-year{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;font-weight:900;font-stretch:125%;font-size:30vw;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(237,238,232,.07);letter-spacing:-.04em;transition:opacity .6s}
 .me-top{position:relative;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px var(--gutter,32px);flex-wrap:wrap}
@@ -1677,7 +1681,7 @@ html[lang=ru] .aso-title{font-size:clamp(46px,7.4vw,122px);line-height:.86}
 .arc-wa{position:absolute;right:40px;bottom:40px;width:64px;height:64px;border-radius:50%;background:var(--r);display:grid;place-items:center;font-weight:600;font-size:15px;z-index:2}
 .arc-sc{position:absolute;left:40px;bottom:40px;font:11px "Martian Mono",monospace;letter-spacing:.1em;color:var(--mu);text-transform:uppercase}
 /* toc */
-.jk-toc{position:sticky;top:56px;z-index:20;background:rgba(9,9,10,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+.jk-toc{position:sticky;top:var(--nav-h);z-index:20;background:rgba(9,9,10,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
 .jk-toc .in{display:flex;gap:4px;overflow-x:auto;padding:8px clamp(16px,4vw,40px);scrollbar-width:none}
 .jk-toc button{flex:none;display:flex;gap:8px;align-items:baseline;background:none;border:0;color:#bdbdbd;font:600 13px var(--gt);padding:8px 12px;border-radius:10px;cursor:pointer}
 .jk-toc button i{font:normal 9px "Martian Mono",monospace;color:var(--r)}
