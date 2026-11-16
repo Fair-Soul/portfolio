@@ -4,25 +4,28 @@ random.seed(7)
 import os
 F = 'file://' + os.path.abspath(os.path.join(os.path.dirname(__file__), '../../fonts')) + '/'
 CSS = f"""
-@font-face{{font-family:G;src:url({F}golos-text-latin-400-normal.woff2);font-weight:400;unicode-range:U+0000-024F,U+2000-22FF}}
+@font-face{{font-family:G;src:url({F}dm-sans-latin-wght.woff2);font-weight:400;unicode-range:U+0000-024F,U+2000-22FF}}
+@font-face{{font-family:G;src:url({F}dm-sans-latin-wght.woff2);font-weight:500;unicode-range:U+0000-024F,U+2000-22FF}}
+@font-face{{font-family:G;src:url({F}dm-sans-latin-wght.woff2);font-weight:600;unicode-range:U+0000-024F,U+2000-22FF}}
+@font-face{{font-family:G;src:url({F}dm-sans-latin-wght.woff2);font-weight:700;unicode-range:U+0000-024F,U+2000-22FF}}
+@font-face{{font-family:G;src:url({F}dm-sans-latin-wght.woff2);font-weight:800;unicode-range:U+0000-024F,U+2000-22FF}}
 @font-face{{font-family:G;src:url({F}golos-text-cyrillic-400-normal.woff2);font-weight:400;unicode-range:U+0400-04FF}}
-@font-face{{font-family:G;src:url({F}golos-text-latin-600-normal.woff2);font-weight:600 900;unicode-range:U+0000-024F,U+2000-22FF}}
+@font-face{{font-family:G;src:url({F}golos-text-cyrillic-500-normal.woff2);font-weight:500;unicode-range:U+0400-04FF}}
 @font-face{{font-family:G;src:url({F}golos-text-cyrillic-600-normal.woff2);font-weight:600;unicode-range:U+0400-04FF}}
 @font-face{{font-family:G;src:url({F}golos-text-cyrillic-800-normal.woff2);font-weight:800;unicode-range:U+0400-04FF}}
-@font-face{{font-family:G;src:url({F}golos-text-cyrillic-900-normal.woff2);font-weight:900;unicode-range:U+0400-04FF}}
-@font-face{{font-family:GH;src:url({F}golos-text-cyrillic-800-normal.woff2);font-weight:800}}
-@font-face{{font-family:GH;src:url({F}golos-text-cyrillic-900-normal.woff2);font-weight:900}}
-@font-face{{font-family:A;src:url({F}archivo.woff2)}}
+@font-face{{font-family:H;src:url({F}roboto-flex-latin-full.woff2);font-weight:100 1000;font-style:oblique 0deg 10deg;unicode-range:U+0000-024F,U+2000-22FF}}
+@font-face{{font-family:H;src:url({F}roboto-flex-cyrillic-full.woff2);font-weight:100 1000;font-style:oblique 0deg 10deg;unicode-range:U+0400-04FF}}
 :root{{--bg:#0C0E0F;--s:#15181A;--s2:#1B1F22;--ln:#252A2E;--ink:#E8EDF1;--mu:#81878D;--ac:#FF4D29;--mine:#30140F;--ok:#49E2A0;--wa:#E9BF42;--bad:#E26C82;--side:#08090A}}
-*{{box-sizing:border-box;margin:0;padding:0}}
-body{{width:1200px;background:var(--bg);color:var(--ink);font:13px/1.45 G,sans-serif;-webkit-font-smoothing:antialiased}}
-.app{{display:grid;grid-template-columns:212px 1fr;min-height:750px}}
-.side{{background:var(--side);border-right:1px solid var(--ln);padding:18px 14px;position:relative;overflow:hidden}}
-.logo{{display:flex;align-items:center;gap:6px;font:italic 900 19px/1 A,GH,G;letter-spacing:-.5px;margin-bottom:18px}}
-.logo i{{background:var(--ac);color:#000;font:800 9px/1 GH,G;padding:3px 4px;border-radius:3px;font-style:normal}}
+*{{box-sizing:border-box;margin:0;padding:0;font-synthesis:none!important}}
+body{{width:1200px;background:var(--bg);color:var(--ink);font:13px/1.45 G,sans-serif;-webkit-font-smoothing:antialiased;font-synthesis:none}}
+.app{{display:grid;grid-template-columns:212px 1fr;min-height:750px;align-items:start;background:linear-gradient(90deg,var(--side) 211px,var(--ln) 211px,var(--ln) 212px,var(--bg) 212px)}}
+.side{{background:var(--side);border-right:1px solid var(--ln);padding:18px 14px;position:relative;overflow:hidden;height:750px}}
+.logo{{display:flex;align-items:center;gap:6px;font:italic 900 19px/1 H;font-style:oblique 10deg;letter-spacing:-.3px;margin:2px 0 20px}}
+.logo i{{background:var(--ac);color:#000;font:900 9.5px/1 H;font-style:oblique 10deg;padding:3px 4px;border-radius:3px;font-style:normal}}
 .cmd{{height:28px;border:1px solid var(--ln);border-radius:7px;color:var(--mu);font-size:11px;display:flex;align-items:center;padding:0 9px;margin-bottom:16px;justify-content:space-between}}
 .grp{{font:600 9.5px/1 G;letter-spacing:1.2px;color:#5d6368;text-transform:uppercase;margin:14px 6px 6px}}
 .nv{{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:7px;color:#b9c0c6;font-size:12px;white-space:nowrap}}
+.nv.on{{font-weight:600}}
 .nv svg{{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7;opacity:.8}}
 .nv.on{{background:var(--s2);color:var(--ink);box-shadow:inset 2px 0 0 var(--ac)}}
 .nv b{{margin-left:auto;font:600 10px/1 G;background:var(--s2);color:var(--mu);padding:3px 6px;border-radius:9px}}
@@ -34,7 +37,7 @@ body{{width:1200px;background:var(--bg);color:var(--ink);font:13px/1.45 G,sans-s
 .btn.p{{background:var(--ac);border-color:var(--ac);color:#140603}}
 .main{{padding:22px 28px 36px;min-width:0}}
 .hd{{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:16px}}
-h1{{font:900 30px/1 GH,G;text-transform:uppercase;letter-spacing:-.3px}}
+h1{{font:800 30px/1 H;text-transform:uppercase;letter-spacing:0}}
 .meta{{color:var(--mu);font-size:11.5px}}
 .fb{{display:flex;gap:14px;align-items:flex-end;margin-bottom:18px}}
 .fb label{{display:block;font-size:10px;color:var(--mu);margin-bottom:5px}}
@@ -46,13 +49,13 @@ h1{{font:900 30px/1 GH,G;text-transform:uppercase;letter-spacing:-.3px}}
 .card{{background:var(--s);border:1px solid var(--ln);border-radius:11px}}
 .sec{{margin-top:22px}}
 .st{{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}}
-.st h2{{font:800 12.5px/1 GH,G;text-transform:uppercase;letter-spacing:.6px}}
+.st h2{{font:600 13.5px/1.2 G;letter-spacing:0}}
 .st a{{font-size:11px;color:var(--mu)}}
 .kpis{{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:12px}}
 .kpi{{padding:16px;min-height:112px;position:relative;overflow:hidden}}
 .kpi .l{{font-size:11.5px;color:var(--mu)}}
-.kpi .v{{font:800 32px/1 GH,G;margin:12px 0 8px;letter-spacing:-.5px;display:flex;align-items:baseline;gap:6px}}
-.kpi .v small{{font:600 15px/1 G;letter-spacing:0}}
+.kpi .v{{font:800 26px/1 H;margin:12px 0 8px;letter-spacing:-.5px;display:flex;align-items:baseline;gap:6px}}
+.kpi .v small{{font:800 15px/1 H;letter-spacing:0}}
 .kpi .l,.kpi .d{{position:relative;z-index:1}}
 
 .kpi .d{{font-size:11px;color:var(--mu)}}
@@ -125,7 +128,7 @@ NAV = [('МОЁ',[('Сводка','home',''),('Мои приложения','gri
        ('АНАЛИТИКА',[('Ниша и сроки жизни','chart',''),('Прогнозы и модели','trend',''),('Тренды','globe','')])]
 NI = {'home':'<path d="M4 11l8-7 8 7v9H4z"/>','chart':'<path d="M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3"/>','trend':'<path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/>'}
 def side(active):
-    h = f'<aside class="side" id="nav"><div class="logo">AEZAKMI <i>SO</i></div><div class="cmd">Команда <span>⌘K</span></div>'
+    h = f'<aside class="side" id="nav"><div class="logo">AEZAKMI <i>SO</i></div>'
     for g,items in NAV:
         h += f'<div class="grp">{g}</div>'
         for n,ic,c in items:

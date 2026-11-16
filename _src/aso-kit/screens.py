@@ -23,7 +23,7 @@ VIS = {MY[0]:'24%', MY[1]:'20%'}
 # ---------- OVERVIEW ----------
 def kpis():
     return f'''<div class="kpis" id="kpi">
-<div class="card kpi o">{BOLT}<div class="l">Мои приложения в выдаче</div><div class="v">2<small>из 2</small></div><div class="d">все в топ-10 хотя бы по одному ключу</div></div>
+<div class="card kpi o"><div class="l">Мои приложения в выдаче</div><div class="v">2<small>из 2</small></div><div class="d">все в топ-10 хотя бы по одному ключу</div></div>
 <div class="card kpi"><div class="l">Видимость своих</div><div class="v">22,1%</div><div class="d"><span class="up">▲ 3,4 п.п.</span> к прошлой неделе</div></div>
 <div class="card kpi"><div class="l">Удалено своих за 7 дней</div><div class="v">0</div><div class="d">рынок: 9 удалений за неделю</div></div>
 <div class="card kpi"><div class="l">В зоне риска</div><div class="v">1</div><div class="d"><span class="wa">OfficeDocs</span> · риск удаления 34%</div></div></div>'''
@@ -93,16 +93,16 @@ def positions():
     b=f'''<div style="display:grid;grid-template-columns:200px 1fr;gap:18px"><div><div class="card" style="padding:8px"><div style="display:flex;gap:6px;margin-bottom:8px"><div class="sel" style="flex:1;color:var(--mu)">Найти ключ</div><div class="btn">+</div></div>{kl}</div></div>
 <div><div class="hd" style="margin-bottom:8px"><h1 style="font-size:24px;text-transform:none">«collage maker»</h1><span class="btn">Изменить ключ</span></div><div class="meta" style="margin-bottom:12px">App Store · US · язык en · проверено 12 ч назад · 34 приложения</div>
 <div class="fb"><div class="seg"><span>DE</span><span class="on">US</span></div><div class="seg"><span>BR/en</span><span>DE/en</span><span>US</span></div></div>
-<div class="g3" style="grid-template-columns:repeat(5,1fr);margin-bottom:14px">{"".join(f'<div class="card pad" style="padding:12px"><div style="font:800 20px/1 GH,G">{v}</div><div class="sb" style="margin-top:6px">{t}</div></div>' for v,t in [('27','оценка ключа из 100'),('79%','сложность: сила лидеров'),('10%','ротация топ-10 за неделю'),('0%','молодых в топ-10'),('0%','ключ в названии у топ-10')])}</div>
+<div class="g3" style="grid-template-columns:repeat(5,1fr);margin-bottom:14px">{"".join(f'<div class="card pad" style="padding:12px"><div style="font:800 20px/1 H">{v}</div><div class="sb" style="margin-top:6px">{t}</div></div>' for v,t in [('27','оценка ключа из 100'),('79%','сложность: сила лидеров'),('10%','ротация топ-10 за неделю'),('0%','молодых в топ-10'),('0%','ключ в названии у топ-10')])}</div>
 <div class="tabs" style="margin-top:0"><span class="on">Выдача</span><span>История позиций</span></div><div class="card">{rows}</div></div></div>'''
     return page('Позиции и выдача', b)
 
 # ---------- APP CARD (positions) ----------
 def apphead(n='ProSign PDF Editor', dev='Nordwind Apps', mine=True, k='pen', g=0, stats=None, tab=0, rel='22.12.2024', base='15.06.2026'):
     stats = stats or [('3','лучшее место сейчас · «pdf scanner» · DE'),('24%','видимость: 1-е место = 100%'),('23 месяца','возраст с выхода в стор'),('меньше 1%','риск удаления за 30 дней')]
-    st=''.join(f'<div style="padding:14px 16px;{"border-left:1px solid var(--ln);" if i else ""}"><div style="font:800 22px/1 GH,G">{v}</div><div class="sb" style="margin-top:6px">{t}</div></div>' for i,(v,t) in enumerate(stats))
+    st=''.join(f'<div style="padding:14px 16px;{"border-left:1px solid var(--ln);" if i else ""}"><div style="font:800 22px/1 H">{v}</div><div class="sb" style="margin-top:6px">{t}</div></div>' for i,(v,t) in enumerate(stats))
     tabs=''.join(f'<span class="{"on" if i==tab else ""}">{t}</span>' for i,t in enumerate(['Позиции','Метаданные и графика','История']))
-    return f'''<div class="sb" style="margin-bottom:12px">← Приложения</div><div style="display:flex;gap:16px;align-items:center">{icon(k,g,"lg")}<div><div style="font:800 24px/1.1 GH,G">{n}</div><div class="sb" style="margin:4px 0 9px">{dev} · Google Play · US · <span class="up">● в сторе</span> · вышло {rel} · в базе с {base}</div>
+    return f'''<div class="sb" style="margin-bottom:12px">← Приложения</div><div style="display:flex;gap:16px;align-items:center">{icon(k,g,"lg")}<div><div style="font:800 24px/1.1 H">{n}</div><div class="sb" style="margin:4px 0 9px">{dev} · Google Play · US · <span class="up">● в сторе</span> · вышло {rel} · в базе с {base}</div>
 <div style="display:flex;gap:8px">{"<span class='btn p'>Моё приложение ✓</span>" if mine else "<span class='btn'>Это моё приложение</span>"}<span class="btn">☆ В избранное</span><span class="btn">Открыть в сторе</span><span class="btn">Ещё ▾</span></div></div></div>
 <div class="card" style="display:grid;grid-template-columns:repeat(4,1fr);margin-top:18px">{st}</div><div class="tabs">{tabs}</div>'''
 def grid():
