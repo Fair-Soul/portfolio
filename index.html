@@ -64,8 +64,8 @@ h1,h2,h3{margin:0;font-family:var(--display);text-wrap:balance}
 /* nav: one top bar for every route (new home look). Sticky on a solid paper background; the home overrides it to a fixed transparent overlay. Cases offset their sticky chapter bars with var(--nav-h). */
 :root{--nav-h:68px}
 .nav{position:sticky;top:0;z-index:20;background:transparent;border-bottom:0}
-/* dark cases: the name turns light so it reads on the dark page */
-html:has(:is(#aezakmiso,#indiedive,#jks).on) .nav .brand{color:#EDEEE8}
+/* the name sits in its own pill, matching the links pill, so it reads over any page */
+.nav .brand{background:#ffffffc4;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:5px 16px 5px 5px;border-radius:99px;box-shadow:0 0 0 1px #0A0B0D12}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:var(--nav-h)}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
 .brand svg{width:20px;height:20px;fill:var(--lime);flex:none}
@@ -3148,7 +3148,7 @@ html[lang=ru] .hm-cv .cv-kt{font-size:28px}
     <div class="wrap">
       <div class="jk-meta mono"><span>08 · Full page</span><span>Desktop · 1440</span></div>
       <h2 class="jk-h" data-rv>The whole home page.</h2>
-      <div class="jk-br jk-full" data-rv style="--d:.08s"><div class="bar"><i></i><i></i><i></i><span>jks.kz · Home · scroll inside</span></div><div class="vp"><img src="img/jks/v3.webp" alt="The redesigned JKS home page from top to bottom: arc hero, projects, services, bloggers, production, about and contacts" loading="lazy"></div></div>
+      <div class="jk-br jk-full" data-rv style="--d:.08s"><div class="bar"><i></i><i></i><i></i><span>jks.kz · Home · scroll inside</span></div><div class="vp"><img src="img/jks/v3-full.webp" width="1600" height="8692" alt="The redesigned JKS home page from top to bottom: arc hero, projects, services, bloggers, production, about and contacts" loading="lazy"></div></div>
       <p class="jk-fine">The 2022 site was designed at Elefanto. The screens on this page are my 2026 redesign of it. Copy, numbers and the Yandex Go case come from jks.kz. Images are placeholders.</p>
       <div class="jk-end"><a class="jk-btn ghost" href="#work">All work</a><a class="jk-btn" href="#aezakmiso">Next case: AezakmiSO <svg class="arr" aria-hidden="true"><use href="#arr"/></svg></a></div>
     </div>
