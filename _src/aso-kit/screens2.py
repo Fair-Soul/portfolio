@@ -84,12 +84,16 @@ def myapps():
     return page('Мои приложения', b)
 
 def login():
+    # geometry from the live sign-in frame (1440 wide), scaled to 1200
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>{CSS}
-.lg{{display:grid;grid-template-columns:1.6fr 1fr;height:750px}}.l{{background:var(--ac);position:relative;overflow:hidden;padding:48px 40px;color:#140603}}
-.l h2{{font:800 75px/1.02 H;text-transform:uppercase;margin-top:150px;position:relative;z-index:1}}.l svg{{position:absolute;right:-120px;top:-20px;height:800px;opacity:.95;fill:#140603}}
-.f{{padding:0 70px;display:flex;flex-direction:column;justify-content:center}}.in{{height:38px;border:1px solid var(--ln);border-radius:8px;background:var(--s);margin:6px 0 16px}}</style></head><body><div class="lg"><div class="l">
-<div style="font:900 26px/1 H;font-style:oblique 10deg">AEZAKMI <span style="background:#140603;color:var(--ac);font:900 12px/1 H;font-style:oblique 10deg;padding:3px 5px;border-radius:3px;vertical-align:4px">SO</span></div><svg viewBox="0 0 100 160"><path d="M62 0 L8 92 H44 L30 160 L92 58 H56 Z"/></svg><h2>Видеть<br>стор<br>раньше</h2><div style="position:absolute;bottom:34px;left:40px;font:600 12px/1 G;display:flex;gap:34px"><span>AEZAKMI.GROUP</span><span>ASO · позиции · удаления · тренды</span></div></div>
-<div class="f"><div style="font:800 30px/1 H;text-transform:uppercase">Вход</div><div class="sb" style="margin:8px 0 22px">Доступ выдаёт администратор команды</div><div class="sb">Логин</div><div class="in"></div><div class="sb">Пароль</div><div class="in"></div><div class="btn p" style="height:40px">Войти</div></div></div></body></html>'''
+.lg{{display:grid;grid-template-columns:700px 1fr;height:750px}}.l{{background:var(--ac);position:relative;overflow:hidden;color:#020E04}}
+.l .lbolt{{position:absolute;left:252px;top:45px;width:448px;height:690px;fill:#020E04}}
+.l h2{{position:absolute;left:47px;top:252px;font:800 75px/1.1 H;text-transform:uppercase;z-index:1}}
+.f{{display:flex;flex-direction:column;justify-content:center;padding:0 100px}}.in{{height:37px;border:1px solid var(--ln);border-radius:8px;background:var(--s);margin:6px 0 12px}}</style></head><body><div class="lg"><div class="l">
+<div style="position:absolute;left:47px;top:40px">{logo(20,'#020E04','#020E04','#FF4D29')}</div>
+<svg class="lbolt" viewBox="0 0 538 828">{BOLT_LIVE}</svg><h2>Видеть<br>стор<br>раньше</h2>
+<div style="position:absolute;top:692px;left:47px;font:600 11.5px/1 G;display:flex;gap:34px"><span>AEZAKMI.GROUP</span><span>ASO · позиции · удаления · тренды</span></div></div>
+<div class="f"><div style="font:800 30px/1 H;text-transform:uppercase">Вход</div><div class="sb" style="margin:10px 0 14px;font-size:10.5px">Доступ выдаёт администратор команды</div><div class="sb" style="font:500 10.5px G;color:var(--ink)">Логин</div><div class="in"></div><div class="sb" style="font:500 10.5px G;color:var(--ink)">Пароль</div><div class="in"></div><div class="btn p" style="height:37px;margin-top:4px;font-size:12.5px">Войти</div></div></div></body></html>'''
 
 SCREENS = dict(overview=overview, positions=positions, card=card, meta=meta, history=history, niche=niche, models=models, texts=texts, myapps=myapps, login=login)
 if __name__=='__main__':
