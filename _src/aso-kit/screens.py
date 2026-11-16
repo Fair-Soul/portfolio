@@ -18,24 +18,25 @@ A = {  # name: (dev, icon, grad, store)
 def ic(n, cls=''):
     d,k,g,s = A[n]; return icon(k,g,cls)
 MY = ['ProSign PDF Editor','OfficeDocs — PDF Editor & Tools']
+VIS = {MY[0]:'24%', MY[1]:'20%'}
 
 # ---------- OVERVIEW ----------
 def kpis():
     return f'''<div class="kpis" id="kpi">
-<div class="card kpi o">{BOLT}<div class="l">Мои приложения в выдаче</div><div class="v">2 <span style="font-size:15px;font-weight:600">из 2</span></div><div class="d">все в топ-10 хотя бы по одному ключу</div></div>
+<div class="card kpi o">{BOLT}<div class="l">Мои приложения в выдаче</div><div class="v">2<small>из 2</small></div><div class="d">все в топ-10 хотя бы по одному ключу</div></div>
 <div class="card kpi"><div class="l">Видимость своих</div><div class="v">22,1%</div><div class="d"><span class="up">▲ 3,4 п.п.</span> к прошлой неделе</div></div>
 <div class="card kpi"><div class="l">Удалено своих за 7 дней</div><div class="v">0</div><div class="d">рынок: 9 удалений за неделю</div></div>
 <div class="card kpi"><div class="l">В зоне риска</div><div class="v">1</div><div class="d"><span class="wa">OfficeDocs</span> · риск удаления 34%</div></div></div>'''
 def myrow(n, chips, rid=''):
     d,k,g,s = A[n]
     ch = ''.join(f'<span class="chip">{kw} <span class="flag">{c}</span><span class="pos {cl}">{p}</span><span class="dl {"up" if dl>0 else "dn" if dl<0 else ""}">{("▲"+str(dl)) if dl>0 else ("▼"+str(-dl)) if dl<0 else "·"}</span></span>' for kw,c,p,cl,dl in chips)
-    return f'<div class="row" {rid} style="align-items:flex-start;padding:13px 16px">{ic(n)}<div style="min-width:180px"><div class="nm">{n}<span class="tag">моё</span></div><div class="sb">{s} · видимость {random.choice(["24%","21%"])} · {d}</div></div><div class="chips">{ch}</div></div>'
+    return f'<div class="row" {rid} style="align-items:flex-start;padding:13px 16px">{ic(n)}<div style="flex:none;width:262px"><div class="nm nw">{n}<span class="tag">моё</span></div><div class="sb">{s} · видимость {VIS[n]} · {d}</div></div><div class="chips" style="flex:1;min-width:0">{ch}</div></div>'
 def myapps_block():
     r1 = myrow(MY[0],[('pdf scanner','DE',3,'o',2),('sign pdf','US',4,'t',1),('pdf scanner','US',4,'t',-1),('sign pdf','DE',7,'',1),('pdf editor','BR',10,'',0),('pdf scanner','BR',13,'',-6)], 'id="row"')
     r2 = myrow(MY[1],[('pdf editor','US',2,'o',3),('pdf editor','DE',4,'t',1),('pdf scanner','US',5,'t',1),('sign pdf','DE',7,'',-2),('pdf scanner','DE',9,'',2)])
     add = '''<div style="padding:14px 16px;border-bottom:1px solid var(--ln);display:grid;grid-template-columns:1fr 1fr 150px auto;gap:12px;align-items:end">
 <div><div class="sb" style="margin-bottom:5px">Найти среди отслеживаемых</div><div class="sel" style="color:var(--mu)">Название, разработчик или ID</div></div>
-<div><div class="sb" style="margin-bottom:5px">Или добавить по ссылке</div><div class="sel" style="color:var(--mu)">apps.apple.com/…/id1234567 или play.google.com/…</div></div>
+<div><div class="sb" style="margin-bottom:5px">Или добавить по ссылке</div><div class="sel" style="color:var(--mu)">Ссылка на App Store или Google Play</div></div>
 <div><div class="sb" style="margin-bottom:5px">Страна</div><div class="sel">США (US) ▾</div></div><div class="btn p">Добавить как моё</div></div>'''
     return f'<div class="sec" id="add"><div class="st"><h2>Мои приложения</h2><a>все мои · + добавить своё</a></div><div class="card">{add}<div id="chips">{r1}{r2}</div></div></div>'
 MOVES = [
@@ -88,7 +89,7 @@ def positions():
     rows=''
     for i,(n,d,k,g,r,c) in enumerate(RES):
         dl=random.choice([1,2,-1,0,3,-2])
-        rows+=f'''<div class="row" style="padding:12px 16px;gap:14px"><span class="pos t" style="width:30px;height:30px;line-height:30px;font-size:13px;border-radius:8px">{i+1}</span>{icon(k,g)}<div style="width:230px"><div class="nm">{n}</div><div class="sb">{d}</div><div class="sb">★ {r} · {f"{c:,}".replace(",", " ")} оценок · вышло {random.choice(["2 года","8 месяцев","24 месяца","12 месяцев"])} назад</div><div class="sb">прогноз через 7 дн: <span class="{"up" if dl>=0 else "dn"}">{max(1,i+1-dl)}</span></div></div><div style="display:flex;gap:7px;margin-left:auto">{"".join(shot(g+j,j) for j in range(5))}</div></div>'''
+        rows+=f'''<div class="row" style="padding:12px 16px;gap:14px"><span class="pos t" style="width:30px;height:30px;line-height:30px;font-size:13px;border-radius:8px">{i+1}</span>{icon(k,g)}<div style="width:230px"><div class="nm">{n}</div><div class="sb">{d}</div><div class="sb nw">★ {r} · {f"{c:,}".replace(",", " ")} оценок</div><div class="sb nw">вышло {random.choice(["2 года","8 месяцев","24 месяца","12 месяцев"])} назад</div><div class="sb">прогноз через 7 дн: <span class="{"up" if dl>=0 else "dn"}">{max(1,i+1-dl)}</span></div></div><div style="display:flex;gap:7px;margin-left:auto">{"".join(shot(g+j,j) for j in range(5))}</div></div>'''
     b=f'''<div style="display:grid;grid-template-columns:200px 1fr;gap:18px"><div><div class="card" style="padding:8px"><div style="display:flex;gap:6px;margin-bottom:8px"><div class="sel" style="flex:1;color:var(--mu)">Найти ключ</div><div class="btn">+</div></div>{kl}</div></div>
 <div><div class="hd" style="margin-bottom:8px"><h1 style="font-size:24px;text-transform:none">«collage maker»</h1><span class="btn">Изменить ключ</span></div><div class="meta" style="margin-bottom:12px">App Store · US · язык en · проверено 12 ч назад · 34 приложения</div>
 <div class="fb"><div class="seg"><span>DE</span><span class="on">US</span></div><div class="seg"><span>BR/en</span><span>DE/en</span><span>US</span></div></div>
@@ -97,11 +98,11 @@ def positions():
     return page('Позиции и выдача', b)
 
 # ---------- APP CARD (positions) ----------
-def apphead(n='ProSign PDF Editor', dev='Nordwind Apps', mine=True, k='pen', g=0, stats=None, tab=0):
+def apphead(n='ProSign PDF Editor', dev='Nordwind Apps', mine=True, k='pen', g=0, stats=None, tab=0, rel='22.12.2024', base='15.06.2026'):
     stats = stats or [('3','лучшее место сейчас · «pdf scanner» · DE'),('24%','видимость: 1-е место = 100%'),('23 месяца','возраст с выхода в стор'),('меньше 1%','риск удаления за 30 дней')]
     st=''.join(f'<div style="padding:14px 16px;{"border-left:1px solid var(--ln);" if i else ""}"><div style="font:800 22px/1 GH,G">{v}</div><div class="sb" style="margin-top:6px">{t}</div></div>' for i,(v,t) in enumerate(stats))
     tabs=''.join(f'<span class="{"on" if i==tab else ""}">{t}</span>' for i,t in enumerate(['Позиции','Метаданные и графика','История']))
-    return f'''<div class="sb" style="margin-bottom:12px">← Приложения</div><div style="display:flex;gap:16px;align-items:center">{icon(k,g,"lg")}<div><div style="font:800 24px/1.1 GH,G">{n}</div><div class="sb" style="margin:4px 0 9px">{dev} · Google Play · US · <span class="up">● в сторе</span> · вышло 22.12.2024 · в базе с 15.06.2026</div>
+    return f'''<div class="sb" style="margin-bottom:12px">← Приложения</div><div style="display:flex;gap:16px;align-items:center">{icon(k,g,"lg")}<div><div style="font:800 24px/1.1 GH,G">{n}</div><div class="sb" style="margin:4px 0 9px">{dev} · Google Play · US · <span class="up">● в сторе</span> · вышло {rel} · в базе с {base}</div>
 <div style="display:flex;gap:8px">{"<span class='btn p'>Моё приложение ✓</span>" if mine else "<span class='btn'>Это моё приложение</span>"}<span class="btn">☆ В избранное</span><span class="btn">Открыть в сторе</span><span class="btn">Ещё ▾</span></div></div></div>
 <div class="card" style="display:grid;grid-template-columns:repeat(4,1fr);margin-top:18px">{st}</div><div class="tabs">{tabs}</div>'''
 def grid():
@@ -128,7 +129,7 @@ def meta():
     shots=''.join(shot(i,i%3) for i in range(7))
     lst=''.join(f'<div class="row" style="padding:12px 16px"><div style="width:250px"><div style="font-size:12px;font-weight:600">«{k}» <span class="flag">{c}</span> <span class="sb">листинг под страну</span></div><div style="display:flex;gap:9px;align-items:center;margin-top:8px">{icon("cam",5,"sm")}<span class="nm">RetroLab {c}</span></div><div class="sb" style="margin-top:6px">отличается: название, иконка · с 21.10.2026</div></div><div style="display:flex;gap:6px;margin-left:auto">{"".join(shot(5+j,j) for j in range(7))}</div></div>' for k,c in [('collage maker','BR'),('photo editor','BR'),('collage maker','DE'),('photo editor','DE')])
     info=''.join(f'<div style="padding:7px 0;border-top:1px solid var(--ln)"><div class="sb" style="font-size:10.5px">{a}</div><div style="font-size:12px">{v}</div></div>' for a,v in [('Категория','Photography'),('Цена','Бесплатно'),('Встроенные покупки','да, $0.99 — $49.99'),('Установки','100 000+'),('Рейтинг','4,43 из 5 · 7 267 оценок'),('Версия','1.3.0'),('Последнее обновление','04.11.2026'),('Вышло в стор','22.06.2026'),('Bundle ID','com.retrolab.app')])
-    b=apphead('RetroLab','Delta Soft',False,'cam',5,[('12','лучшее место · «collage maker» · US'),('9%','видимость'),('5 месяцев','возраст'),('меньше 1%','риск удаления за 30 дней')],1)
+    b=apphead('RetroLab','Moonrise Dev',False,'cam',5,[('6','лучшее место · «collage maker» · BR'),('9%','видимость'),('5 месяцев','возраст с выхода в стор'),('меньше 1%','риск удаления за 30 дней')],1,rel='22.06.2026',base='23.06.2026')
     b+=f'''<div class="st"><h2>Устройства и графика</h2><a>Google Play не сообщает список устройств</a></div><div class="card pad" style="display:flex;gap:8px;align-items:center"><div style="width:110px"><div class="nm">Android</div><div class="sb">7 скриншотов и видео</div></div>{shots}</div>
 <div class="sec"><div class="st"><h2>Листинги в выдаче</h2><a>картинка в выдаче по ключу, если отличается от страницы</a></div><div class="card">{lst}</div></div>
 <div class="sec" style="display:grid;grid-template-columns:1.5fr 1fr;gap:14px"><div><div class="st"><h2>Описание</h2><a>590 символов</a></div><div class="card pad"><div class="nm" style="margin-bottom:8px">Удобный photo editor в один клик</div><div class="sb" style="font-size:12px;line-height:1.6;color:#b9c0c6">RetroLab — фоторедактор с плёночными фильтрами, коллажами и ретушью. Соберите коллаж из 9 фото, добавьте рамку и текст, сохраните в высоком качестве. Подходит для сторис, постов и печати.</div><div class="nm" style="margin:14px 0 6px">Что нового в 1.3.0</div><div class="sb">Новые рамки для коллажей, ускорен экспорт.</div></div></div><div><div class="st"><h2>Сведения</h2><a>на 13.11.2026</a></div><div class="card" style="padding:4px 16px">{info}</div></div></div>'''
@@ -141,7 +142,7 @@ def history():
     ev=''.join(f'<div style="display:flex;gap:12px;padding:0 0 14px;position:relative"><div style="width:9px;height:9px;border-radius:50%;margin-top:4px;flex:none;background:{"var(--ac)" if big else "#3a4045"}"></div><div><div class="sb" style="font-size:10.5px">{d}</div><div style="font-size:12.5px;{"font-weight:600" if big else ""}">{t}</div>{f"<div class=sb style=margin-top:5px;background:var(--s2);padding:6px 9px;border-radius:6px>{x}</div>" if x else ""}</div></div>' for d,t,x,big in EV)
     random.seed(9); r=[1000+i*i*1.25+random.random()*80 for i in range(70)]
     oth=''.join(f'<div class="row">{icon(k,g,"sm")}<span class="nm" style="font-size:12px">{n}</span><span class="mv"><span class="{"dn" if rm else "up"}">● {"удалено 11.07" if rm else "в сторе"}</span></span></div>' for n,k,g,rm in [('TurboWall VPN','shield',6,0),('ShieldProxy VPN','shield',4,0),('SwiftTunnel VPN','shield',8,0),('AstraGuard VPN','shield',0,0),('QuickScan PDF Editor','scan',2,1),('RetroFx Photo Editor','cam',3,0)])
-    b=apphead('RetroLab','Delta Soft',False,'cam',5,[('12','лучшее место · «collage maker» · US'),('9%','видимость'),('5 месяцев','возраст'),('меньше 1%','риск удаления за 30 дней')],2)
+    b=apphead('RetroLab','Moonrise Dev',False,'cam',5,[('6','лучшее место · «collage maker» · BR'),('9%','видимость'),('5 месяцев','возраст с выхода в стор'),('меньше 1%','риск удаления за 30 дней')],2,rel='22.06.2026',base='23.06.2026')
     b+=f'''<div class="st"><h2>Этапы</h2><a>путь приложения: от выхода до сегодня</a></div><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px">{stg}</div>
 <div class="sec" style="display:grid;grid-template-columns:1.25fr 1fr;gap:18px"><div><div class="st"><h2>События</h2><a>4 версии · 3 смены метаданных</a></div><div class="card pad" style="padding:16px 16px 4px">{ev}</div></div>
 <div><div class="st"><h2>Число оценок</h2><a>рост аудитории</a></div><div class="card pad">{linechart([(r,"#FF4D29")],380,150,0,8000,["8k","6k","4k","2k","0"],["июл","авг","сен","окт","ноя"],fill=True)}</div>

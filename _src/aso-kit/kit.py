@@ -38,7 +38,7 @@ h1{{font:900 30px/1 GH,G;text-transform:uppercase;letter-spacing:-.3px}}
 .meta{{color:var(--mu);font-size:11.5px}}
 .fb{{display:flex;gap:14px;align-items:flex-end;margin-bottom:18px}}
 .fb label{{display:block;font-size:10px;color:var(--mu);margin-bottom:5px}}
-.sel{{height:30px;border:1px solid var(--ln);border-radius:7px;background:var(--s);display:flex;align-items:center;padding:0 10px;gap:20px;font-size:12px}}
+.sel{{height:30px;border:1px solid var(--ln);border-radius:7px;background:var(--s);display:flex;align-items:center;padding:0 10px;gap:20px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 .seg{{display:flex;border:1px solid var(--ln);border-radius:7px;overflow:hidden;background:var(--s)}}
 .seg span{{padding:0 11px;height:28px;display:flex;align-items:center;font-size:12px;color:#b9c0c6;gap:5px}}
 .seg span.on{{background:var(--ink);color:#0C0E0F;font-weight:600}}
@@ -51,11 +51,14 @@ h1{{font:900 30px/1 GH,G;text-transform:uppercase;letter-spacing:-.3px}}
 .kpis{{display:grid;grid-template-columns:1.25fr 1fr 1fr 1fr;gap:12px}}
 .kpi{{padding:16px;min-height:112px;position:relative;overflow:hidden}}
 .kpi .l{{font-size:11.5px;color:var(--mu)}}
-.kpi .v{{font:800 32px/1 GH,G;margin:12px 0 8px;letter-spacing:-.5px}}
+.kpi .v{{font:800 32px/1 GH,G;margin:12px 0 8px;letter-spacing:-.5px;display:flex;align-items:baseline;gap:6px}}
+.kpi .v small{{font:600 15px/1 G;letter-spacing:0}}
+.kpi .l,.kpi .d{{position:relative;z-index:1}}
+
 .kpi .d{{font-size:11px;color:var(--mu)}}
 .kpi.o{{background:var(--ac);border-color:var(--ac);color:#140603}}
 .kpi.o .l,.kpi.o .d{{color:#4a1408}}
-.kpi.o svg{{position:absolute;right:-6px;bottom:-14px;width:110px;fill:#140603;opacity:.85}}
+.kpi.o svg{{position:absolute;right:14px;top:14px;width:40px;fill:#140603;opacity:.9}}
 .up{{color:var(--ok)}} .dn{{color:var(--bad)}} .wa{{color:var(--wa)}}
 .ic{{width:30px;height:30px;border-radius:8px;flex:none;display:grid;place-items:center}}
 .ic svg{{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}}
@@ -78,13 +81,13 @@ h1{{font:900 30px/1 GH,G;text-transform:uppercase;letter-spacing:-.3px}}
 .tbl th{{text-align:left;font-weight:400;color:var(--mu);font-size:10.5px;padding:9px 14px;border-bottom:1px solid var(--ln)}}
 .tbl td{{padding:9px 14px;border-top:1px solid var(--ln)}}
 .tbl tr:first-child td{{border-top:0}}
-.r{{text-align:right!important}}
+.r{{text-align:right!important;white-space:nowrap}} .nw{{white-space:nowrap}}
 .bar{{height:5px;border-radius:3px;background:#2b3135;position:relative;width:90px;display:inline-block;vertical-align:middle}}
 .bar i{{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--bad)}}
 .tabs{{display:flex;gap:4px;border-bottom:1px solid var(--ln);margin:18px 0 16px}}
 .tabs span{{padding:9px 12px;font-size:12.5px;color:var(--mu)}}
 .tabs span.on{{color:var(--ink);box-shadow:inset 0 -2px 0 var(--ac)}}
-.badge{{font:600 10px/1 G;padding:4px 7px;border-radius:5px;border:1px solid}}
+.badge{{font:600 10px/1 G;padding:4px 7px;border-radius:5px;border:1px solid;white-space:nowrap;flex:none}}
 .badge.ok{{color:var(--ok);border-color:#1f5a41;background:#0f241b}}
 .badge.wa{{color:var(--wa);border-color:#5d4c1a;background:#241e0c}}
 .g2{{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
@@ -117,7 +120,7 @@ def shot(g, k=0):
     ang = 160 + k*25
     u = ['#FF4D29','#2D5BD9','#1C8F5A','#7A2BB5'][ (g+k) % 4]
     return f'<span class="shot" style="background:linear-gradient({ang}deg,{a},{b})"><b></b><b></b><s></s><u style="background:{u}"></u></span>'
-NAV = [('МОЁ',[('Сводка','home',''),('Мои приложения','grid','2'),('Тексты','doc','r3')]),
+NAV = [('МОЁ',[('Сводка','home',''),('Мои приложения','grid','2'),('Тексты','doc','r2')]),
        ('РЫНОК',[('Позиции и выдача','scan',''),('Все приложения','grid',''),('Лента изменений','spark','14')]),
        ('АНАЛИТИКА',[('Ниша и сроки жизни','chart',''),('Прогнозы и модели','trend',''),('Тренды','globe','')])]
 NI = {'home':'<path d="M4 11l8-7 8 7v9H4z"/>','chart':'<path d="M4 20V4M4 20h16M8 16v-5M12 16V8M16 16v-3"/>','trend':'<path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/>'}
@@ -131,7 +134,6 @@ def side(active):
             if c: b = f'<b class="r">{c[1:]}</b>' if c.startswith('r') else f'<b>{c}</b>'
             h += f'<div class="nv{" on" if n==active else ""}"><svg viewBox="0 0 24 24">{svg}</svg>{n}{b}</div>'
     h += f'<div class="nv" style="margin-top:14px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>Настройка</div>'
-    h += f'<svg class="bolt" viewBox="0 0 100 160" fill="#FF4D29"><path d="M62 0 L8 92 H44 L30 160 L92 58 H56 Z"/></svg>'
     h += '<div class="chk"><p>Проверено 40 мин назад</p><div class="btn p" style="width:100%">Проверить сейчас</div></div></aside>'
     return h
 def filt(extra=''):
@@ -159,7 +161,9 @@ def linechart(series, w=860, h=170, lo=0, hi=1, yl=None, xl=None, fill=False, in
         y=h*k/4; s+=f'<line x1="0" x2="{w}" y1="{y}" y2="{y}" stroke="#252A2E"/>'
         if yl: s+=f'<text x="-8" y="{y+3}" fill="#81878D" font-size="10" text-anchor="end">{yl[k]}</text>'
     if xl:
-        for k,t in enumerate(xl): s+=f'<text x="{k*w/(len(xl)-1)}" y="{h+18}" fill="#81878D" font-size="10" text-anchor="middle">{t}</text>'
+        for k,t in enumerate(xl):
+            an='start' if k==0 else 'end' if k==len(xl)-1 else 'middle'
+            s+=f'<text x="{k*w/(len(xl)-1)}" y="{h+18}" fill="#81878D" font-size="10" text-anchor="{an}">{t}</text>'
     for pts,col in series:
         lo2,hi2=(hi,lo) if inv else (lo,hi)
         d=path(pts,w,h,lo2,hi2)
