@@ -63,7 +63,9 @@ h1,h2,h3{margin:0;font-family:var(--display);text-wrap:balance}
 
 /* nav: one top bar for every route (new home look). Sticky on a solid paper background; the home overrides it to a fixed transparent overlay. Cases offset their sticky chapter bars with var(--nav-h). */
 :root{--nav-h:68px}
-.nav{position:sticky;top:0;z-index:20;background:#F6F5F1E6;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:0}
+.nav{position:sticky;top:0;z-index:20;background:transparent;border-bottom:0}
+/* dark cases: the name turns light so it reads on the dark page */
+html:has(:is(#aezakmiso,#indiedive,#jks).on) .nav .brand{color:#EDEEE8}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:var(--nav-h)}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
 .brand svg{width:20px;height:20px;fill:var(--lime);flex:none}
@@ -696,7 +698,7 @@ a.card:hover .btn,a.btn:hover{background:var(--lime);color:var(--ink);box-shadow
 @media (prefers-reduced-motion:reduce){.hf-nums b::after{transition:none}.hf-w{background-size:100% 100%,100% 100%}}
 /* Healthify + Kolesa: the top bar takes the new home look while these cases are open (scoped, the home and other cases are untouched) */
 html:has(:is(#healthify,#kolesa).on),html:has(:is(#healthify,#kolesa).on) body{background:#F6F5F1}
-html:has(:is(#healthify,#kolesa).on) .nav{background:#F6F5F1E6;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:0}
+html:has(:is(#healthify,#kolesa).on) .nav{background:transparent;border-bottom:0}
 html:has(:is(#healthify,#kolesa).on) .nav .wrap{height:68px}
 html:has(:is(#healthify,#kolesa).on) .nav .brand{color:#0A0B0D;font-family:"Golos Text",sans-serif;font-weight:600;letter-spacing:0;text-transform:none;font-size:15px}
 html:has(:is(#healthify,#kolesa).on) .nav ul{background:#ffffffc4;padding:5px 5px 5px 16px;border-radius:99px;box-shadow:0 0 0 1px #0A0B0D12}
