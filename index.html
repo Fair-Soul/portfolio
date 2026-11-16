@@ -2097,6 +2097,19 @@ html.no-js :is(.kl-stack,.aso-vstage) img:first-child{opacity:1!important}
 html.no-js #hm-say .hm-hl{background:linear-gradient(#C9F03C,#C9F03C) 0 88%/100% 30% no-repeat}
 html.no-js .nav{position:sticky}
 html.no-js .lang{display:none}
+
+/* ================= Case morph (View Transitions) ================= */
+nav.nav[aria-label="Main"]{view-transition-name:site-nav}
+::view-transition-group(case-morph){animation-duration:.75s;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+::view-transition-old(case-morph),::view-transition-new(case-morph){height:100%;object-fit:cover;overflow:hidden}
+::view-transition-old(case-morph){animation:vt-out .35s cubic-bezier(.2,.7,.2,1) both}
+::view-transition-new(case-morph){animation:vt-in .55s .15s cubic-bezier(.2,.7,.2,1) both}
+::view-transition-old(root){animation:vt-out .5s ease both}
+::view-transition-new(root){animation:vt-in .5s ease both}
+::view-transition-group(site-nav){animation:none}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
 </style>
 </head>
 <body>
@@ -3713,7 +3726,7 @@ html.no-js .lang{display:none}
       home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.add('on'); stopPlayer(); window.scrollTo(0,0); idv.start();
     } else {
       cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); home.classList.add('on'); stopPlayer(); me.start();
-      if (window.hmStart) window.hmStart();
+      if (window.hmStart) window.hmStart(h === 'work');
       if (h && h !== 'top'){ var el = document.getElementById(h === 'contact' ? 'hm-contact' : h); if (el) el.scrollIntoView(); }
       else window.scrollTo(0,0);
       if (board) board.relayout();
@@ -3734,7 +3747,39 @@ html.no-js .lang{display:none}
     document.title = TITLES[h] ? (h === 'cv' && ru ? 'Резюме' : TITLES[h]) + ' — Zhanadil Zhumakan'
                                : 'Zhanadil Zhumakan — ' + (ru ? 'дизайн-лид и руководитель Android-отдела' : 'Design Lead & Head of Android Department');
   };
-  window.addEventListener('hashchange', route);
+  /* ---------- case morph (View Transitions): cover -> case hero, case hero -> cover ---------- */
+  var MORPH = { healthify: ['hf', '.hf-hero'], aezakmiso: ['aso', '.aso-hero'], jks: ['jks', '.jk-hero'], kolesa: ['kol', '.kl-hero'], indiedive: ['idv', '.idv-hero'] };
+  var curView = (location.hash || '#top').slice(1), morphFrom = null;
+  function homeCover(g){
+    var flow = document.documentElement.classList.contains('hm-flow') || document.documentElement.classList.contains('no-js');
+    if (flow){ var a = document.querySelector('.hm-f-case[href="#' + Object.keys(MORPH).filter(function(k){ return MORPH[k][0] === g; })[0] + '"] .hm-f-cv'); return a; }
+    var c = document.querySelector('.hm-card[data-g="' + g + '"][data-lead="1"] .hm-face'); return c;
+  }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest && e.target.closest('.hm-card, .hm-f-case');
+    morphFrom = t ? (t.classList.contains('hm-card') ? t.querySelector('.hm-face') : t.querySelector('.hm-f-cv')) : null;
+  }, true);
+  function navigate(){
+    var to = (location.hash || '#top').slice(1), from = curView; curView = to;
+    var canVT = document.startViewTransition && !reduce;
+    var oldEl = null, getNew = null;
+    if (MORPH[to] && morphFrom && home.classList.contains('on')){
+      oldEl = morphFrom; getNew = function(){ return document.querySelector('#' + to + ' ' + MORPH[to][1]); };
+    } else if (MORPH[from] && (to === 'work') && !home.classList.contains('on')){
+      oldEl = document.querySelector('#' + from + ' ' + MORPH[from][1]); getNew = function(){ return homeCover(MORPH[from][0]); };
+    }
+    morphFrom = null;
+    if (!canVT || !oldEl){ route(); return; }
+    oldEl.style.viewTransitionName = 'case-morph';
+    var vt = document.startViewTransition(function(){
+      oldEl.style.viewTransitionName = '';
+      route();
+      if (window.hmRender) window.hmRender();
+      var n = getNew(); if (n) n.style.viewTransitionName = 'case-morph';
+    });
+    vt.finished.finally(function(){ var n = getNew(); if (n) n.style.viewTransitionName = ''; });
+  }
+  window.addEventListener('hashchange', navigate);
 
   /* ---------- count-up: final numbers are in the HTML, this only replays them once ---------- */
   function countUp(){
@@ -4578,6 +4623,9 @@ html.no-js .lang{display:none}
 
   function frame(now){
     raf = requestAnimationFrame(frame);
+    render(now);
+  }
+  function render(now){
     if (!home.classList.contains('on')) return;
     if (document.documentElement.classList.contains('hm-flow')){ physics(); return; }
     var vh = innerHeight, r = scroller.getBoundingClientRect();
@@ -4658,12 +4706,15 @@ html.no-js .lang{display:none}
 
   build(); splitAll();
   window.hmRelang = function(){ splitAll(); };
-  window.hmStart = function(){
+  window.hmStart = function(snap){
     t0 = performance.now(); counted = false; cur = cards.map(function(_, i){ return IN(i).slice(); });
+    if (snap){ t0 -= 5000; counted = true; cur = cards.map(function(_, i){ return L[4][i].slice(); }); }
     home.classList.remove('hm-ready'); requestAnimationFrame(function(){ requestAnimationFrame(function(){ home.classList.add('hm-ready'); }); });
     if (!raf) raf = requestAnimationFrame(frame);
   };
   window.hmStart();
+  /* used by the case morph: draw the deck once, right now, so the transition sees the final grid */
+  window.hmRender = function(){ render(performance.now()); };
 })();
 </script>
 <script src="hfbody.js"></script>
