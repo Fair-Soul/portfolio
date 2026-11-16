@@ -1881,9 +1881,9 @@ html.is-home .nav .wrap>*{pointer-events:auto}
 #home h1,#home h2{font-family:Archivo,"Golos Text",sans-serif;font-weight:600;letter-spacing:-.04em;line-height:.98;margin:0;color:inherit}
 
 /* ---------- stage ---------- */
-#hm-scroller{position:relative;height:520vh}
+#hm-scroller{position:relative;height:620vh}
 .hm-anchor{position:absolute;left:0;width:1px;height:1px;pointer-events:none}
-#work.hm-anchor{top:366vh}
+#work.hm-anchor{top:452vh}
 #hm-stage{position:sticky;top:0;height:100vh;overflow:hidden;perspective:1800px;perspective-origin:50% 40%}
 .hm-card{position:absolute;left:50%;top:50%;width:250px;height:330px;margin:-165px 0 0 -125px;transform-style:preserve-3d;will-change:transform}
 .hm-card.go{cursor:pointer}
@@ -4581,7 +4581,9 @@ html.no-js .lang{display:none}
     if (!home.classList.contains('on')) return;
     if (document.documentElement.classList.contains('hm-flow')){ physics(); return; }
     var vh = innerHeight, r = scroller.getBoundingClientRect();
-    P = clamp(-r.top / (r.height - vh), 0, 1) * 4.6;
+    /* raw progress R; each scene holds still for the first 45% of its segment, so text can be read */
+    var R = clamp(-r.top / (r.height - vh), 0, 1) * 4.6, rk = Math.floor(R), rt = R - rk;
+    P = R >= 4 ? 4 : rk + clamp((rt - .45) / .55, 0, 1);
     var k = Math.min(Math.floor(P), 3), f = ease(clamp(P - k, 0, 1)), Pc = Math.min(P, 4), k2 = Math.min(k + 1, 4);
     hint.style.opacity = P > .08 ? 0 : 1;
     stage.style.setProperty('--gp', clamp((P - 3.3) / .5, 0, 1).toFixed(3));
@@ -4611,7 +4613,7 @@ html.no-js .lang{display:none}
         var o = kk === 0 ? clamp(1 - d*2.4, 0, 1) : kk === 4 ? clamp(1 - Math.abs(Math.min(d, 0))*2.4, 0, 1) : clamp(1 - Math.abs(d)*2.4, 0, 1);
         t.style.opacity = o; var base = t.classList.contains('hm-say') && !narrow ? 'translateY(-50%) ' : '';
         t.style.transform = base + 'translateY(' + (-d*60).toFixed(1) + 'px)'; });
-      var sp = clamp((P - .55) / .75, 0, 1) * sayW.length; sayW.forEach(function(w, i){ w.classList.toggle('on', i < sp); });
+      var sp = clamp((R - .85) / .35, 0, 1) * sayW.length; sayW.forEach(function(w, i){ w.classList.toggle('on', i < sp); });
       if (P > 2.85 && !counted){ counted = true; count(); } if (P < 2.4) counted = false;
     }
     var cr = cloud.getBoundingClientRect();
