@@ -2112,6 +2112,15 @@ nav.nav[aria-label="Main"]{view-transition-name:site-nav}
 @media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
 .hm-n.hm-n-sm{font-size:38px}
 .hm-f-stat b.hm-f-sm{font-size:clamp(26px,3.4vw,44px)}
+
+/* ================= Case chapter bars: a floating pill under the top bar, like the nav (no full-width strip) ================= */
+:is(.hf-toc,.aso-toc,.jk-toc,.kl-toc,.idv-toc){background:none!important;border:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:none!important;padding:4px 12px 0;pointer-events:none}
+:is(.hf-toc .in,.aso-toc .wrap,.jk-toc .in,.kl-toc .in,.idv-toc .in){width:fit-content;max-width:100%;margin:0 auto;padding:5px!important;height:auto!important;border-radius:99px;pointer-events:auto;
+  background:#ffffffeb;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 0 0 1px #0A0B0D14,0 12px 30px -20px #0A0B0D80}
+:is(.aso-toc .wrap,.jk-toc .in,.idv-toc .in){background:rgba(18,18,20,.86);box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px -18px #000}
+:is(.aso-toc a,.jk-toc button,.idv-toc button,.hf-toc button,.kl-toc button){border-radius:99px}
+:is(.hf-toc .bar,.idv-toc .bar,.aso-toc .pr){display:none}
+@media (max-width:620px){:is(.hf-toc,.aso-toc,.jk-toc,.kl-toc,.idv-toc){padding:4px 8px 0}}
 </style>
 </head>
 <body>
