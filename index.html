@@ -2175,6 +2175,8 @@ html.hm-mm .hm-f-stat:nth-child(2){transition-delay:.12s} html.hm-mm .hm-f-stat:
 html.hm-mm .hm-tile{animation:hmFloat 6s ease-in-out infinite alternate}
 html.hm-mm .hm-tile:nth-child(3n+1){animation-duration:7.5s;animation-delay:-2s} html.hm-mm .hm-tile:nth-child(3n+2){animation-duration:5.2s;animation-delay:-4s}
 @keyframes hmFloat{from{transform:translateY(-6px) rotate(-3deg)}to{transform:translateY(6px) rotate(3deg)}}
+/* desktop: the case tiles slide up over the deck while it flies away, so there is no empty screen in between */
+html:not(.hm-flow):not(.no-js) .hm-cases{margin-top:-60vh;background:#F6F5F1;border-radius:36px 36px 0 0;box-shadow:0 -30px 60px -40px #0A0B0D40}
 </style>
 </head>
 <body>
@@ -2218,7 +2220,7 @@ html.hm-mm .hm-tile:nth-child(3n+1){animation-duration:7.5s;animation-delay:-2s}
     <div class="hm-ct-grid">
     <a class="hm-ct" data-g="aso" href="#aezakmiso"><span class="hm-bub" data-i="hmBubAso">@aezakmiso · internal tool</span><span class="hm-ct-media"><img decoding="async" loading="lazy" class="hm-ct-shot" src="img/home/ct-aso.webp" alt=""></span><span class="hm-ct-meta"><span><b>AezakmiSO</b><span data-i="hmCtAso">Internal analytics tool · ~30 users across the company</span></span></span></a>
     <a class="hm-ct" data-g="jks" href="#jks"><span class="hm-bub" data-i="hmBubJks">@jks · elefanto</span><span class="hm-ct-media"><img decoding="async" loading="lazy" class="hm-ct-shot" src="img/home/ct-jks.webp" alt=""></span><span class="hm-ct-meta"><span><b>JKS</b><span data-i="hmCtJks">Elefanto · national media site · +30% conversion into requests</span></span></span></a>
-    <a class="hm-ct" data-g="kol" href="#kolesa"><span class="hm-bub" data-i="hmBubKol">@kolesa · ux case</span><span class="hm-ct-media"><span class="hm-ct-stage" style="background:#0E1A33"><span class="hm-ph" style="--r:-3deg"><img decoding="async" loading="lazy" class="" src="img/home/ct-kol-a.webp" alt=""></span><span class="hm-ph" style="--r:3deg"><img decoding="async" loading="lazy" class="" src="img/kolesa/chat.webp" alt=""></span></span></span><span class="hm-ct-meta"><span><b>Kolesa.kz</b><span data-i="hmCtKol">Self-initiated UX case · buyer trust, from search to deal</span></span><span class="hm-pill" data-i="hmCtKolP">UX research</span></span></a>
+    <a class="hm-ct" data-g="kol" href="#kolesa"><span class="hm-bub" data-i="hmBubKol">@kolesa · ux case</span><span class="hm-ct-media"><span class="hm-ct-stage" style="background:#0E1A33"><span class="hm-ph" style="--r:-3deg"><img decoding="async" loading="lazy" class="" src="img/home/ct-kol-a.webp" alt=""></span><span class="hm-ph" style="--r:3deg"><img decoding="async" loading="lazy" class="" src="img/home/ct-kol-b.webp" alt=""></span></span></span><span class="hm-ct-meta"><span><b>Kolesa.kz</b><span data-i="hmCtKol">Self-initiated UX case · buyer trust, from search to deal</span></span><span class="hm-pill" data-i="hmCtKolP">UX research</span></span></a>
     <a class="hm-ct" data-g="idv" href="#indiedive"><span class="hm-bub" data-i="hmBubIdv">@indiedive · 2025</span><span class="hm-ct-media"><img decoding="async" loading="lazy" class="hm-ct-shot" src="img/home/ct-idv.webp" alt=""></span><span class="hm-ct-meta"><span><b>Indie Dive</b><span data-i="hmCtIdv">Editorial web · 2025</span></span></span></a>
     </div>
   </section>
@@ -4660,8 +4662,8 @@ html.hm-mm .hm-tile:nth-child(3n+1){animation-duration:7.5s;animation-delay:-2s}
       var fp = narrow ? [[-140,-80],[140,-80],[-140,300],[140,300]][k] : [(k - 1.5)*300, 40];
       L[3][i] = k >= 0 ? [fp && fp[0], fp && fp[1], (k - 1.5)*.8, 0, 0, narrow ? .95 : 1, 1, 1, 0] : [((i*137) % 900) - 450, 1100 + ((i*61) % 200), i % 2 ? 16 : -16, 0, 0, .9, 0, 1, 0];
       Z[3][i] = k >= 0 ? 20 : 1; }
-    /* scene 4: the deck leaves upwards, the case tiles below take over */
-    for (i = 0; i < N; i++){ L[4][i] = [((i * 173) % 1100) - 550, -1150 - (i % 5) * 60, (i % 2 ? 1 : -1) * (14 + (i * 7) % 20), 0, 0, .9, i < 12 && L[3][i][6] ? 1 : 0, 0, 0]; Z[4][i] = Z[3][i]; }
+    /* scene 4: hold the outcomes under the incoming case sheet */
+    for (i = 0; i < N; i++){ L[4][i] = L[3][i].slice(); Z[4][i] = Z[3][i]; }   /* scene 4: the outcomes stay; the case sheet slides over them */
   }
   var IN = function(i){ return [((i % 7) - 3)*70, 1000 + i*30, i % 2 ? 14 : -14, 40, 0, .9, 0, 1, 0]; };
   var cur = cards.map(function(_, i){ return IN(i).slice(); }), lift = cards.map(function(){ return 0; });
@@ -4702,7 +4704,7 @@ html.hm-mm .hm-tile:nth-child(3n+1){animation-duration:7.5s;animation-delay:-2s}
     if (document.documentElement.classList.contains('hm-flow')){ phone(now); physics(); return; }
     var vh = innerHeight, r = scroller.getBoundingClientRect();
     /* raw progress R; each scene holds still for the first 45% of its segment, so text can be read */
-    var R = clamp(-r.top / (r.height - vh), 0, 1) * 4.1, rk = Math.floor(R), rt = R - rk;
+    var R = clamp(-r.top / (r.height - vh), 0, 1) * 4.0, rk = Math.floor(R), rt = R - rk;
     P = R >= 4 ? 4 : rk + clamp((rt - .45) / .55, 0, 1);
     var k = Math.min(Math.floor(P), 3), f = ease(clamp(P - k, 0, 1)), Pc = Math.min(P, 4), k2 = Math.min(k + 1, 4);
     hint.style.opacity = P > .08 ? 0 : 1;
@@ -4730,7 +4732,7 @@ html.hm-mm .hm-tile:nth-child(3n+1){animation-duration:7.5s;animation-delay:-2s}
     }
     if (stageOn){
       txt.forEach(function(t){ var kk = +t.dataset.k, d = Pc - kk;
-        var o = kk === 0 ? clamp(1 - d*2.4, 0, 1) : kk === 4 ? clamp(1 - Math.abs(Math.min(d, 0))*2.4, 0, 1) : clamp(1 - Math.abs(d)*2.4, 0, 1);
+        var o = kk === 0 ? clamp(1 - d*2.4, 0, 1) : kk >= 3 ? clamp(1 - Math.abs(Math.min(d, 0))*2.4, 0, 1) : clamp(1 - Math.abs(d)*2.4, 0, 1);
         t.style.opacity = o; var base = t.classList.contains('hm-say') && !narrow ? 'translateY(-50%) ' : '';
         t.style.transform = base + 'translateY(' + (-d*60).toFixed(1) + 'px)'; });
       var sp = clamp((R - .85) / .35, 0, 1) * sayW.length; sayW.forEach(function(w, i){ w.classList.toggle('on', i < sp); });
