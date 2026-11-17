@@ -2176,7 +2176,26 @@ html.hm-mm .hm-tile{animation:hmFloat 6s ease-in-out infinite alternate}
 html.hm-mm .hm-tile:nth-child(3n+1){animation-duration:7.5s;animation-delay:-2s} html.hm-mm .hm-tile:nth-child(3n+2){animation-duration:5.2s;animation-delay:-4s}
 @keyframes hmFloat{from{transform:translateY(-6px) rotate(-3deg)}to{transform:translateY(6px) rotate(3deg)}}
 /* desktop: the case tiles slide up over the deck while it flies away, so there is no empty screen in between */
-html:not(.hm-flow):not(.no-js) .hm-cases{margin-top:-60vh;background:#F6F5F1;border-radius:36px 36px 0 0;box-shadow:0 -30px 60px -40px #0A0B0D40}
+html:not(.hm-flow):not(.no-js) .hm-cases{margin-top:-60vh}
+html:not(.hm-flow):not(.no-js) .hm-cases::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:#F6F5F1;border-radius:40px 40px 0 0;box-shadow:0 -30px 70px -40px #0A0B0D33;z-index:-1;pointer-events:none}
+html:not(.hm-flow):not(.no-js) #home{overflow-x:clip}
+/* ===== mobile motion ===== */
+html.hm-mm .hm-f-fi.hm-out{opacity:0;transition:opacity .3s ease!important}
+html.hm-mm .hm-f-fi.hm-snap{transition:none!important}
+html.hm-mm .hm-ct-media{transform:perspective(900px) rotateX(calc(var(--p,0) * 10deg)) scale(calc(1 - var(--pa,0) * .08));transition:none;will-change:transform}
+html.hm-mm .hm-ct-media>*{transform:translateY(calc(var(--p,0) * 22px))}
+html.hm-mm .hm-ct-media>img.hm-ct-shot{transform:translateY(calc(var(--p,0) * 22px)) scale(1.08)}
+html.hm-mm #hm-cloud{overflow:clip}
+html.hm-mm .hm-strip{display:grid;grid-template-rows:repeat(2,72px);grid-auto-flow:column;gap:10px;width:max-content;margin:0 0 10px;animation:hmDrift 80s linear infinite}
+html.hm-mm .hm-strip .hm-tile{display:block!important;width:72px;height:72px;animation:none}
+html.hm-mm .hm-strip:nth-child(even){animation-direction:reverse}
+html.hm-mm .hm-strips{flex:0 0 100vw;width:100vw;margin:0 -20px;padding:40px 0;transform:rotate(-6deg)}
+html.hm-mm .hm-strip .hm-dup{display:block!important}
+@keyframes hmDrift{to{translate:-50% 0}}
+.hm-dup{display:none}
+html:not(.hm-mm) :is(.hm-strip,.hm-strips){display:contents}
+html.hm-mm .hm-f-fi{transition:transform .9s cubic-bezier(.2,.75,.2,1),opacity .3s}
+
 </style>
 </head>
 <body>
@@ -4866,6 +4885,32 @@ html:not(.hm-flow):not(.no-js) .hm-cases{margin-top:-60vh;background:#F6F5F1;bor
     else if (B) B.stop(); }); }, { threshold: .15 });
   io.observe(stage);
 })();
+
+/* mobile motion: fan shuffles, case tiles tilt with scroll, screens drift in a strip */
+(function(){
+  var H=document.documentElement; if(!H.classList.contains('hm-mm')) return;
+  var fan=document.querySelector('.hm-f-fan');
+  if(fan){ var cs=[].slice.call(fan.querySelectorAll('.hm-f-fi')), vis=true;
+    if('IntersectionObserver' in window) new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(fan);
+    setInterval(function(){ if(!vis||document.hidden||!H.classList.contains('hm-mm')) return;
+      cs.forEach(function(el){ var j=+el.style.getPropertyValue('--j');
+        if(j===-2){ el.classList.add('hm-out'); setTimeout(function(){ el.classList.add('hm-snap'); el.style.setProperty('--j',2); el.offsetWidth; el.classList.remove('hm-snap','hm-out'); },320); }
+        else el.style.setProperty('--j',j-1); }); },2600); }
+  var cts=[].slice.call(document.querySelectorAll('.hm-ct-media')), tk=false;
+  function tilt(){ tk=false; var vh=innerHeight; cts.forEach(function(m){ var r=m.getBoundingClientRect(); if(r.bottom<-50||r.top>vh+50) return;
+    var p=Math.max(-1,Math.min(1,((r.top+r.height/2)-vh/2)/(vh*.6))); m.style.setProperty('--p',p.toFixed(3)); m.style.setProperty('--pa',Math.abs(p).toFixed(3)); }); }
+  addEventListener('scroll',function(){ if(!tk){tk=true;requestAnimationFrame(tilt);} },{passive:true}); tilt();
+  var pin=document.querySelector('#hm-cloud .hm-pin');
+  if(pin){ var ts=[].slice.call(pin.querySelectorAll(':scope>.hm-tile')), first=ts[0], rows=[[],[]];
+    ts.forEach(function(t,k){ rows[k%2].push(t); });
+    rows.forEach(function(row){ var st=document.createElement('div'); st.className='hm-strip'; st.setAttribute('aria-hidden','true'); pin.insertBefore(st, pin.querySelector('.hm-cloud-t')?pin.querySelector('.hm-cloud-t').nextSibling:first);
+      row.forEach(function(t){ st.appendChild(t); }); row.forEach(function(t){ var c=t.cloneNode(true); c.classList.add('hm-dup'); st.appendChild(c); }); });
+    var w=document.createElement('div'); w.className='hm-strips'; var sts=pin.querySelectorAll('.hm-strip'); pin.insertBefore(w,sts[0]); [].forEach.call(sts,function(x){w.appendChild(x);}); }
+})();
+
+(function(){ var H=document.documentElement, st=document.getElementById('hm-stage'), cs=document.querySelector('.hm-cases'), tk=false; if(!st||!cs) return;
+  function f(){ tk=false; if(H.classList.contains('hm-flow')){ st.style.opacity=''; return; } var t=cs.getBoundingClientRect().top/innerHeight; var o=Math.max(0,Math.min(1,(t-.3)/.45)); st.style.opacity=o<1?o.toFixed(3):''; }
+  addEventListener('scroll',function(){ if(!tk){tk=true;requestAnimationFrame(f);} },{passive:true}); f(); })();
 </script>
 </body>
 </html>
