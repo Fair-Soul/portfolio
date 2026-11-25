@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <script>(function(h){h.classList.remove('no-js');h.classList.add('js');var w=innerWidth,mm=function(q){return window.matchMedia&&matchMedia(q).matches};
 var rm=mm('(prefers-reduced-motion: reduce)');if(w<900||(mm('(pointer: coarse)')&&w<1180)||rm){h.classList.add('hm-flow');if(!rm)h.classList.add('hm-mm')}})(document.documentElement)</script>
+<script>try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zhanadil Zhumakan — Design Lead &amp; People Manager</title>
 <meta name="description" content="Portfolio of Zhanadil Zhumakan, Design Lead and People Manager: Healthify AI, AezakmiSO, JKS, Kolesa.kz and Indie Dive case studies, plus CV.">
@@ -2248,8 +2249,8 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
 #home.on #hx-orb{opacity:1}
 #home .hx-o{position:absolute;left:0;top:0;width:100px;height:100px;will-change:transform}
 #home .hx-o i{position:absolute;inset:0;border-radius:46% 54% 52% 48% / 52% 46% 54% 48%}
-#home .hx-g{inset:-18%!important;border-radius:50%!important;filter:blur(60px);opacity:.55;background:radial-gradient(closest-side,#C9F03C,#8FD6FF66 55%,#F08AC800)}
-#home .hx-b{background:radial-gradient(55% 55% at 24% 72%,#C9F03C 0,#C9F03C00 70%),radial-gradient(55% 55% at 76% 26%,#8FD6FF 0,#8FD6FF00 70%),radial-gradient(52% 52% at 80% 80%,#F08AC8 0,#F08AC800 70%),radial-gradient(40% 40% at 50% 54%,#F5B64C 0,#F5B64C00 100%),radial-gradient(70% 70% at 40% 40%,#E9F7FF 0,#E9F7FF00 70%),linear-gradient(135deg,#B9E6FF,#F7C9E6 55%,#E6F79A);animation:hxMorph 14s ease-in-out infinite alternate,hxSpin 50s linear infinite;box-shadow:inset -30px -40px 80px #0A0B0D55,inset 20px 24px 50px #ffffff40}
+#home .hx-g{transition:filter 1.2s;inset:-18%!important;border-radius:50%!important;filter:blur(60px);opacity:.55;background:radial-gradient(closest-side,#C9F03C,#8FD6FF66 55%,#F08AC800)}
+#home .hx-b{filter:hue-rotate(var(--hx-hue,0deg));transition:filter 1.2s cubic-bezier(.2,.7,.2,1);background:radial-gradient(55% 55% at 24% 72%,#C9F03C 0,#C9F03C00 70%),radial-gradient(55% 55% at 76% 26%,#8FD6FF 0,#8FD6FF00 70%),radial-gradient(52% 52% at 80% 80%,#F08AC8 0,#F08AC800 70%),radial-gradient(40% 40% at 50% 54%,#F5B64C 0,#F5B64C00 100%),radial-gradient(70% 70% at 40% 40%,#E9F7FF 0,#E9F7FF00 70%),linear-gradient(135deg,#B9E6FF,#F7C9E6 55%,#E6F79A);animation:hxMorph 14s ease-in-out infinite alternate,hxSpin 50s linear infinite;box-shadow:inset -30px -40px 80px #0A0B0D55,inset 20px 24px 50px #ffffff40}
 #home .hx-h{inset:8% 22% 50% 12%!important;border-radius:50%!important;background:radial-gradient(closest-side,#ffffffb0,#fff0);filter:blur(8px)}
 #home .hx-r{inset:-28%!important;border-radius:50%!important;border:1px solid var(--hx-ln)}
 #home .hx-r2{inset:-58%!important;opacity:.6}
@@ -2257,8 +2258,10 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
 @keyframes hxSpin{to{rotate:360deg}}
 #home .hx-has-ink{position:relative}
 #home .hx-ink{position:absolute;inset:0;margin:0!important;pointer-events:none;color:#0A0B0D!important;clip-path:circle(0 at 0 0)}
-#home .hx-ink *{color:#0A0B0D!important}
-#home .hx-ink.hx-lab,#home .hx-ink .hx-lab{color:#0A0B0DB3!important}
+#home .hx-ink,#home .hx-ink *{color:transparent!important}
+#home .hx-ink,#home .hx-focus b{background-image:linear-gradient(100deg,#1B2B6B 0%,#0E5560 18%,#2F4A05 36%,#6A1C52 54%,#5A3300 72%,#3A1A6B 86%,#1B2B6B 100%);background-size:900px 100%;background-repeat:repeat;background-position:var(--hx-bp,0px) 50%;-webkit-background-clip:text;background-clip:text;filter:hue-rotate(var(--hx-hue,0deg));transition:filter 1.2s cubic-bezier(.2,.7,.2,1)}
+#home .hx-focus b,#home .hx-focus b *{color:transparent!important}
+#home .hx-ink .hx-lab,#home .hx-ink.hx-lab{opacity:.8}
 /* buttons */
 #home .hx-btn{display:inline-flex;align-items:center;gap:12px;margin-top:34px;padding:7px 22px 7px 7px;border-radius:99px;background:var(--hx-lime);color:#0A0B0D;text-decoration:none;font:600 17px/1 "Golos Text",sans-serif;white-space:nowrap;transition:transform .5s var(--hx-e),box-shadow .5s var(--hx-e)}
 #home .hx-btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -14px #C9F03C88}
@@ -2279,7 +2282,7 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
 #home .hx-say .hx-st{position:sticky;top:0;height:100vh;display:flex;align-items:center}
 #home .hx-say h2{font-size:clamp(40px,5.6vw,84px);max-width:13ch;line-height:1.02}
 #home .hx-wd{color:#F6F5F12E;transition:color .35s}#home .hx-wd.on{color:#F6F5F1}#home .hx-wd.k.on{color:var(--hx-lime)}
-#home .hx-ink .hx-wd{color:#0A0B0D38!important}#home .hx-ink .hx-wd.on{color:#0A0B0D!important}
+#home .hx-ink .hx-wd:not(.on){color:#FFFFFFB3!important}
 /* orbit */
 #home .hx-orbit{height:340vh}
 #home .hx-orbit .hx-st{position:sticky;top:0;height:100vh;overflow:hidden}
@@ -2367,6 +2370,11 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
   #home .hx-row{grid-template-columns:1fr;gap:6px}
   #home .hx-nums b{font-size:30px}
 }
+#home .hx-h{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+#home .hx-wave{position:absolute;inset:0!important;border-radius:50%!important;border:2px solid #F6F5F1B3;pointer-events:none;animation:hxWave 1.1s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes hxWave{from{transform:scale(1);opacity:.9}to{transform:scale(1.9);opacity:0}}
+html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
+@media (prefers-reduced-motion:reduce){#home .hx-wave{display:none}}
 @media (prefers-reduced-motion:reduce){#home .hx-b,#home .hx-cue i{animation:none}}
 </style>
 </head>
@@ -3121,7 +3129,7 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
     <div class="wrap">
       <div class="hf-end">
         <span class="mono">Healthify AI · 2026</span>
-        <a class="hf-btn" href="#aezakmiso">Next case: AezakmiSO <b><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a>
+        <a class="hf-btn" href="#kolesa">Next case: Kolesa.kz <b><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a>
       </div>
     </div>
   </section>
@@ -3608,7 +3616,7 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
       <h2 class="jk-h" data-rv>The whole home page.</h2>
       <div class="jk-br jk-full" data-rv style="--d:.08s"><div class="bar"><i></i><i></i><i></i><span>jks.kz · Home · scroll inside</span></div><div class="vp"><img decoding="async" src="img/jks/v3-full.webp" width="1600" height="8692" alt="The redesigned JKS home page from top to bottom: arc hero, projects, services, bloggers, production, about and contacts" loading="lazy"></div></div>
       <p class="jk-fine">The 2022 site was designed at Elefanto. These screens are my 2026 redesign. Copy and numbers come from jks.kz, images are placeholders.</p>
-      <div class="jk-end"><a class="jk-btn ghost" href="#work">All work</a><a class="jk-btn" href="#kolesa">Next case: Kolesa.kz <svg class="arr" aria-hidden="true"><use href="#arr"/></svg></a></div>
+      <div class="jk-end"><a class="jk-btn ghost" href="#work">All work</a><a class="jk-btn" href="#indiedive">Next case: Indie Dive <svg class="arr" aria-hidden="true"><use href="#arr"/></svg></a></div>
     </div>
   </section>
 </main>
@@ -3756,7 +3764,7 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
     </div>
   </section>
 
-  <a class="kl-next wrap" href="#indiedive"><span class="mono">Next case</span><b>Indie Dive →</b></a>
+  <a class="kl-next wrap" href="#aezakmiso"><span class="mono">Next case</span><b>AezakmiSO →</b></a>
 </main>
 
 
@@ -4005,22 +4013,22 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
     var h = location.hash.replace('#','');
     jkv.classList.toggle('on', h === 'jks'); klv.classList.toggle('on', h === 'kolesa'); cvv.classList.toggle('on', h === 'cv');
     if (h === 'jks'){
-      home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); stopPlayer(); window.scrollTo(0,0); jks.start();
+      home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); stopPlayer(); window.scrollTo({top:0,left:0,behavior:'instant'}); jks.start();
     } else if (h === 'kolesa'){
-      home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); stopPlayer(); window.scrollTo(0,0); kl.start();
+      home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); stopPlayer(); window.scrollTo({top:0,left:0,behavior:'instant'}); kl.start();
     } else if (h === 'aezakmiso'){
-      home.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); cs.classList.add('on'); window.scrollTo(0,0); aso.start();
+      home.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); cs.classList.add('on'); window.scrollTo({top:0,left:0,behavior:'instant'}); aso.start();
     } else if (h === 'healthify'){
-      home.classList.remove('on'); cs.classList.remove('on'); idvv.classList.remove('on'); hfv.classList.add('on'); stopPlayer(); window.scrollTo(0,0); hf.start();
+      home.classList.remove('on'); cs.classList.remove('on'); idvv.classList.remove('on'); hfv.classList.add('on'); stopPlayer(); window.scrollTo({top:0,left:0,behavior:'instant'}); hf.start();
     } else if (h === 'cv'){
-      home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); stopPlayer(); window.scrollTo(0,0); cvStart();
+      home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); stopPlayer(); window.scrollTo({top:0,left:0,behavior:'instant'}); cvStart();
     } else if (h === 'indiedive'){
-      home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.add('on'); stopPlayer(); window.scrollTo(0,0); idv.start();
+      home.classList.remove('on'); cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.add('on'); stopPlayer(); window.scrollTo({top:0,left:0,behavior:'instant'}); idv.start();
     } else {
       cs.classList.remove('on'); hfv.classList.remove('on'); idvv.classList.remove('on'); home.classList.add('on'); stopPlayer(); me.start();
       if (window.hmStart) window.hmStart(h === 'work');
-      if (h && h !== 'top'){ var el = document.getElementById(h === 'contact' ? 'hm-contact' : h); if (el) el.scrollIntoView(); }
-      else window.scrollTo(0,0);
+      if (h && h !== 'top'){ var el = document.getElementById(h === 'contact' ? 'hm-contact' : h); if (el) el.scrollIntoView({behavior:'instant',block:'start'}); }
+      else window.scrollTo({top:0,left:0,behavior:'instant'});
       if (board) board.relayout();
     }
   }
@@ -4939,6 +4947,17 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
   var inkWords=function(){ return $$('#hx-say .hx-ink .hx-wd').filter(function(w){ return w.offsetParent!==null; }); };
   var cards=$$('#home .hx-card'), dots=$$('#home .hx-dots i'), rows=$$('#home .hx-row'), focus=$('#hx-focus'), shown=-1;
   var secs=$$('#home [data-o]'), O=$('#home .hx-o'), cur=null, lastY=scrollY, vel=0;
+  var HL=$('#home .hx-h'), mx=-1e4, my=-1e4, pull={x:0,y:0}, hov=0, kick=0, hue=0, fine=matchMedia('(pointer: fine)').matches;
+  addEventListener('pointermove',function(e){ mx=e.clientX; my=e.clientY; },{passive:true});
+  document.addEventListener('pointerleave',function(){ mx=my=-1e4; });
+  function overOrb(x,y){ if(!cur) return false; var r=cur.s*.47, dx=x-cur.x-pull.x, dy=y-cur.y-pull.y; return dx*dx+dy*dy<r*r; }
+  // tap or click on the sphere: a wave, a little bounce and the colours turn
+  addEventListener('pointerdown',function(e){
+    if(!home.classList.contains('on')||!overOrb(e.clientX,e.clientY)) return;
+    if(e.target.closest('a,button,input,label,.hx-card,.hx-tm')) return;
+    hue=(hue+55)%360; home.style.setProperty('--hx-hue',hue+'deg'); kick=1;
+    if(!red){ var w=document.createElement('i'); w.className='hx-wave'; O.appendChild(w); setTimeout(function(){ w.remove(); },1200); }
+  });
 
   function prog(e){ var r=R(e); return Math.max(0,Math.min(1,-r.top/(r.height-innerHeight))); }
   function mix(a,b,p){ p=Math.max(0,Math.min(1,p)); p=p*p*(3-2*p); return {x:a.x+(b.x-a.x)*p,y:a.y+(b.y-a.y)*p,s:a.s+(b.s-a.s)*p}; }
@@ -4991,13 +5010,28 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
     var tg=target(); if(!cur) cur={x:tg.x,y:tg.y,s:tg.s};
     var k=red?1:.085; cur.x+=(tg.x-cur.x)*k; cur.y+=(tg.y-cur.y)*k; cur.s+=(tg.s-cur.s)*k;
     var dy=scrollY-lastY; lastY=scrollY; vel+=(Math.min(Math.abs(dy),80)-vel)*.12;
-    var sc=red?1:1+vel/700;
+    // the cursor pulls the sphere a little and its light follows; hovering makes it swell
+    var r0=cur.s*.47, dxm=mx-cur.x, dym=my-cur.y, dm=Math.sqrt(dxm*dxm+dym*dym), zone=r0*1.7, f=(!red&&fine&&dm<zone)?(1-dm/zone):0;
+    pull.x+=(dxm*.12*f-pull.x)*.12; pull.y+=(dym*.12*f-pull.y)*.12;
+    var inside=fine&&dm<r0; hov+=((inside?1:0)-hov)*.1; kick*=.9;
+    H.classList.toggle('hx-over-orb', inside && home.classList.contains('on'));
+    if(HL && !red){ var lx=Math.max(-1,Math.min(1,dxm/zone))*f, ly=Math.max(-1,Math.min(1,dym/zone))*f; HL.style.transform='translate('+(lx*cur.s*.18).toFixed(1)+'px,'+(ly*cur.s*.18).toFixed(1)+'px)'; }
+    var sc=red?1:1+vel/700+hov*.04+Math.sin(kick*Math.PI)*.06*kick;
+    var px=cur.x+pull.x, py=cur.y+pull.y;
     O.style.width=O.style.height=cur.s+'px';
-    O.style.transform='translate3d('+(cur.x-cur.s/2).toFixed(1)+'px,'+(cur.y-cur.s/2).toFixed(1)+'px,0) rotate('+(red?0:scrollY*.04).toFixed(2)+'deg) scale('+sc.toFixed(4)+')';
+    O.style.transform='translate3d('+(px-cur.s/2).toFixed(1)+'px,'+(py-cur.s/2).toFixed(1)+'px,0) rotate('+(red?0:scrollY*.04).toFixed(2)+'deg) scale('+sc.toFixed(4)+')';
+    if(!red) home.style.setProperty('--hx-bp',((performance.now()*.03+scrollY*.35)%900).toFixed(1)+'px');
     var rad=cur.s*.47*sc;
     INK.forEach(function(c){ var b=c.parentNode.getBoundingClientRect(); if(b.bottom<-50||b.top>innerHeight+50){ c.style.clipPath='circle(0 at 0 0)'; return; }
-      c.style.clipPath='circle('+rad.toFixed(1)+'px at '+(cur.x-b.left).toFixed(1)+'px '+(cur.y-b.top).toFixed(1)+'px)'; });
+      c.style.clipPath='circle('+rad.toFixed(1)+'px at '+(px-b.left).toFixed(1)+'px '+(py-b.top).toFixed(1)+'px)'; });
   }
+  // back button from a case returns to the same place on the home, not to its top
+  var lastHomeY=0, popNav=false, linkNav=false;
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(a) linkNav=true; },true);
+  addEventListener('scroll',function(){ if(home.classList.contains('on')) lastHomeY=scrollY; },{passive:true});
+  addEventListener('popstate',function(){ popNav=true; });
+  addEventListener('hashchange',function(){ var was=popNav&&!linkNav; popNav=false; linkNav=false; if(!was) return; var y=lastHomeY;
+    setTimeout(function(){ var h=location.hash.slice(1); if(home.classList.contains('on') && (!h||h==='top')){ scrollTo({top:y,left:0,behavior:'instant'}); if(window.__lenis) window.__lenis.scrollTo(y,{immediate:true,force:true}); } },80); });
   requestAnimationFrame(frame);
   // previews lean to the cursor
   $$('#home .hx-tm').forEach(function(st){
@@ -5021,7 +5055,9 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
     function raf(t){lenis.raf(t);requestAnimationFrame(raf);}
     requestAnimationFrame(raf);
     // route changes jump to the top instantly, no glide
-    window.addEventListener('hashchange',function(){requestAnimationFrame(function(){requestAnimationFrame(function(){lenis.scrollTo(window.scrollY,{immediate:true,force:true});lenis.resize();});});});
+    function sync(){lenis.scrollTo(window.scrollY,{immediate:true,force:true});lenis.resize();}
+    window.addEventListener('hashchange',function(){ sync(); requestAnimationFrame(function(){ requestAnimationFrame(sync); }); setTimeout(sync,450); });
+    window.addEventListener('popstate',function(){ setTimeout(sync,0); });
   }
   if(document.readyState==='complete') go(); else window.addEventListener('load',go);
 })();
