@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
-<script>(function(h){h.classList.remove('no-js');h.classList.add('js');var w=innerWidth,mm=function(q){return window.matchMedia&&matchMedia(q).matches};
+<script>(function(h){h.classList.remove('no-js');h.classList.add('js');if(/^#?(top|work|about|contact)?$/.test(location.hash))h.classList.add('is-home');var w=innerWidth,mm=function(q){return window.matchMedia&&matchMedia(q).matches};
 var rm=mm('(prefers-reduced-motion: reduce)');if(w<900||(mm('(pointer: coarse)')&&w<1180)||rm){h.classList.add('hm-flow');if(!rm)h.classList.add('hm-mm')}})(document.documentElement)</script>
 <script>try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -2249,7 +2249,7 @@ html.is-home .nav .link:hover,html.is-home .nav .lang button[aria-pressed="true"
 html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
 /* sphere */
 #hx-orb{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .9s var(--hx-e)}
-#home.on #hx-orb{opacity:1}
+#home.on.hx-ready #hx-orb{opacity:1}
 #home .hx-o{position:absolute;left:0;top:0;width:var(--hx-ob,800px);height:var(--hx-ob,800px);will-change:transform;transform-origin:50% 50%}
 #home .hx-o i{position:absolute;inset:0;border-radius:46% 54% 52% 48% / 52% 46% 54% 48%}
 #home .hx-g{transition:filter 1.2s;inset:-18%!important;border-radius:50%!important;filter:blur(60px);opacity:.55;background:radial-gradient(closest-side,var(--c1),color-mix(in srgb,var(--c2) 45%,transparent) 55%,transparent)}
@@ -2465,7 +2465,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
 
   <section class="hx-say" data-o="say"><div class="hx-st"><div class="hx-wrap">
     <div class="hx-lab" style="margin-bottom:18px"><span class="hx-en">Since 2019</span><span class="hx-ru">С 2019 года</span></div>
-    <h2 id="hx-say"><span class="hx-en">From freelance work for *100+ businesses* to leading *10+ designers* and a department of *12 people.*</span><span class="hx-ru">От фриланса для *100+ бизнесов* до руководства *10+ дизайнерами* и отдела из *12 человек.*</span></h2>
+    <h2 id="hx-say"><span class="hx-en"><span class="hx-wd">From</span> <span class="hx-wd">freelance</span> <span class="hx-wd">work</span> <span class="hx-wd">for</span> <span class="hx-wd k">100+</span> <span class="hx-wd k">businesses</span> <span class="hx-wd">to</span> <span class="hx-wd">leading</span> <span class="hx-wd k">10+</span> <span class="hx-wd k">designers</span> <span class="hx-wd">and</span> <span class="hx-wd">a</span> <span class="hx-wd">department</span> <span class="hx-wd">of</span> <span class="hx-wd k">12</span> <span class="hx-wd k">people.</span></span><span class="hx-ru"><span class="hx-wd">От</span> <span class="hx-wd">фриланса</span> <span class="hx-wd">для</span> <span class="hx-wd k">100+</span> <span class="hx-wd k">бизнесов</span> <span class="hx-wd">до</span> <span class="hx-wd">руководства</span> <span class="hx-wd k">10+</span> <span class="hx-wd k">дизайнерами</span> <span class="hx-wd">и</span> <span class="hx-wd">отдела</span> <span class="hx-wd">из</span> <span class="hx-wd k">12</span> <span class="hx-wd k">человек.</span></span></h2>
   </div></div></section>
 
   <section class="hx-orbit" data-o="orbit"><div class="hx-st">
@@ -4992,7 +4992,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   function R(e){ return e.getBoundingClientRect(); }
 
   // statement: split each language version into words; *…* marks lime words
-  $$('#hx-say > span').forEach(function(sp){
+  $$('#hx-say > span').forEach(function(sp){ if(sp.querySelector('.hx-wd')) return;
     var key=false;
     sp.innerHTML=sp.textContent.split(/(\s+)/).map(function(t){
       if(!t.trim()) return t; var k=key;
@@ -5019,7 +5019,8 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   var inkWords=function(){ return $$('#hx-say .hx-ink .hx-wd').filter(function(w){ return w.offsetParent!==null; }); };
   var cards=$$('#home .hx-card'), dots=$$('#home .hx-dots i'), rows=$$('#home .hx-row'), focus=$('#hx-focus'), shown=-1;
   var secs=$$('#home [data-o]'), O=$('#home .hx-o'), cur=null, lastY=scrollY, vel=0;
-  var PALS=[['#C9F03C','#8FD6FF','#F08AC8','#F5B64C'],['#FF7A59','#FFC24B','#F06BB0','#B78BFF'],['#3FD0FF','#5B7CFF','#7CF2C8','#C9F03C'],['#FF6FD8','#A98BFF','#6FE3FF','#FFE27A'],['#9BFF6A','#2EE6C5','#FFD166','#FF8FAB']], pal=0;
+  var PALS=[['#C9F03C','#8FD6FF','#F08AC8','#F5B64C'],['#FF7A59','#FFC24B','#F06BB0','#B78BFF'],['#3FD0FF','#5B7CFF','#7CF2C8','#C9F03C'],['#FF6FD8','#A98BFF','#6FE3FF','#FFE27A'],['#9BFF6A','#2EE6C5','#FFD166','#FF8FAB']], pal=-1, clicks=0, secIdx=0;
+  function setPal(){ var i=(secIdx+clicks)%PALS.length; if(i===pal) return; pal=i; var P=PALS[i]; O.style.setProperty('--c1',P[0]); O.style.setProperty('--c2',P[1]); O.style.setProperty('--c3',P[2]); O.style.setProperty('--c4',P[3]); }
   var SPOT=$('#home .hx-spot'), spot={x:0,y:0,o:0};
   var HL=$('#home .hx-h'), SW=$('#home .hx-lq'), lq={x:0,y:0}, sa=0, spd=0, swo=0, pmx=-1e4, pmy=-1e4, mx=-1e4, my=-1e4, pull={x:0,y:0}, hov=0, kick=0, hue=0, fine=matchMedia('(pointer: fine)').matches;
   addEventListener('pointermove',function(e){ mx=e.clientX; my=e.clientY; },{passive:true});
@@ -5029,7 +5030,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   addEventListener('pointerdown',function(e){
     if(!home.classList.contains('on')||!overOrb(e.clientX,e.clientY)) return;
     if(e.target.closest('a,button,input,label,.hx-card,.hx-tm,.hx-case')) return;
-    pal=(pal+1)%PALS.length; var P=PALS[pal]; O.style.setProperty('--c1',P[0]); O.style.setProperty('--c2',P[1]); O.style.setProperty('--c3',P[2]); O.style.setProperty('--c4',P[3]); kick=1;
+    clicks++; setPal(); kick=1;
     if(!red){ var w=document.createElement('i'); w.className='hx-wave'; O.appendChild(w); setTimeout(function(){ w.remove(); },1200); }
   });
 
@@ -5051,6 +5052,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   function target(){
     var p=poses(),Hh=innerHeight,T=scrollY+Hh/2;
     var st=secs.map(function(s){ var r=R(s),top=r.top+scrollY,h=Math.min(r.height,Hh); return {E:top+h/2,X:top+r.height-h/2,p:p[s.dataset.o],k:s.dataset.o}; });
+    var ai=0; for(var z=0;z<st.length;z++){ if(T>=st[z].E-Hh*.25) ai=z; } secIdx=ai;
     if(T<=st[0].E) return st[0].p;
     for(var i=0;i<st.length;i++){
       if(T<=st[i].X) return st[i].p;
@@ -5094,7 +5096,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
     // timeline rows light up
     rows.forEach(function(r){ var on=R(r).top<vh*.62; if(r.classList.contains('on')!==on) r.classList.toggle('on',on); });
     // sphere: lerp toward the pose of the section on screen
-    var tg=target(); if(!cur) cur={x:tg.x,y:tg.y,s:tg.s};
+    var tg=target(); if(!cur){ cur={x:tg.x,y:tg.y,s:tg.s}; home.classList.add('hx-ready'); } setPal();
     var k=red?1:.085; cur.x+=(tg.x-cur.x)*k; cur.y+=(tg.y-cur.y)*k; cur.s+=(tg.s-cur.s)*k;
     var dy=scrollY-lastY; lastY=scrollY; vel+=(Math.min(Math.abs(dy),80)-vel)*.12;
     // the cursor pulls the sphere a little and its light follows; hovering makes it swell
