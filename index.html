@@ -2225,6 +2225,24 @@ html.lenis,html.lenis body{height:auto}
 /* AezakmiSO hero: the bolt passes behind the facts row so its text stays readable */
 .aso-hero .aso-facts{position:relative;z-index:1}
 .aso-hero .aso-facts::before{content:"";position:absolute;left:-100vw;right:-100vw;top:0;bottom:-400px;background:var(--or);z-index:-1}
+/* ---------- the sphere: one object that walks through the home (Design, People, Systems, Code colours) ---------- */
+#orb{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .9s cubic-bezier(.2,.7,.2,1);contain:strict}
+html.orb-on #orb{opacity:1}
+.orb-o{position:absolute;left:0;top:0;width:100px;height:100px;will-change:transform}
+.orb-b{position:absolute;inset:0;border-radius:46% 54% 52% 48% / 52% 46% 54% 48%;background:
+ radial-gradient(55% 55% at 24% 72%,#C9F03C 0,#C9F03C00 70%),
+ radial-gradient(55% 55% at 76% 28%,#8FD6FF 0,#8FD6FF00 70%),
+ radial-gradient(50% 50% at 80% 80%,#F08AC8 0,#F08AC800 70%),
+ radial-gradient(60% 60% at 50% 50%,#F5B64C 0,#F5B64C 38%,#F5B64C00 76%);
+ box-shadow:inset -20px -28px 70px #0A0B0D1A;animation:orbMorph 14s ease-in-out infinite alternate,orbSpin 46s linear infinite}
+.orb-hl{position:absolute;inset:6% 18% 46% 10%;border-radius:50%;background:radial-gradient(closest-side,#ffffffb3,#fff0);filter:blur(6px);opacity:.75}
+.orb-r{position:absolute;left:50%;top:50%;width:150%;height:150%;translate:-50% -50%;border:1px solid #0A0B0D1C;border-radius:50%}
+.orb-r.r2{width:205%;height:205%;opacity:.55}
+@keyframes orbMorph{50%{border-radius:55% 45% 44% 56% / 44% 56% 46% 54%}100%{border-radius:48% 52% 58% 42% / 56% 44% 50% 50%}}
+@keyframes orbSpin{to{rotate:360deg}}
+html.orb-on .hm-cases::before{background:transparent !important;box-shadow:none !important}
+html.orb-on #hm-contact{background:transparent !important}
+@media (prefers-reduced-motion:reduce){#orb{display:none}}
 </style>
 </head>
 <body>
@@ -2247,7 +2265,7 @@ html.lenis,html.lenis body{height:auto}
 </nav>
 
 <!-- ================= HOME ================= -->
-<main id="home" class="view on">
+<main id="home" class="view on"><div id="orb" aria-hidden="true"><div class="orb-o"><i class="orb-r"></i><i class="orb-r r2"></i><i class="orb-b"></i><i class="orb-hl"></i></div></div>
   <div id="hm-scroller"><div id="hm-stage" aria-label="Zhanadil Zhumakan, selected work">
     <div class="hm-txt hm-hero" data-k="0"><div class="hm-mono" data-i="hmRole">Design Lead · People Manager</div>
       <h1><span class="hm-split" data-i="hmH1a">I design products</span><br><span class="hm-split" data-i="hmH1b">and the teams that ship them.</span></h1><a class="hm-free" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener" aria-label="Open to freelance. Discuss your project in Telegram"><i class="hm-free-av" aria-hidden="true"><b><img decoding="async" src="img/me/avatar.png" alt=""></b></i><span data-i="hmFree2">Discuss your project</span></a></div>
@@ -4753,7 +4771,7 @@ html.lenis,html.lenis body{height:auto}
     var vh = innerHeight, r = scroller.getBoundingClientRect();
     /* raw progress R; each scene holds still for the first 45% of its segment, so text can be read */
     var R = clamp(-r.top / (r.height - vh), 0, 1) * 4.0, rk = Math.floor(R), rt = R - rk;
-    P = R >= 4 ? 4 : rk + clamp((rt - .45) / .55, 0, 1);
+    P = R >= 4 ? 4 : rk + clamp((rt - .45) / .55, 0, 1); window.__hmP = P;
     var k = Math.min(Math.floor(P), 3), f = ease(clamp(P - k, 0, 1)), Pc = Math.min(P, 4), k2 = Math.min(k + 1, 4);
     hint.style.opacity = P > .08 ? 0 : 1;
     stage.style.setProperty('--gp', clamp((P - 3.3) / .5, 0, 1).toFixed(3));
@@ -4938,8 +4956,60 @@ html.lenis,html.lenis body{height:auto}
 })();
 
 (function(){ var H=document.documentElement, st=document.getElementById('hm-stage'), cs=document.querySelector('.hm-cases'), tk=false; if(!st||!cs) return;
-  function f(){ tk=false; if(H.classList.contains('hm-flow')){ st.style.opacity=''; return; } var t=cs.getBoundingClientRect().top/innerHeight; var o=Math.max(0,Math.min(1,(t-.3)/.45)); st.style.opacity=o<1?o.toFixed(3):''; }
+  function f(){ tk=false; if(H.classList.contains('hm-flow')){ st.style.opacity=''; return; } var t=cs.getBoundingClientRect().top/innerHeight; var o=Math.max(0,Math.min(1,H.classList.contains('orb-on')?(t-.72)/.28:(t-.3)/.45)); st.style.opacity=o<1?o.toFixed(3):''; }
   addEventListener('scroll',function(){ if(!tk){tk=true;requestAnimationFrame(f);} },{passive:true}); f(); })();
+</script>
+<script>
+(function(){
+  var H=document.documentElement, O=document.getElementById('orb'); if(!O) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var el=O.firstElementChild, home=document.getElementById('home'), cur=null, lastY=scrollY, vel=0;
+  function q(s){ return document.querySelector(s); }
+  function R(e){ return e ? e.getBoundingClientRect() : null; }
+  function mix(a,b,p){ p=Math.max(0,Math.min(1,p)); p=p*p*(3-2*p); return {x:a.x+(b.x-a.x)*p,y:a.y+(b.y-a.y)*p,s:a.s+(b.s-a.s)*p,o:a.o+(b.o-a.o)*p}; }
+  function poses(){
+    var W=innerWidth, Hh=innerHeight, vm=Math.min(W,Hh)/100, flow=H.classList.contains('hm-flow'), wide=W>=1100;
+    var h1=R(q('#home .hm-hero h1')), head=R(q(wide&&!flow?'.hm-ct-head':'#work h2')), cl=R(q('#hm-cl')), co=R(q('#hm-contact h2'));
+    var hero={x:W*(flow?.78:.7), y:h1?h1.top+h1.height*(flow?.35:.55):Hh*.3, s:(flow?78:62)*vm, o:1};
+    var work = head ? (wide&&!flow ? {x:head.left+head.width*.42, y:head.top+head.height*.42, s:34*vm, o:1}
+                                   : {x:W*.82, y:head.top+head.height*.5, s:46*vm, o:1}) : hero;
+    var cloud = cl ? {x:Math.min(W*.9, cl.right+W*.02), y:cl.top+cl.height*.5, s:(flow?52:40)*vm, o:1} : work;
+    var cont = co ? {x:co.left+co.width*.5, y:co.top+co.height*.5, s:(flow?110:82)*vm, o:1} : cloud;
+    return {W:W,Hh:Hh,vm:vm,flow:flow,hero:hero,work:work,cloud:cloud,cont:cont,head:head,cl:cl,co:co,h1:h1};
+  }
+  function byP(p,P){
+    var W=p.W,Hh=p.Hh,vm=p.vm;
+    var K=[p.hero,{x:W*.72,y:Hh*.56,s:46*vm,o:1},{x:W*.3,y:Hh*.56,s:46*vm,o:1},{x:W*.5,y:Hh*.56,s:70*vm,o:.9},{x:W*.5,y:Hh*.5,s:58*vm,o:.9}];
+    P=Math.max(0,Math.min(4,P||0)); var k=Math.min(3,Math.floor(P)); return mix(K[k],K[k+1],P-k);
+  }
+  function chain(stops, t){
+    // stops: [{c:viewport y of the anchor, p:pose}], in page order; t: viewport centre
+    if(stops[0].c>t) return stops[0].p;
+    for(var i=0;i<stops.length-1;i++){ if(stops[i+1].c>t) return mix(stops[i].p,stops[i+1].p,(t-stops[i].c)/(stops[i+1].c-stops[i].c)); }
+    return stops[stops.length-1].p;
+  }
+  function target(){
+    var p=poses(), t=p.Hh/2, sr=R(q('#hm-scroller'));
+    function mid(r){ return r ? r.top+r.height/2 : 1e9; }
+    if(!p.flow && sr && sr.bottom>p.Hh) return byP(p, window.__hmP);
+    var first = p.flow ? {c:mid(p.h1), p:p.hero} : {c:sr ? sr.bottom-p.Hh/2 : -1e9, p:byP(p,4)};
+    return chain([first,{c:mid(p.head),p:p.work},{c:mid(p.cl),p:p.cloud},{c:mid(p.co),p:p.cont}], t);
+  }
+  function tick(){
+    requestAnimationFrame(tick);
+    var on = home.classList.contains('on') && getComputedStyle(home).display!=='none';
+    H.classList.toggle('orb-on', on);
+    if(!on){ cur=null; return; }
+    var tg=target(); if(!cur) cur={x:tg.x,y:tg.y,s:tg.s,o:tg.o};
+    var k=.085; cur.x+=(tg.x-cur.x)*k; cur.y+=(tg.y-cur.y)*k; cur.s+=(tg.s-cur.s)*k; cur.o+=(tg.o-cur.o)*k;
+    var dy=scrollY-lastY; lastY=scrollY; vel+=(Math.min(Math.abs(dy),80)-vel)*.12;
+    var sc=1+vel/700, s=cur.s;
+    el.style.width=el.style.height=s+'px';
+    el.style.transform='translate3d('+(cur.x-s/2)+'px,'+(cur.y-s/2)+'px,0) rotate('+(scrollY*.045)+'deg) scale('+sc.toFixed(4)+')';
+    el.style.opacity=cur.o.toFixed(3);
+  }
+  requestAnimationFrame(tick);
+})();
 </script>
 <script src="js/lenis.min.js" defer></script>
 <script>
