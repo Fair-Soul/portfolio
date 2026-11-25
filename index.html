@@ -2225,24 +2225,149 @@ html.lenis,html.lenis body{height:auto}
 /* AezakmiSO hero: the bolt passes behind the facts row so its text stays readable */
 .aso-hero .aso-facts{position:relative;z-index:1}
 .aso-hero .aso-facts::before{content:"";position:absolute;left:-100vw;right:-100vw;top:0;bottom:-400px;background:var(--or);z-index:-1}
-/* ---------- the sphere: one object that walks through the home (Design, People, Systems, Code colours) ---------- */
-#orb{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .9s cubic-bezier(.2,.7,.2,1);contain:strict}
-html.orb-on #orb{opacity:1}
-.orb-o{position:absolute;left:0;top:0;width:100px;height:100px;will-change:transform}
-.orb-b{position:absolute;inset:0;border-radius:46% 54% 52% 48% / 52% 46% 54% 48%;background:
- radial-gradient(55% 55% at 24% 72%,#C9F03C 0,#C9F03C00 70%),
- radial-gradient(55% 55% at 76% 28%,#8FD6FF 0,#8FD6FF00 70%),
- radial-gradient(50% 50% at 80% 80%,#F08AC8 0,#F08AC800 70%),
- radial-gradient(60% 60% at 50% 50%,#F5B64C 0,#F5B64C 38%,#F5B64C00 76%);
- box-shadow:inset -20px -28px 70px #0A0B0D1A;animation:orbMorph 14s ease-in-out infinite alternate,orbSpin 46s linear infinite}
-.orb-hl{position:absolute;inset:6% 18% 46% 10%;border-radius:50%;background:radial-gradient(closest-side,#ffffffb3,#fff0);filter:blur(6px);opacity:.75}
-.orb-r{position:absolute;left:50%;top:50%;width:150%;height:150%;translate:-50% -50%;border:1px solid #0A0B0D1C;border-radius:50%}
-.orb-r.r2{width:205%;height:205%;opacity:.55}
-@keyframes orbMorph{50%{border-radius:55% 45% 44% 56% / 44% 56% 46% 54%}100%{border-radius:48% 52% 58% 42% / 56% 44% 50% 50%}}
-@keyframes orbSpin{to{rotate:360deg}}
-html.orb-on .hm-cases::before{background:transparent !important;box-shadow:none !important}
-html.orb-on #hm-contact{background:transparent !important}
-@media (prefers-reduced-motion:reduce){#orb{display:none}}
+
+/* ================= HOME v3: one sphere guides the page (25 Nov 2026) =================
+   Dark ground, the sphere in Zhan's skill colours (Design #C9F03C, People #8FD6FF, Systems #F5B64C, Code #F08AC8).
+   Headings that cross the sphere switch to ink inside its circle (.hx-ink clones, clipped every frame). */
+html.is-home,html.is-home body{background:#0A0B0D}
+#home{background:#0A0B0D;color:#F6F5F1;font-family:"Golos Text","Helvetica Neue",Arial,sans-serif;overflow-x:clip;--hx-mu:#8E9094;--hx-ln:#F6F5F11F;--hx-lime:#C9F03C;--hx-e:cubic-bezier(.2,.7,.2,1)}
+html:not([lang="ru"]) #home .hx-ru{display:none}
+html[lang="ru"] #home .hx-en{display:none}
+#home .hx{position:relative;z-index:1}
+#home section{position:relative}
+#home h1,#home h2,#home h3{font-family:Archivo,"Golos Text",sans-serif;font-weight:600;letter-spacing:-.045em;line-height:.98;margin:0;color:inherit}
+#home .hx-wrap{max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,56px);width:100%}
+#home .hx-lab{font:500 12px/1.4 "Martian Mono",monospace;color:var(--hx-mu)}
+/* nav on the dark home */
+html.is-home .nav .brand,html.is-home .nav ul{background:#16181BCC!important;color:#F6F5F1!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:transparent!important;box-shadow:none!important}
+html.is-home .nav .brand span,html.is-home .nav .link,html.is-home .nav .lang button{color:#C9CBCE!important}
+html.is-home .nav .link:hover,html.is-home .nav .lang button[aria-pressed="true"]{color:#F6F5F1!important}
+html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
+/* sphere */
+#hx-orb{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .9s var(--hx-e)}
+#home.on #hx-orb{opacity:1}
+#home .hx-o{position:absolute;left:0;top:0;width:100px;height:100px;will-change:transform}
+#home .hx-o i{position:absolute;inset:0;border-radius:46% 54% 52% 48% / 52% 46% 54% 48%}
+#home .hx-g{inset:-18%!important;border-radius:50%!important;filter:blur(60px);opacity:.55;background:radial-gradient(closest-side,#C9F03C,#8FD6FF66 55%,#F08AC800)}
+#home .hx-b{background:radial-gradient(55% 55% at 24% 72%,#C9F03C 0,#C9F03C00 70%),radial-gradient(55% 55% at 76% 26%,#8FD6FF 0,#8FD6FF00 70%),radial-gradient(52% 52% at 80% 80%,#F08AC8 0,#F08AC800 70%),radial-gradient(40% 40% at 50% 54%,#F5B64C 0,#F5B64C00 100%),radial-gradient(70% 70% at 40% 40%,#E9F7FF 0,#E9F7FF00 70%),linear-gradient(135deg,#B9E6FF,#F7C9E6 55%,#E6F79A);animation:hxMorph 14s ease-in-out infinite alternate,hxSpin 50s linear infinite;box-shadow:inset -30px -40px 80px #0A0B0D55,inset 20px 24px 50px #ffffff40}
+#home .hx-h{inset:8% 22% 50% 12%!important;border-radius:50%!important;background:radial-gradient(closest-side,#ffffffb0,#fff0);filter:blur(8px)}
+#home .hx-r{inset:-28%!important;border-radius:50%!important;border:1px solid var(--hx-ln)}
+#home .hx-r2{inset:-58%!important;opacity:.6}
+@keyframes hxMorph{50%{border-radius:55% 45% 44% 56% / 44% 56% 46% 54%}100%{border-radius:48% 52% 58% 42% / 56% 44% 50% 50%}}
+@keyframes hxSpin{to{rotate:360deg}}
+#home .hx-has-ink{position:relative}
+#home .hx-ink{position:absolute;inset:0;margin:0!important;pointer-events:none;color:#0A0B0D!important;clip-path:circle(0 at 0 0)}
+#home .hx-ink *{color:#0A0B0D!important}
+#home .hx-ink.hx-lab,#home .hx-ink .hx-lab{color:#0A0B0DB3!important}
+/* buttons */
+#home .hx-btn{display:inline-flex;align-items:center;gap:12px;margin-top:34px;padding:7px 22px 7px 7px;border-radius:99px;background:var(--hx-lime);color:#0A0B0D;text-decoration:none;font:600 17px/1 "Golos Text",sans-serif;white-space:nowrap;transition:transform .5s var(--hx-e),box-shadow .5s var(--hx-e)}
+#home .hx-btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -14px #C9F03C88}
+#home .hx-av{position:relative;flex:none;width:42px;height:42px;border-radius:50%;background:#0A0B0D;overflow:hidden}
+#home .hx-av img{position:absolute;left:50%;bottom:-2px;width:24px;height:36px;transform:translateX(-50%);image-rendering:pixelated}
+#home .hx-btn .hx-av::after{content:"";position:absolute;right:1px;bottom:2px;width:10px;height:10px;border-radius:50%;background:#3CC86B;border:2px solid var(--hx-lime)}
+#home .hx-btn-s{font-size:15px;padding:12px 18px;gap:8px;margin-top:26px}
+#home .hx-ghost{display:inline-flex;align-items:center;padding:16px 22px;border-radius:99px;border:1px solid #F6F5F14D;color:#F6F5F1;text-decoration:none;font:500 16px/1 "Golos Text",sans-serif;background:#0A0B0D80;backdrop-filter:blur(10px)}
+/* hero */
+#home .hx-hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px}
+#home .hx-hero h1{font-size:clamp(44px,5.6vw,88px);max-width:11.5ch;margin-top:18px;line-height:1;text-wrap:balance}
+#home .hx-lede{max-width:34ch;color:var(--hx-mu);margin:26px 0 0;font-size:19px;line-height:1.55}
+#home .hx-cue{position:absolute;right:clamp(20px,4vw,56px);bottom:28px;display:flex;flex-direction:column;align-items:center;gap:10px}
+#home .hx-cue i{width:1px;height:44px;background:linear-gradient(#F6F5F1,#F6F5F100);animation:hxCue 1.8s var(--hx-e) infinite}
+@keyframes hxCue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* statement */
+#home .hx-say{height:180vh}
+#home .hx-say .hx-st{position:sticky;top:0;height:100vh;display:flex;align-items:center}
+#home .hx-say h2{font-size:clamp(40px,5.6vw,84px);max-width:13ch;line-height:1.02}
+#home .hx-wd{color:#F6F5F12E;transition:color .35s}#home .hx-wd.on{color:#F6F5F1}#home .hx-wd.k.on{color:var(--hx-lime)}
+#home .hx-ink .hx-wd{color:#0A0B0D38!important}#home .hx-ink .hx-wd.on{color:#0A0B0D!important}
+/* orbit */
+#home .hx-orbit{height:340vh}
+#home .hx-orbit .hx-st{position:sticky;top:0;height:100vh;overflow:hidden}
+#home .hx-ohd{position:absolute;left:0;right:0;top:clamp(84px,12vh,120px);text-align:center}
+#home .hx-ohd h2{font-size:clamp(30px,3.6vw,52px);margin-top:10px}
+#home .hx-card{position:absolute;left:50%;top:56%;width:clamp(180px,16vw,230px);padding:16px 18px;border-radius:22px;background:#16181BE6;border:1px solid var(--hx-ln);backdrop-filter:blur(10px);will-change:transform,opacity}
+#home .hx-card .hx-lab{display:block;margin-bottom:10px}
+#home .hx-card b{display:block;font:600 clamp(28px,2.4vw,36px)/1 Archivo,sans-serif;letter-spacing:-.05em;color:#F6F5F1}
+#home .hx-card b em,#home .hx-focus b em{font-style:normal;opacity:.45;font-size:.55em;margin:0 6px;vertical-align:.2em}
+#home .hx-card p{display:none;margin:10px 0 0;font-size:14px;line-height:1.45;color:#C9CBCE}
+#home .hx-card.front{border-color:#C9F03C99}#home .hx-card.front b{color:var(--hx-lime)}
+#home .hx-focus{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);width:min(34vmin,360px);text-align:center;color:#0A0B0D;z-index:15;pointer-events:none}
+#home .hx-focus .hx-lab{color:#0A0B0DB3;display:block}
+#home .hx-focus b{display:block;margin:10px 0;font:600 clamp(48px,6vmin,84px)/.95 Archivo,sans-serif;letter-spacing:-.05em;color:#0A0B0D}
+#home .hx-focus p{display:block;margin:0 auto;font-size:15px;line-height:1.4;max-width:24ch;color:#0A0B0D}
+#home .hx-focus.sw{animation:hxSw .55s var(--hx-e)}
+@keyframes hxSw{from{opacity:0;transform:translate(-50%,-46%)}to{opacity:1;transform:translate(-50%,-50%)}}
+#home .hx-dots{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);display:flex;gap:8px}
+#home .hx-dots i{width:6px;height:6px;border-radius:50%;background:#F6F5F140;transition:background .3s,transform .3s}#home .hx-dots i.on{background:var(--hx-lime);transform:scale(1.4)}
+/* lead */
+#home .hx-lead{padding:clamp(120px,16vh,180px) 0}
+#home .hx-g2{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,100px);align-items:center}
+#home .hx-lead h2{font-size:clamp(40px,5vw,72px);margin-top:12px}
+#home .hx-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:34px}
+#home .hx-nums>div{border-top:1px solid var(--hx-ln);padding-top:14px}
+#home .hx-nums b{display:block;font:600 40px/1 Archivo,sans-serif;letter-spacing:-.05em}
+#home .hx-nums>div>span{font-size:14px;color:var(--hx-mu)}
+#home .hx-story{display:grid;gap:16px}
+#home .hx-sp{display:grid;grid-template-columns:72px minmax(0,1fr);gap:20px;align-items:start;padding:24px;border-radius:22px;background:#16181BB3;border:1px solid var(--hx-ln);backdrop-filter:blur(10px)}
+#home .hx-sp h3{font-size:24px;letter-spacing:-.03em}
+#home .hx-sp p{margin:8px 0 0;color:#C9CBCE;font-size:16px;line-height:1.5}
+#home .hx-sp .hx-lab{display:block;margin-bottom:10px;color:var(--hx-lime)}
+#home .hx-pav{display:block;width:72px;height:72px;border-radius:50%;background:#26292E;overflow:hidden;position:relative}
+#home .hx-pav svg{position:absolute;left:50%;bottom:0;width:52px;height:auto;transform:translateX(-50%);shape-rendering:crispEdges}
+/* cases */
+#home .hx-cases{padding:40px 0 120px}
+#home .hx-g3{display:grid;grid-template-columns:300px minmax(0,1fr);gap:clamp(40px,5vw,80px);align-items:start}
+#home .hx-side{position:sticky;top:120px;padding:40px 0}
+#home .hx-side h2{font-size:clamp(48px,5vw,72px);margin:12px 0 14px}
+#home .hx-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px}
+#home .hx-tile{text-decoration:none;display:block;color:#F6F5F1}
+#home .hx-w{grid-column:1 / -1}
+#home .hx-tm{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:16/12;transform:perspective(1200px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transition:transform .8s var(--hx-e),clip-path 1s var(--hx-e);clip-path:inset(var(--ci,0%) 0 0 0 round 22px)}
+#home .hx-tile.hx-w .hx-tm{aspect-ratio:16/8.6}
+#home .hx-ly{position:absolute;height:auto;border-radius:10px;box-shadow:0 30px 60px -24px #000000A0,0 2px 8px #00000040;transform:translate3d(var(--px,0px),var(--py,0px),0) rotate(var(--r)) scale(var(--ls,1));transition:transform .9s var(--hx-e);will-change:transform}
+#home .hx-tile:hover .hx-ly{--ls:1.04}
+#home .hx-hook{position:absolute;left:16px;top:16px;z-index:3;padding:8px 12px;border-radius:99px;background:var(--hx-lime);color:#0A0B0D;font:600 14px/1 "Golos Text",sans-serif}
+#home .hx-go{position:absolute;right:16px;bottom:16px;z-index:3;padding:10px 14px;border-radius:99px;background:#0A0B0DCC;color:#fff;font:500 14px/1 "Golos Text",sans-serif;opacity:0;transform:translateY(8px);transition:.5s var(--hx-e);backdrop-filter:blur(8px)}
+#home .hx-tile:hover .hx-go{opacity:1;transform:none}
+#home .hx-tmeta{margin-top:16px}
+#home .hx-tmeta h3{font-size:26px;letter-spacing:-.03em}
+#home .hx-tmeta p{margin:6px 0 0;color:var(--hx-mu);font-size:15px}
+/* timeline */
+#home .hx-tl{padding:120px 0 160px}
+#home .hx-tl h2{font-size:clamp(40px,5vw,72px);max-width:14ch;margin-top:12px}
+#home .hx-rows{position:relative;margin-top:60px;padding-left:clamp(56px,9vw,140px)}
+#home .hx-rows::before{content:"";position:absolute;left:clamp(20px,4vw,60px);top:0;bottom:0;width:1px;background:var(--hx-ln)}
+#home .hx-row{display:grid;grid-template-columns:160px minmax(0,1fr);gap:24px;padding:38px 0;border-bottom:1px solid var(--hx-ln);opacity:.35;transition:opacity .5s var(--hx-e)}
+#home .hx-row.on{opacity:1}
+#home .hx-y{font:500 14px/1.4 "Martian Mono",monospace;color:var(--hx-lime)}
+#home .hx-row h3{font-size:clamp(26px,2.6vw,38px);letter-spacing:-.035em}
+#home .hx-row p{margin:8px 0 0;color:var(--hx-mu)}
+#home .hx-more{display:inline-block;margin-top:34px;color:#F6F5F1;font:500 16px/1 "Golos Text",sans-serif;text-decoration:none;border-bottom:1px solid var(--hx-lime);padding-bottom:6px}
+/* contact (old #hm-contact rules reset) */
+#home #hm-contact{min-height:120vh;height:auto;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 0;background:none;border-radius:0;margin:0;overflow:visible}
+#home #hm-contact h2{font-size:clamp(56px,9vw,140px);max-width:10ch;margin:16px auto 0}
+#home .hx-acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:40px}
+#home .hx-acts .hx-btn{margin-top:0}
+#home .hx-ftr{position:relative;z-index:1;border-top:1px solid var(--hx-ln);padding:22px 0;color:var(--hx-mu);font-size:14px}
+#home .hx-ftr .hx-wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+#home .hx-ftr a{color:inherit}
+/* narrow */
+@media (max-width:860px){
+  #home .hx-hero{align-items:flex-end;padding-bottom:110px}
+  #home .hx-g2,#home .hx-g3{grid-template-columns:1fr}
+  #home .hx-side{position:static;padding:0}
+  #home .hx-tiles{grid-template-columns:1fr}
+  #home .hx-orbit{height:auto}#home .hx-orbit .hx-st{position:relative;height:auto;overflow:visible;padding:110px 0 60px}
+  #home .hx-ohd{position:static;margin-bottom:28px}
+  #home .hx-card{position:relative;left:auto;top:auto;width:auto;margin:0 20px 14px;transform:none!important;opacity:1!important;padding:20px}
+  #home .hx-card p{display:block}#home .hx-card b{font-size:34px}
+  #home .hx-focus,#home .hx-dots{display:none}
+  #home .hx-say{height:auto}#home .hx-say .hx-st{position:static;height:auto;padding:100px 0}
+  #home .hx-wd{color:#F6F5F1}
+  #home .hx-row{grid-template-columns:1fr;gap:6px}
+  #home .hx-nums b{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){#home .hx-b,#home .hx-cue i{animation:none}}
 </style>
 </head>
 <body>
@@ -2265,49 +2390,73 @@ html.orb-on #hm-contact{background:transparent !important}
 </nav>
 
 <!-- ================= HOME ================= -->
-<main id="home" class="view on"><div id="orb" aria-hidden="true"><div class="orb-o"><i class="orb-r"></i><i class="orb-r r2"></i><i class="orb-b"></i><i class="orb-hl"></i></div></div>
-  <div id="hm-scroller"><div id="hm-stage" aria-label="Zhanadil Zhumakan, selected work">
-    <div class="hm-txt hm-hero" data-k="0"><div class="hm-mono" data-i="hmRole">Design Lead · People Manager</div>
-      <h1><span class="hm-split" data-i="hmH1a">I design products</span><br><span class="hm-split" data-i="hmH1b">and the teams that ship them.</span></h1><a class="hm-free" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener" aria-label="Open to freelance. Discuss your project in Telegram"><i class="hm-free-av" aria-hidden="true"><b><img decoding="async" src="img/me/avatar.png" alt=""></b></i><span data-i="hmFree2">Discuss your project</span></a></div>
-    <div class="hm-fl hm-f-fan" aria-hidden="true"><span class="hm-f-fi" style="--j:-2"><span class="hm-f-box"><span class="hm-f-cv"><div class="hm-poster hm-cv" style="background:#1B1B1B;color:#fff"><span class="hm-lab">Indie Dive</span><span class="hm-no">04</span><img decoding="async" class="cv-logo" src="img/home/idv-logo.webp" alt=""><div class="cv-b cv-px" data-i="hmCvIdv">INDIE GAMES · NEWS · COMMUNITY</div></div></span></span></span><span class="hm-f-fi" style="--j:-1"><span class="hm-f-box"><span class="hm-f-cv"><div class="hm-poster hm-cv" style="background:#0A0A0B;color:#fff"><span class="hm-lab">JKS · Elefanto</span><span class="hm-no">03</span><i class="cube" style="left:19px;top:159px;background:linear-gradient(140deg,#E8392F 0%,#E8392FCC 55%,#00000066 140%);transform:rotate(-110deg)"></i><i class="cube" style="left:13px;top:125px;background:linear-gradient(140deg,#2F6BEA 0%,#2F6BEACC 55%,#00000066 140%);transform:rotate(-86deg)"></i><i class="cube" style="left:24px;top:93px;background:linear-gradient(140deg,#C6A07A 0%,#C6A07ACC 55%,#00000066 140%);transform:rotate(-62deg)"></i><i class="cube" style="left:49px;top:66px;background:linear-gradient(140deg,#E56A2B 0%,#E56A2BCC 55%,#00000066 140%);transform:rotate(-38deg)"></i><i class="cube" style="left:84px;top:51px;background:linear-gradient(140deg,#F3D23A 0%,#F3D23ACC 55%,#00000066 140%);transform:rotate(-14deg)"></i><i class="cube" style="left:122px;top:50px;background:linear-gradient(140deg,#7C5BF0 0%,#7C5BF0CC 55%,#00000066 140%);transform:rotate(10deg)"></i><i class="cube" style="left:158px;top:63px;background:linear-gradient(140deg,#3EC1E8 0%,#3EC1E8CC 55%,#00000066 140%);transform:rotate(34deg)"></i><i class="cube" style="left:185px;top:88px;background:linear-gradient(140deg,#F29BB0 0%,#F29BB0CC 55%,#00000066 140%);transform:rotate(58deg)"></i><i class="cube" style="left:198px;top:120px;background:linear-gradient(140deg,#3FB07F 0%,#3FB07FCC 55%,#00000066 140%);transform:rotate(82deg)"></i><i class="cube" style="left:195px;top:154px;background:linear-gradient(140deg,#9A9CA0 0%,#9A9CA0CC 55%,#00000066 140%);transform:rotate(106deg)"></i><div class="cv-b"><div class="cv-t" style="font-size:28px" data-i="hmCvJks">Full-cycle media agency</div></div></div></span></span></span><span class="hm-f-fi" style="--j:0"><span class="hm-f-box"><span class="hm-f-cv"><div class="hm-poster hm-cv" style="background:#EEE9FA;color:#0A0B0D"><span class="hm-lab">Healthify AI</span><span class="hm-no">01</span><i class="orb"></i><div class="cv-b"><span class="cv-chip" style="background:#0A0B0D;color:#fff">HELLO, I READ YOUR BODY SIGNALS</span><div class="cv-t" style="font-size:40px;margin-top:12px" data-i="hmCvHf">Your body, explained.</div></div></div></span></span></span><span class="hm-f-fi" style="--j:1"><span class="hm-f-box"><span class="hm-f-cv"><div class="hm-poster hm-cv" style="background:#FF4D29;color:#0A0B0D"><span class="hm-lab">AezakmiSO</span><span class="hm-no">02</span><svg class="cv-bolt" viewBox="150 40 490 730" aria-hidden="true"><path d="M153.594 762L500.87 50L429.013 337.83L632.594 140.894L321.241 762L393.089 443.872L153.594 762Z" fill="#0A0B0D"/></svg><div class="cv-ru">Видеть<br>стор<br>раньше</div><div class="cv-b cv-m">APP STORE · GOOGLE PLAY</div></div></span></span></span><span class="hm-f-fi" style="--j:2"><span class="hm-f-box"><span class="hm-f-cv"><div class="hm-poster hm-cv" style="background:#0E1A33;color:#fff"><span class="hm-lab" data-i="hmCvKolL">UX case · 2026</span><span class="hm-no">05</span><div class="cv-wm">kolesa<span>.kz</span></div><div class="cv-t cv-kt" data-i="hmCvKol">Trust the car before you see it.</div><div class="cv-b"><span class="cv-chip" style="background:#2E7DFF;color:#fff" data-i="hmCvKolC">BUYER TRUST · UX CASE</span></div></div></span></span></span></div>
-    <div class="hm-txt hm-say" data-k="1"><div class="hm-mono" data-i="hmK1">Since 2019</div><h2 class="hm-split" id="hm-say" data-i="hmSay">From freelance work for <b class="hm-hl">100+</b> businesses to leading <b class="hm-hl">10+</b> designers who ship ~120 apps a month, then launching Google Play publishing from zero to <b class="hm-hl">300</b> releases a month.</h2></div>
-    <div class="hm-txt hm-say hm-r" data-k="2"><div class="hm-mono" data-i="hmK2">How</div><h2 data-i="hmHow">A shared design system, an AI screen generator and task allocation by complexity.</h2></div>
-    <div class="hm-txt hm-head" data-k="3"><div class="hm-mono" data-i="hmK3">Outcomes</div><h2 data-i="hmH3">What changed, in numbers</h2></div>
-    <div class="hm-fl hm-f-stats"><div class="hm-f-stat" style="background:#0A0B0D;color:#fff"><span class="hm-f-when" data-i="hmW1">Design Team Lead</span><b class="hm-f-sm">4–5<i>→</i>10–12</b><span data-i="hmS1">apps a month per designer: an AI generator builds the screens, so the team reached ~120 a month</span></div><div class="hm-f-stat" style="background:#C9F03C;color:#0A0B0D"><span class="hm-f-when" data-i="hmW2">Elefanto · 2022</span><b>+30%</b><span data-i="hmS2">conversion into requests after a data-driven redesign, 20+ iterations</span></div><div class="hm-f-stat" style="background:#FFFFFF;color:#0A0B0D"><span class="hm-f-when" data-i="hmW3">In 8 months</span><b>20<i>→</i>300</b><span data-i="hmS3">Google Play releases a month, by adapting existing apps for Android instead of building new ones</span></div><div class="hm-f-stat" style="background:#2E44FF;color:#fff"><span class="hm-f-when" data-i="hmW4">In 9 months</span><b>70<i>→</i>95%</b><span data-i="hmS4">of apps pass Google Play review, so more of them can be promoted and monetized</span></div></div>
-    
-    <div class="hm-card" data-g="hf" data-lead="1" data-href="#healthify" aria-label="Healthify AI"><div class="hm-sh"></div><span class="hm-bub l" style="left:-20px;top:-16px" data-i="hmBubHf">@healthify · ai health</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-cv" style="background:#EEE9FA;color:#0A0B0D"><span class="hm-lab">Healthify AI</span><span class="hm-no">01</span><i class="orb"></i><div class="cv-b"><span class="cv-chip" style="background:#0A0B0D;color:#fff">HELLO, I READ YOUR BODY SIGNALS</span><div class="cv-t" style="font-size:40px;margin-top:12px" data-i="hmCvHf">Your body, explained.</div></div></div></div></div><div class="hm-cap"><b>Healthify AI</b><span data-i="hmCapHf">Mobile app · 2026 · AI health companion</span></div></div><div class="hm-card" data-g="aso" data-lead="1" data-href="#aezakmiso" aria-label="AezakmiSO"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubAso">@aezakmiso · internal tool</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-cv" style="background:#FF4D29;color:#0A0B0D"><span class="hm-lab">AezakmiSO</span><span class="hm-no">02</span><svg class="cv-bolt" viewBox="150 40 490 730" aria-hidden="true"><path d="M153.594 762L500.87 50L429.013 337.83L632.594 140.894L321.241 762L393.089 443.872L153.594 762Z" fill="#0A0B0D"/></svg><div class="cv-ru">Видеть<br>стор<br>раньше</div><div class="cv-b cv-m">APP STORE · GOOGLE PLAY</div></div></div><div class="hm-face hm-back" style="background:#0A0B0D;color:#fff"><span class="hm-when" data-i="hmW1">Design Team Lead</span><div class="hm-n hm-n-sm">4–5<i>→</i><b>10–12</b></div><div class="hm-d" data-i="hmS1">apps a month per designer: an AI generator builds the screens, so the team reached ~120 a month</div></div></div><div class="hm-cap"><b>AezakmiSO</b><span data-i="hmCapAso">Internal tool · ~30 users across the company</span></div></div><div class="hm-card" data-g="jks" data-lead="1" data-href="#jks" aria-label="JKS"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubJks">@jks · elefanto</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-cv" style="background:#0A0A0B;color:#fff"><span class="hm-lab">JKS · Elefanto</span><span class="hm-no">03</span><i class="cube" style="left:19px;top:159px;background:linear-gradient(140deg,#E8392F 0%,#E8392FCC 55%,#00000066 140%);transform:rotate(-110deg)"></i><i class="cube" style="left:13px;top:125px;background:linear-gradient(140deg,#2F6BEA 0%,#2F6BEACC 55%,#00000066 140%);transform:rotate(-86deg)"></i><i class="cube" style="left:24px;top:93px;background:linear-gradient(140deg,#C6A07A 0%,#C6A07ACC 55%,#00000066 140%);transform:rotate(-62deg)"></i><i class="cube" style="left:49px;top:66px;background:linear-gradient(140deg,#E56A2B 0%,#E56A2BCC 55%,#00000066 140%);transform:rotate(-38deg)"></i><i class="cube" style="left:84px;top:51px;background:linear-gradient(140deg,#F3D23A 0%,#F3D23ACC 55%,#00000066 140%);transform:rotate(-14deg)"></i><i class="cube" style="left:122px;top:50px;background:linear-gradient(140deg,#7C5BF0 0%,#7C5BF0CC 55%,#00000066 140%);transform:rotate(10deg)"></i><i class="cube" style="left:158px;top:63px;background:linear-gradient(140deg,#3EC1E8 0%,#3EC1E8CC 55%,#00000066 140%);transform:rotate(34deg)"></i><i class="cube" style="left:185px;top:88px;background:linear-gradient(140deg,#F29BB0 0%,#F29BB0CC 55%,#00000066 140%);transform:rotate(58deg)"></i><i class="cube" style="left:198px;top:120px;background:linear-gradient(140deg,#3FB07F 0%,#3FB07FCC 55%,#00000066 140%);transform:rotate(82deg)"></i><i class="cube" style="left:195px;top:154px;background:linear-gradient(140deg,#9A9CA0 0%,#9A9CA0CC 55%,#00000066 140%);transform:rotate(106deg)"></i><div class="cv-b"><div class="cv-t" style="font-size:28px" data-i="hmCvJks">Full-cycle media agency</div></div></div></div><div class="hm-face hm-back" style="background:#C9F03C;color:#0A0B0D"><span class="hm-when" data-i="hmW2">Elefanto · 2022</span><div class="hm-n">+<b data-to="30">30</b>%</div><div class="hm-d" data-i="hmS2">conversion into requests after a data-driven redesign, 20+ iterations</div></div></div><div class="hm-cap"><b>JKS</b><span data-i="hmCapJks">Elefanto · national media site</span></div></div><div class="hm-card" data-g="idv" data-lead="1" data-href="#indiedive" aria-label="Indie Dive"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubIdv">@indiedive · 2025</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-cv" style="background:#1B1B1B;color:#fff"><span class="hm-lab">Indie Dive</span><span class="hm-no">04</span><img decoding="async" class="cv-logo" src="img/home/idv-logo.webp" alt=""><div class="cv-b cv-px" data-i="hmCvIdv">INDIE GAMES · NEWS · COMMUNITY</div></div></div></div><div class="hm-cap"><b>Indie Dive</b><span data-i="hmCapIdv">Editorial web · 2025</span></div></div><div class="hm-card" data-g="kol" data-lead="1" data-href="#kolesa" aria-label="Kolesa.kz"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubKol">@kolesa · ux case</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-cv" style="background:#0E1A33;color:#fff"><span class="hm-lab" data-i="hmCvKolL">UX case · 2026</span><span class="hm-no">05</span><div class="cv-wm">kolesa<span>.kz</span></div><div class="cv-t cv-kt" data-i="hmCvKol">Trust the car before you see it.</div><div class="cv-b"><span class="cv-chip" style="background:#2E7DFF;color:#fff" data-i="hmCvKolC">BUYER TRUST · UX CASE</span></div></div></div></div><div class="hm-cap"><b>Kolesa.kz</b><span data-i="hmCapKol">UX case · buyer trust</span></div></div><div class="hm-card" data-g="hf" data-lead="0" data-href="#healthify" aria-label="Healthify AI"><div class="hm-sh"></div><span class="hm-bub l" style="left:-14px;top:-16px" data-i="hmBubHf">@healthify · ai health</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-phone" style="background:#F1E7DA;color:#0A0B0D"><span class="hm-lab">Healthify AI</span><span class="hm-no">06</span><img decoding="async" class="hm-phone" src="img/hf/10.webp" alt="" loading="lazy"></div></div></div></div><div class="hm-card" data-g="hf" data-lead="0" data-href="#healthify" aria-label="Healthify · Watch"><div class="hm-sh"></div><span class="hm-bub l" style="left:-14px;top:-16px" data-i="hmBubHf">@healthify · ai health</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-phone" style="background:#0A0B0D;color:#fff"><span class="hm-lab">Healthify · Watch</span><span class="hm-no">07</span><img decoding="async" class="hm-phone" src="img/hf/16.webp" alt="" loading="lazy"></div></div></div></div><div class="hm-card" data-g="aso" data-lead="0" data-href="#aezakmiso" aria-label="AezakmiSO · Niches"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubAso">@aezakmiso · internal tool</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-shot" style="background:#FF4A1C;color:#0A0B0D"><span class="hm-lab">AezakmiSO · Niches</span><span class="hm-no">08</span><img decoding="async" class="hm-shot" src="img/home/aso-niche.webp" alt="" loading="lazy"></div></div><div class="hm-face hm-back" style="background:#F2F1EC;color:#0A0B0D"><span class="hm-when" data-i="hmW3">In 8 months</span><div class="hm-n">20<i>→</i><b data-to="300">300</b></div><div class="hm-d" data-i="hmS3">Google Play releases a month, by adapting existing apps for Android instead of building new ones</div></div></div></div><div class="hm-card" data-g="jks" data-lead="0" data-href="#jks" aria-label="JKS · Mobile"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubJks">@jks · elefanto</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-phone" style="background:#F0EEE9;color:#0A0B0D"><span class="hm-lab">JKS · Mobile</span><span class="hm-no">09</span><img decoding="async" class="hm-phone" src="img/home/jks-mobile.webp" alt="" loading="lazy"></div></div></div></div><div class="hm-card" data-g="kol" data-lead="0" data-href="#kolesa" aria-label="Kolesa.kz · Chat"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubKol">@kolesa · ux case</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-phone" style="background:#DCE5FF;color:#0A0B0D"><span class="hm-lab">Kolesa.kz · Chat</span><span class="hm-no">10</span><img decoding="async" class="hm-phone" src="img/kolesa/chat.webp" alt="" loading="lazy"></div></div></div></div><div class="hm-card" data-g="idv" data-lead="0" data-href="#indiedive" aria-label="Indie Dive · Article"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubIdv">@indiedive · 2025</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-phone" style="background:#14141A;color:#fff"><span class="hm-lab">Indie Dive · Article</span><span class="hm-no">11</span><img decoding="async" class="hm-phone" src="img/home/idv-article.webp" alt="" loading="lazy"></div></div></div></div><div class="hm-card" data-g="aso" data-lead="0" data-href="#aezakmiso" aria-label="AezakmiSO · Positions"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubAso">@aezakmiso · internal tool</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-shot" style="background:#1A1B1F;color:#fff"><span class="hm-lab">AezakmiSO · Positions</span><span class="hm-no">12</span><img decoding="async" class="hm-shot" src="img/home/aso-positions.webp" alt="" loading="lazy"></div></div><div class="hm-face hm-back" style="background:#2E44FF;color:#fff"><span class="hm-when" data-i="hmW4">In 9 months</span><div class="hm-n">70<i>→</i><b data-to="95">95</b>%</div><div class="hm-d" data-i="hmS4">of apps pass Google Play review, so more of them can be promoted and monetized</div></div></div></div>
-    <div class="hm-card" data-g="jks" data-lead="0" data-href="#jks" aria-label="JKS · Influence"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubJks">@jks · elefanto</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-shot" style="background:#FFFFFF;color:#0A0B0D"><span class="hm-lab">JKS · Influence</span><span class="hm-no">13</span><img decoding="async" class="hm-shot" src="img/home/jks-influence.webp" alt="" loading="lazy"></div></div></div></div><div class="hm-card" data-g="kol" data-lead="0" data-href="#kolesa" aria-label="Kolesa.kz · History"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubKol">@kolesa · ux case</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-phone" style="background:#EAF1FF;color:#0A0B0D"><span class="hm-lab">Kolesa.kz · History</span><span class="hm-no">14</span><img decoding="async" class="hm-phone" src="img/home/kol-history.webp" alt="" loading="lazy"></div></div></div></div><div class="hm-card" data-g="idv" data-lead="0" data-href="#indiedive" aria-label="Indie Dive · Community"><div class="hm-sh"></div><span class="hm-bub" style="left:-14px;top:-16px" data-i="hmBubIdv">@indiedive · 2025</span><div class="hm-flip"><div class="hm-face"><div class="hm-poster hm-k-phone" style="background:#C9F03C;color:#0A0B0D"><span class="hm-lab">Indie Dive · Community</span><span class="hm-no">15</span><img decoding="async" class="hm-phone" src="img/home/idv-community.webp" alt="" loading="lazy"></div></div></div></div>
-    <div class="hm-hint hm-mono" id="hm-hint" data-i="hmHint">Scroll</div>
-  </div></div>
+<main id="home" class="view on">
+<div id="hx-orb" aria-hidden="true"><div class="hx-o"><i class="hx-g"></i><i class="hx-r"></i><i class="hx-r hx-r2"></i><i class="hx-b"></i><i class="hx-h"></i></div></div>
+<div class="hx">
+  <section class="hx-hero" data-o="hero"><div class="hx-wrap">
+    <div class="hx-lab"><span class="hx-en">Design Lead · People Manager · Almaty, remote</span><span class="hx-ru">Дизайн-лид · People Manager · Алматы, удалённо</span></div>
+    <h1><span class="hx-en">I design products and the teams that ship them.</span><span class="hx-ru">Я проектирую продукты и команды, которые их выпускают.</span></h1>
+    <p class="hx-lede"><span class="hx-en">7 years in product design. I built a design team of 10+ and an Android department of 12 from zero.</span><span class="hx-ru">7 лет в продуктовом дизайне. С нуля собрал дизайн-команду из 10+ человек и Android-отдел из 12.</span></p>
+    <a class="hx-btn" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener"><i class="hx-av"><img decoding="async" src="img/me/avatar.png" alt=""></i><span class="hx-en">Discuss your project</span><span class="hx-ru">Обсудить проект</span></a>
+  </div><div class="hx-cue hx-lab"><i></i><span class="hx-en">Scroll</span><span class="hx-ru">Листай</span></div></section>
 
-  <section id="work" class="hm-cases" aria-label="Cases">
-    <div class="hm-ct-head"><div class="hm-mono" data-i="hmCtK">Selected work</div><h2 data-i="hmCtH">Cases</h2><span class="hm-ct-count" data-i="hmCtN">5 projects · 2022–2026</span><a class="hm-ct-cta" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener"><span data-i="hmCtFree">Have a project? Let’s talk.</span><b>→</b></a></div>
-    <a class="hm-ct lead" data-g="hf" href="#healthify"><span class="hm-bub l" data-i="hmBubHf">@healthify · ai health</span><span class="hm-ct-media"><span class="hm-ct-stage hm-ct-dark"><span class="hm-ph" style="--r:-4deg"><img decoding="async" loading="lazy" class="" src="img/home/ct-hf-a.webp" alt=""></span><span class="hm-ph big"><img decoding="async" loading="lazy" class="" src="img/home/ct-hf-b.webp" alt=""></span><span class="hm-ph" style="--r:4deg"><img decoding="async" loading="lazy" class="" src="img/home/ct-hf-c.webp" alt=""></span><span class="hm-ct-tag" data-i="hmCtHfT">Mobile app · 2026</span></span></span><span class="hm-ct-meta"><span><b>Healthify AI</b><span data-i="hmCtHf">An AI companion that turns wearable data into plain answers about your body.</span></span><span class="hm-pill" data-i="hmCtHfP">Product · AI · Mobile</span></span></a>
-    <div class="hm-ct-grid">
-    <a class="hm-ct" data-g="aso" href="#aezakmiso"><span class="hm-bub" data-i="hmBubAso">@aezakmiso · internal tool</span><span class="hm-ct-media"><img decoding="async" loading="lazy" class="hm-ct-shot" src="img/home/ct-aso.webp" alt=""></span><span class="hm-ct-meta"><span><b>AezakmiSO</b><span data-i="hmCtAso">Internal analytics tool · 30+ people use it daily</span></span></span></a>
-    <a class="hm-ct" data-g="jks" href="#jks"><span class="hm-bub" data-i="hmBubJks">@jks · elefanto</span><span class="hm-ct-media"><img decoding="async" loading="lazy" class="hm-ct-shot" src="img/home/ct-jks.webp" alt=""></span><span class="hm-ct-meta"><span><b>JKS</b><span data-i="hmCtJks">Elefanto · national media site · +30% conversion into requests</span></span></span></a>
-    <a class="hm-ct" data-g="kol" href="#kolesa"><span class="hm-bub" data-i="hmBubKol">@kolesa · ux case</span><span class="hm-ct-media"><span class="hm-ct-stage" style="background:#0E1A33"><span class="hm-ph" style="--r:-3deg"><img decoding="async" loading="lazy" class="" src="img/home/ct-kol-a.webp" alt=""></span><span class="hm-ph" style="--r:3deg"><img decoding="async" loading="lazy" class="" src="img/home/ct-kol-b.webp" alt=""></span></span></span><span class="hm-ct-meta"><span><b>Kolesa.kz</b><span data-i="hmCtKol">UX case · buyer trust, from search to deal</span></span><span class="hm-pill" data-i="hmCtKolP">UX research</span></span></a>
-    <a class="hm-ct" data-g="idv" href="#indiedive"><span class="hm-bub" data-i="hmBubIdv">@indiedive · 2025</span><span class="hm-ct-media"><img decoding="async" loading="lazy" class="hm-ct-shot" src="img/home/ct-idv.webp" alt=""></span><span class="hm-ct-meta"><span><b>Indie Dive</b><span data-i="hmCtIdv">Editorial web · 2025</span></span></span></a>
+  <section class="hx-say" data-o="say"><div class="hx-st"><div class="hx-wrap">
+    <div class="hx-lab" style="margin-bottom:18px"><span class="hx-en">Since 2019</span><span class="hx-ru">С 2019 года</span></div>
+    <h2 id="hx-say"><span class="hx-en">From freelance work for *100+ businesses* to leading *10+ designers* and a department of *12 people.*</span><span class="hx-ru">От фриланса для *100+ бизнесов* до руководства *10+ дизайнерами* и отдела из *12 человек.*</span></h2>
+  </div></div></section>
+
+  <section class="hx-orbit" data-o="orbit"><div class="hx-st">
+    <div class="hx-ohd"><div class="hx-lab"><span class="hx-en">Outcomes</span><span class="hx-ru">Итоги</span></div><h2><span class="hx-en">What changed, in numbers</span><span class="hx-ru">Что изменилось в цифрах</span></h2></div>
+    <div class="hx-focus" id="hx-focus" aria-hidden="true"></div>
+    <div class="hx-cards">
+      <div class="hx-card"><span class="hx-lab"><span class="hx-en">Design production</span><span class="hx-ru">Дизайн-производство</span></span><b>4–5<em>→</em>10–12</b><p><span class="hx-en">apps a month per designer, after the shared design system and the AI screen generator</span><span class="hx-ru">приложений в месяц на дизайнера после общей дизайн-системы и ИИ-генератора экранов</span></p></div>
+      <div class="hx-card"><span class="hx-lab"><span class="hx-en">Google Play launch</span><span class="hx-ru">Запуск Google Play</span></span><b>20<em>→</em>300</b><p><span class="hx-en">apps a month in 8 months, in a department I built from zero</span><span class="hx-ru">приложений в месяц за 8 месяцев, в отделе, который я собрал с нуля</span></p></div>
+      <div class="hx-card"><span class="hx-lab"><span class="hx-en">Google Play review</span><span class="hx-ru">Модерация Google Play</span></span><b>70<em>→</em>95%</b><p><span class="hx-en">of apps pass review, 9 months after tightening the workflow</span><span class="hx-ru">приложений проходят модерацию через 9 месяцев после перестройки процесса</span></p></div>
+      <div class="hx-card"><span class="hx-lab">AezakmiSO</span><b><span class="hx-en">15–30 h</span><span class="hx-ru">15–30 ч</span></b><p><span class="hx-en">saved across the team every day: an internal tool I designed and built</span><span class="hx-ru">экономии в день на команду: внутренний инструмент, который я спроектировал и собрал</span></p></div>
+      <div class="hx-card"><span class="hx-lab">JKS · Elefanto</span><b>+30%</b><p><span class="hx-en">conversion into requests after a data-driven redesign, 20+ iterations</span><span class="hx-ru">к конверсии в заявки после редизайна на данных, 20+ итераций</span></p></div>
     </div>
-  </section>
+    <div class="hx-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  </div></section>
 
-  <section id="hm-cloud"><div class="hm-pin"><div class="hm-tile"><img decoding="async" src="img/home/t01.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t02.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t03.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t04.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t05.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t06.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t07.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t08.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t09.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t10.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t11.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t12.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t13.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t14.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t15.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t16.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t17.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t18.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t19.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t20.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t21.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t22.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t23.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t24.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t25.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t26.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t27.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t28.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t29.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t30.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t31.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t32.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t33.webp" alt="" loading="lazy"></div><div class="hm-tile"><img decoding="async" src="img/home/t34.webp" alt="" loading="lazy"></div>
-    <div class="hm-cloud-t"><div class="hm-mono" data-i="hmAbK">About</div>
-      <h2 class="hm-split" id="hm-cl" data-i="hmAbH">From one freelancer to a department of 12.</h2>
-      <div class="hm-tl" id="hm-tl"><div><span class="y">2019–22</span><b data-i="hmT1">Freelance UX/UI</b><span data-i="hmT1s">100+ businesses</span></div>
-        <div><span class="y">2022</span><b>Elefanto</b><span data-i="hmT2s">Middle UX/UI designer</span></div>
-        <div><span class="y">2022–25</span><b>Aezakmi Group</b><span data-i="hmT3s">Senior → Design Team Lead</span></div>
-        <div><span class="y now">2026 →</span><b>Aezakmi Group</b><span data-i="hmT4s">Head of Android Department</span></div></div>
-      <a class="hm-cvlink" href="#cv" data-i="hmFullCv">Full CV →</a>
-    </div></div><div id="about" class="hm-anchor"></div></section>
+  <section class="hx-lead" data-o="lead"><div class="hx-wrap hx-g2">
+    <div><div class="hx-lab" id="hx-leadlab"><span class="hx-en">How I lead</span><span class="hx-ru">Как я руковожу</span></div><h2><span class="hx-en">I grow designers into leads.</span><span class="hx-ru">Я выращиваю из дизайнеров лидов.</span></h2>
+      <div class="hx-nums"><div><b>100+</b><span><span class="hx-en">design interviews</span><span class="hx-ru">собеседований</span></span></div><div><b>10+</b><span><span class="hx-en">mentees</span><span class="hx-ru">менти</span></span></div><div><b>4</b><span><span class="hx-en">team leads in my department</span><span class="hx-ru">тимлида в моём отделе</span></span></div></div></div>
+    <div class="hx-story">
+      <div class="hx-sp"><i class="hx-pav" data-pav="yana"></i><div><span class="hx-lab">Yana</span><h3><span class="hx-en">Middle → team lead</span><span class="hx-ru">Мидл → тимлид</span></h3><p><span class="hx-en">Joined as a middle designer. We shipped a huge number of apps together; she grew to senior and now leads design in my Android department.</span><span class="hx-ru">Пришла мидлом. Мы вместе выпустили огромное количество приложений, она выросла до сеньора и теперь ведёт дизайн в моём Android-отделе.</span></p></div></div>
+      <div class="hx-sp"><i class="hx-pav" data-pav="yura"></i><div><span class="hx-lab">Yura</span><h3><span class="hx-en">Junior → design lead of my old team</span><span class="hx-ru">Джун → дизайн-лид моей бывшей команды</span></h3><p><span class="hx-en">The same path from junior. He is now the design lead of the department I used to run.</span><span class="hx-ru">Тот же путь от джуна. Сейчас он дизайн-лид отдела, которым раньше руководил я.</span></p></div></div>
+    </div>
+  </div></section>
 
-  <section id="hm-contact" aria-label="Contact"><img decoding="async" class="hm-ic" src="img/me/I_blocks.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_bolt.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_chart.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_flag.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_heart.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_key.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_pad.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_party.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_pencil.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_rocket.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_scale.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_shield.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_spark.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_stack.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false"><img decoding="async" class="hm-ic" src="img/me/I_star.png" data-w="72" data-h="72" style="width:72px;height:72px" alt="" draggable="false">
-    <div class="hm-in"><div class="hm-mono" data-i="hmCK">Open to freelance and lead roles · remote</div>
-      <h2><span data-i="hmCH1">Have a project?</span><br><span data-i="hmCH2">Let’s talk it through.</span></h2>
-      <div class="hm-ctas"><a class="hm-btn" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener" data-i="hmTg">Discuss a project in Telegram</a><a class="hm-btn ghost" href="mailto:zhanik0711@gmail.com">zhanik0711@gmail.com</a><a class="hm-btn ghost" href="#cv" data-i="hmCvBtn">CV</a></div></div>
-    <div class="hm-drag hm-mono" data-i="hmDrag">Drag the icons</div>
-    <div class="hm-foot"><span data-i="hmFoot">© 2026 Zhanadil Zhumakan · Almaty</span><span><a href="https://www.linkedin.com/in/zhanadil-zhumakan/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Fair-Soul" target="_blank" rel="noopener">GitHub</a></span></div>
-  </section>
+  <section class="hx-cases" id="work" data-o="cases"><div class="hx-wrap hx-g3">
+    <div class="hx-side" id="hx-side"><div class="hx-lab"><span class="hx-en">Selected work</span><span class="hx-ru">Избранные работы</span></div><h2><span class="hx-en">Cases</span><span class="hx-ru">Кейсы</span></h2><div class="hx-lab"><span class="hx-en">5 projects · 2022–2026</span><span class="hx-ru">5 проектов · 2022–2026</span></div><a class="hx-btn hx-btn-s" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener"><span class="hx-en">Have a project? Let’s talk →</span><span class="hx-ru">Есть проект? Давай обсудим →</span></a></div>
+    <div class="hx-tiles">
+      <a class="hx-tile hx-w" href="#aezakmiso"><div class="hx-tm" style="background:#FF4F2A"><img class="hx-ly" src="img/home/aso-niche.webp" alt="" loading="lazy" data-d=".6" style="left:52%;top:24%;width:40%;--r:3deg"><img class="hx-ly" src="img/home/aso-positions.webp" alt="" loading="lazy" data-d="1" style="left:6%;top:16%;width:50%;--r:-2deg"><img class="hx-ly" src="img/home/aso-kpi.webp" alt="" loading="lazy" data-d="1.6" style="left:44%;top:6%;width:34%;--r:0deg"><img class="hx-ly" src="img/home/aso-moves.webp" alt="" loading="lazy" data-d="2.2" style="left:30%;top:62%;width:42%;--r:1deg"><span class="hx-hook"><span class="hx-en">30+ people use it daily</span><span class="hx-ru">30+ человек каждый день</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>AezakmiSO</h3><p><span class="hx-en">Internal ASO dashboard · design + build</span><span class="hx-ru">Внутренний ASO-дашборд · дизайн и разработка</span></p></div></a>
+      <a class="hx-tile" href="#jks"><div class="hx-tm" style="background:#0B0B0C"><img class="hx-ly" src="img/home/ct-jks.webp" alt="" loading="lazy" data-d=".8" style="left:8%;top:14%;width:76%;--r:0deg"><img class="hx-ly" src="img/home/jks-mobile.webp" alt="" loading="lazy" data-d="2" style="left:70%;top:30%;width:24%;--r:3deg"><span class="hx-hook"><span class="hx-en">+30% conversion</span><span class="hx-ru">+30% к конверсии</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>JKS</h3><p><span class="hx-en">Elefanto · media agency website</span><span class="hx-ru">Elefanto · сайт медиаагентства</span></p></div></a>
+      <a class="hx-tile" href="#indiedive"><div class="hx-tm" style="background:#151515"><img class="hx-ly" src="img/home/idv-logo.webp" alt="" loading="lazy" data-d=".5" style="left:12%;top:10%;width:76%;--r:0deg"><img class="hx-ly" src="img/home/idv-article.webp" alt="" loading="lazy" data-d="1.2" style="left:10%;top:34%;width:38%;--r:-3deg"><img class="hx-ly" src="img/home/idv-mobile.webp" alt="" loading="lazy" data-d="2" style="left:56%;top:26%;width:32%;--r:3deg"><span class="hx-hook"><span class="hx-en">Web + mobile</span><span class="hx-ru">Веб + мобайл</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>Indie Dive</h3><p><span class="hx-en">Client project · indie games media · 2025</span><span class="hx-ru">Клиентский проект · медиа об инди-играх · 2025</span></p></div></a>
+      <a class="hx-tile" href="#healthify"><div class="hx-tm" style="background:#E9E6DF"><img class="hx-ly" src="img/home/ct-hf-a.webp" alt="" loading="lazy" data-d=".9" style="left:8%;top:18%;width:28%;--r:-7deg"><img class="hx-ly" src="img/home/ct-hf-b.webp" alt="" loading="lazy" data-d=".9" style="left:64%;top:18%;width:28%;--r:7deg"><img class="hx-ly" src="img/home/ct-hf-c.webp" alt="" loading="lazy" data-d="2" style="left:35%;top:9%;width:30%;--r:0deg"><span class="hx-hook"><span class="hx-en">Phone, watch, lock screen</span><span class="hx-ru">Телефон, часы, экран блокировки</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>Healthify AI</h3><p><span class="hx-en">Mobile app · AI health tracker · 2026</span><span class="hx-ru">Мобильное приложение · ИИ-трекер здоровья · 2026</span></p></div></a>
+      <a class="hx-tile" href="#kolesa"><div class="hx-tm" style="background:#0E1A33"><img class="hx-ly" src="img/home/ct-kol-b.webp" alt="" loading="lazy" data-d=".9" style="left:8%;top:20%;width:28%;--r:-6deg"><img class="hx-ly" src="img/home/ct-kol-a.webp" alt="" loading="lazy" data-d=".9" style="left:64%;top:20%;width:28%;--r:6deg"><img class="hx-ly" src="img/home/kol-history.webp" alt="" loading="lazy" data-d="2" style="left:36%;top:10%;width:28%;--r:0deg"><span class="hx-hook"><span class="hx-en">Deal inside the chat</span><span class="hx-ru">Сделка внутри чата</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>Kolesa.kz</h3><p><span class="hx-en">UX case · buyer trust, from search to deal</span><span class="hx-ru">UX-кейс · доверие покупателя от поиска до сделки</span></p></div></a>
+    </div>
+  </div></section>
+
+  <section class="hx-tl" id="about" data-o="tl"><div class="hx-wrap">
+    <div class="hx-lab"><span class="hx-en">Experience</span><span class="hx-ru">Опыт</span></div>
+    <h2><span class="hx-en">From one freelancer to a department of 12.</span><span class="hx-ru">От фрилансера до отдела из 12 человек.</span></h2>
+    <div class="hx-rows" id="hx-rows">
+      <div class="hx-row"><div class="hx-y">2019–22</div><div><h3><span class="hx-en">Freelance UX/UI</span><span class="hx-ru">Фриланс UX/UI</span></h3><p><span class="hx-en">100+ businesses, sites and mobile apps</span><span class="hx-ru">100+ бизнесов: сайты и мобильные приложения</span></p></div></div>
+      <div class="hx-row"><div class="hx-y">2022</div><div><h3><span class="hx-en">Elefanto · Middle UX/UI designer</span><span class="hx-ru">Elefanto · Middle UX/UI-дизайнер</span></h3><p><span class="hx-en">JKS website: 20+ iterations, +30% conversion into requests</span><span class="hx-ru">Сайт JKS: 20+ итераций, +30% к конверсии в заявки</span></p></div></div>
+      <div class="hx-row"><div class="hx-y">2022–25</div><div><h3><span class="hx-en">Aezakmi Group · Senior → Design Team Lead</span><span class="hx-ru">Aezakmi Group · Senior → тимлид дизайна</span></h3><p><span class="hx-en">A team of 10–11 designers, ~120 apps a month, a design system and an AI screen generator</span><span class="hx-ru">Команда из 10–11 дизайнеров, ~120 приложений в месяц, дизайн-система и ИИ-генератор экранов</span></p></div></div>
+      <div class="hx-row"><div class="hx-y">2026 →</div><div><h3><span class="hx-en">Aezakmi Group · Head of Android Department</span><span class="hx-ru">Aezakmi Group · руководитель Android-отдела</span></h3><p><span class="hx-en">12 people, 4 team leads, Google Play from zero to 300 apps a month</span><span class="hx-ru">12 человек, 4 тимлида, Google Play с нуля до 300 приложений в месяц</span></p></div></div>
+    </div>
+    <a class="hx-more" href="#cv"><span class="hx-en">Full CV →</span><span class="hx-ru">Полное резюме →</span></a>
+  </div></section>
+
+  <section class="hx-ct" id="hm-contact" data-o="ct"><div class="hx-wrap">
+    <div class="hx-lab"><span class="hx-en">Open to freelance and lead roles · remote</span><span class="hx-ru">Открыт к фрилансу и лид-ролям · удалённо</span></div>
+    <h2><span class="hx-en">Have a project? Let’s talk.</span><span class="hx-ru">Есть проект? Давай обсудим.</span></h2>
+    <div class="hx-acts"><a class="hx-btn" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener"><i class="hx-av"><img decoding="async" src="img/me/avatar.png" alt=""></i><span class="hx-en">Discuss in Telegram</span><span class="hx-ru">Обсудить в Telegram</span></a><a class="hx-ghost" href="mailto:zhanik0711@gmail.com">zhanik0711@gmail.com</a><a class="hx-ghost" href="#cv"><span class="hx-en">CV</span><span class="hx-ru">Резюме</span></a></div>
+  </div></section>
+  <footer class="hx-ftr"><div class="hx-wrap"><span><span class="hx-en">© 2026 Zhanadil Zhumakan · Almaty</span><span class="hx-ru">© 2026 Жанадиль Жумакан · Алматы</span></span><span><a href="https://www.linkedin.com/in/zhanadil-zhumakan/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/Fair-Soul" target="_blank" rel="noopener">GitHub</a></span></div></footer>
+</div>
 </main>
 
 <!-- ================= CASE ================= -->
@@ -4683,216 +4832,7 @@ html.orb-on #hm-contact{background:transparent !important}
   route(); countUp();
 })();
 </script>
-<script>
-/* ================= HOME: one deck of work cards, choreographed by scroll ================= */
-(function(){
-  var home = document.getElementById('home'); if (!home) return;
-  var $ = function(s){ return home.querySelector(s); }, $$ = function(s){ return [].slice.call(home.querySelectorAll(s)); };
-  var clamp = function(v,a,b){ return Math.max(a, Math.min(b, v)); }, lerp = function(a,b,t){ return a + (b - a) * t; };
-  var ease = function(t){ return t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2; };
-  var RM = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
 
-  /* word splitting (re-run after a language switch); *word = lime highlight */
-  function splitAll(){
-    $$('.hm-split').forEach(function(el){
-      var words = [];
-      [].forEach.call(el.childNodes, function(n){ var hlN = n.nodeType === 1 && n.classList.contains('hm-hl');
-        (n.textContent || '').trim().split(/\s+/).forEach(function(w){ if (w) words.push(hlN && w.charAt(0) !== '*' ? '*' + w : w); }); });
-      el.innerHTML = words.map(function(w){ var hl = w.charAt(0) === '*'; return '<span class="hm-w' + (hl ? ' hl' : '') + '">' + (hl ? w.slice(1) : w).replace(/</g,'&lt;') + '</span>'; }).join(' ');
-    });
-    sayW = $$('#hm-say .hm-w'); clW = $$('#hm-cl .hm-w');
-  }
-  var sayW = [], clW = [];
-
-  var cards = $$('.hm-card'), N = cards.length, flips = cards.map(function(c){ return c.querySelector('.hm-flip'); });
-  var G = cards.map(function(c){ return c.dataset.g; }), LEAD = cards.map(function(c){ return +c.dataset.lead; });
-  var txt = $$('.hm-txt'), scroller = $('#hm-scroller'), stage = $('#hm-stage'), hint = $('#hm-hint');
-  var heroOrder = [7,3,1,5,0,6,2,4,8,9,10,11,12,13,14];
-  var L, Z, narrow = false, U = 1;
-
-  /* layouts: [x, y (px at 1440x860, from the centre), rotZ, rotX, rotY, scale, flip, opacity, caption] */
-  function build(){
-    narrow = innerWidth < 820;
-    U = narrow ? Math.min(innerWidth / 760, innerHeight / 1500) : Math.min(innerWidth / 1440, innerHeight / 860);
-    L = [[],[],[],[],[]]; Z = [[],[],[],[],[]];
-    var i, k;
-    heroOrder.forEach(function(ci, k){ var j = k - 4, vis = Math.abs(j) <= 4;
-      L[0][ci] = vis ? [j*132, (narrow ? 330 : 168) + j*j*5, j*3.4, 18, -j*3.5, j === 0 ? 1.07 : .9 - Math.abs(j)*.015, 0, 1, 0] : [0, 190, 0, 18, 0, .85, 0, 0, 0];
-      Z[0][ci] = vis ? 20 - Math.abs(j) : 1; });
-    for (i = 0; i < N; i++){
-      L[1][i] = narrow ? [i*4, 260 - i*4, (i - N/2)*1.6, 0, 0, 1, 0, 1, 0] : [330 + i*4, 22 - i*4, (i - N/2)*1.6, 0, 0, 1, 0, 1, 0]; Z[1][i] = i;
-      L[2][i] = narrow ? [-260 + i*48, 40 + i*40, -8 + i*.9, 0, 12 - i, .72, 0, 1, 0] : [-630 + i*52, -250 + i*36, -8 + i*.8, 0, 12 - i*.8, .72, 0, 1, 0]; Z[2][i] = i;
-    }
-    var flipOrder = [1,2,7,11];
-    for (i = 0; i < N; i++){ k = flipOrder.indexOf(i);
-      var fp = narrow ? [[-140,-80],[140,-80],[-140,300],[140,300]][k] : [(k - 1.5)*300, 40];
-      L[3][i] = k >= 0 ? [fp && fp[0], fp && fp[1], (k - 1.5)*.8, 0, 0, narrow ? .95 : 1, 1, 1, 0] : [((i*137) % 900) - 450, 1100 + ((i*61) % 200), i % 2 ? 16 : -16, 0, 0, .9, 0, 1, 0];
-      Z[3][i] = k >= 0 ? 20 : 1; }
-    /* scene 4: hold the outcomes under the incoming case sheet */
-    for (i = 0; i < N; i++){ L[4][i] = L[3][i].slice(); Z[4][i] = Z[3][i]; }   /* scene 4: the outcomes stay; the case sheet slides over them */
-  }
-  var IN = function(i){ return [((i % 7) - 3)*70, 1000 + i*30, i % 2 ? 14 : -14, 40, 0, .9, 0, 1, 0]; };
-  var cur = cards.map(function(_, i){ return IN(i).slice(); }), lift = cards.map(function(){ return 0; });
-  var t0 = performance.now(), mx = 0, my = 0, P = 0, counted = false, raf = 0;
-  addEventListener('mousemove', function(e){ mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
-  var lastW = innerWidth;
-  addEventListener('resize', function(){
-    if (innerWidth === lastW) return;            /* mobile toolbars change only the height: ignore, no jumps */
-    lastW = innerWidth;
-    var mm = function(q){ return window.matchMedia && matchMedia(q).matches; };
-    var rmq = mm('(prefers-reduced-motion: reduce)'), fl = innerWidth < 900 || (mm('(pointer: coarse)') && innerWidth < 1180) || rmq;
-    document.documentElement.classList.toggle('hm-flow', fl); document.documentElement.classList.toggle('hm-mm', fl && !rmq);
-    build();
-  });
-
-  function count(){ $$('.hm-n b[data-to]').forEach(function(b){ var to = +b.dataset.to, st = performance.now();
-    (function f(n){ var p = clamp((n - st) / 1300, 0, 1); b.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); })(st); }); }
-
-  /* click a case in the final grid */
-  var HV = -1;
-  cards.forEach(function(c, i){ c.addEventListener('click', function(){ /* cards are not links any more: the case tiles below are */ });
-    c.addEventListener('pointerenter', function(e){ if (e.pointerType === 'mouse'){ HV = i; } });
-    c.addEventListener('pointerleave', function(){ if (HV === i) HV = -1; }); });
-
-  /* cloud of screens around the About headline */
-  var cloud = $('#hm-cloud'), tiles = $$('.hm-tile'), tl = $('#hm-tl');
-  /* each tile gets its own orbit: radius, speed, direction, wobble and size (seeded, so it looks the same every visit) */
-  var seed = 7; function rnd(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
-  var slots = tiles.map(function(_, i){ return { a: i / tiles.length * Math.PI * 2 + (rnd() - .5) * .7, r: .8 + rnd() * .55,
-    sp: (rnd() < .5 ? -1 : 1) * (.5 + rnd() * 1.1), sz: .55 + rnd() * .55, ph: rnd() * 6.28, wob: 10 + rnd() * 26, tilt: (rnd() - .5) * 24, spin: (rnd() - .5) * 2, drift: .4 + rnd() * 1.2 }; });
-
-  function frame(now){
-    raf = requestAnimationFrame(frame);
-    render(now);
-  }
-  function render(now){
-    if (!home.classList.contains('on')) return;
-    if (document.documentElement.classList.contains('hm-flow')){ phone(now); physics(); return; }
-    var vh = innerHeight, r = scroller.getBoundingClientRect();
-    /* raw progress R; each scene holds still for the first 45% of its segment, so text can be read */
-    var R = clamp(-r.top / (r.height - vh), 0, 1) * 4.0, rk = Math.floor(R), rt = R - rk;
-    P = R >= 4 ? 4 : rk + clamp((rt - .45) / .55, 0, 1); window.__hmP = P;
-    var k = Math.min(Math.floor(P), 3), f = ease(clamp(P - k, 0, 1)), Pc = Math.min(P, 4), k2 = Math.min(k + 1, 4);
-    hint.style.opacity = P > .08 ? 0 : 1;
-    stage.style.setProperty('--gp', clamp((P - 3.3) / .5, 0, 1).toFixed(3));
-    stage.style.setProperty('--hero', clamp(1 - P*3, 0, 1) * (now - t0 > 1300 ? 1 : 0));
-    var stageOn = r.bottom > 0;
-    for (var i = 0; i < N; i++){
-      var a = L[k][i], b = L[k2][i], tgt = [], j;
-      for (j = 0; j < 9; j++) tgt[j] = lerp(a[j], b[j], f);
-      var hk = heroOrder.indexOf(i), delay = i === 0 ? 150 : 300 + Math.abs(hk - 4)*120 + (hk > 4 ? 60 : 0);
-      if (now - t0 < delay && !RM) tgt = IN(i);
-      var sm = RM ? 1 : .16 + i*.004;
-      for (j = 0; j < 9; j++) cur[i][j] += (tgt[j] - cur[i][j]) * sm;
-      if (!stageOn) continue;
-      var hvOn = HV === i && P < .6 ? 1 : 0; lift[i] += (hvOn - lift[i]) * .18;
-      cards[i].classList.toggle('hv', hvOn === 1);
-      var c = cur[i], hov = P < .6 && !narrow ? 1 : 0, lf = lift[i];
-      var px = mx * (hov ? (hk - 4)*8 : 6), py = my * (hov ? 10 : 4);
-      cards[i].style.transform = 'translate3d(' + (c[0]*U + px).toFixed(1) + 'px,' + (c[1]*U + py - lf*16).toFixed(1) + 'px,' + (lf*40).toFixed(1) + 'px) rotateZ(' + c[2].toFixed(2) + 'deg) rotateX(' + (c[3] - my*6*hov).toFixed(2) + 'deg) rotateY(' + (c[4] + mx*8*hov).toFixed(2) + 'deg) scale(' + (c[5]*U*(1 + lf*.03)).toFixed(4) + ')';
-      flips[i].style.transform = 'rotateY(' + (c[6]*180).toFixed(1) + 'deg)';
-      cards[i].style.opacity = c[7].toFixed(3);
-      cards[i].style.setProperty('--cap', c[8].toFixed(3)); cards[i].style.setProperty('--s', (c[5]*U).toFixed(3));
-      cards[i].style.zIndex = (f < .5 ? Z[k] : Z[k2])[i] + (lf > .05 ? 30 : 0);
-      
-    }
-    if (stageOn){
-      txt.forEach(function(t){ var kk = +t.dataset.k, d = Pc - kk;
-        var o = kk === 0 ? clamp(1 - d*2.4, 0, 1) : kk >= 3 ? clamp(1 - Math.abs(Math.min(d, 0))*2.4, 0, 1) : clamp(1 - Math.abs(d)*2.4, 0, 1);
-        t.style.opacity = o; var base = t.classList.contains('hm-say') && !narrow ? 'translateY(-50%) ' : '';
-        t.style.transform = base + 'translateY(' + (-d*60).toFixed(1) + 'px)'; });
-      var sp = clamp((R - .85) / .35, 0, 1) * sayW.length; sayW.forEach(function(w, i){ w.classList.toggle('on', i < sp); });
-      if (P > 2.85 && !counted){ counted = true; count(); } if (P < 2.4) counted = false;
-    }
-    var cr = cloud.getBoundingClientRect();
-    if (cr.top < vh && cr.bottom > 0){
-      var cp = clamp(-cr.top / (cr.height - vh), 0, 1), W = innerWidth, rx = W * (narrow ? .46 : .42), ry = vh * .40;
-      var spread = lerp(.35, 1, ease(clamp(cp*2.2, 0, 1)));
-      var k = Math.min(1, Math.max(.72, W / 1440)), tt = RM ? 0 : now * .001;
-      tiles.forEach(function(t, i){ var s = slots[i], ang = s.a + tt * .05 * s.sp + cp * 1.1 * s.sp;
-        var x = Math.cos(ang) * rx * s.r * spread + Math.sin(tt * .7 + s.ph) * s.wob,
-            y = Math.sin(ang) * ry * s.r * spread + Math.cos(tt * .9 + s.ph) * s.wob * .8 + (cp - .5) * -220 * s.drift;
-        t.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (s.tilt + Math.sin(tt * .6 + s.ph) * 10 + cp * 40 * s.spin).toFixed(1) + 'deg) scale(' + (s.sz * k).toFixed(3) + ')';
-        t.style.zIndex = Math.round(s.sz * 10);
-        t.style.opacity = clamp(cp*4, 0, 1); });
-      var cs = clamp((cp - .12) / .4, 0, 1) * clW.length; clW.forEach(function(w, i){ w.classList.toggle('on', i < cs); });
-      tl.classList.toggle('on', cp > .5);
-    }
-    physics();
-  }
-
-  /* pixel icons fall into the contact block and can be pushed or dragged */
-  var box = $('#hm-contact'), ics = $$('.hm-ic'), started = false, drag = null, lp = null;
-  var B = ics.map(function(el, i){ return { el: el, w: +el.dataset.w, h: +el.dataset.h, x: 0, y: 0, vx: 0, vy: 0, r: 0, vr: 0 }; });
-  function drop(){ var W = box.clientWidth; B.forEach(function(b, i){ b.x = W*.1 + ((i*197) % (W*.8 - b.w)); b.y = -140 - i*70; b.vx = (Math.random() - .5)*2; b.vy = 0; b.vr = (Math.random() - .5)*4; }); started = true; }
-  if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ if (es[0].isIntersecting && !started) drop(); }, { threshold: .35 }).observe(box);
-  function physics(){
-    if (!started) return;
-    var br = box.getBoundingClientRect(); if (br.bottom < 0 || br.top > innerHeight) return;
-    var W = box.clientWidth, H = box.clientHeight - 70, s, i, j;
-    for (s = 0; s < 2; s++){
-      B.forEach(function(b){ if (b === drag) return; b.vy += .42; b.x += b.vx; b.y += b.vy; b.r += b.vr;
-        if (b.y + b.h > H){ b.y = H - b.h; b.vy *= -.32; b.vx *= .86; b.vr *= .8; }
-        if (b.x < 0){ b.x = 0; b.vx *= -.5; } if (b.x + b.w > W){ b.x = W - b.w; b.vx *= -.5; } });
-      for (i = 0; i < B.length; i++) for (j = i + 1; j < B.length; j++){ var a = B[i], c = B[j];
-        var dx = (c.x + c.w/2) - (a.x + a.w/2), dy = (c.y + c.h/2) - (a.y + a.h/2), min = (a.w + c.w)*.42, d = Math.hypot(dx, dy) || 1;
-        if (d < min){ var o = (min - d)/2, nx = dx/d, ny = dy/d; if (a !== drag){ a.x -= nx*o; a.y -= ny*o; } if (c !== drag){ c.x += nx*o; c.y += ny*o; }
-          var rv = (c.vx - a.vx)*nx + (c.vy - a.vy)*ny; if (rv < 0){ var imp = rv*.6; a.vx += imp*nx; a.vy += imp*ny; c.vx -= imp*nx; c.vy -= imp*ny; } } }
-    }
-    B.forEach(function(b){ b.el.style.transform = 'translate(' + b.x.toFixed(1) + 'px,' + b.y.toFixed(1) + 'px) rotate(' + b.r.toFixed(1) + 'deg)'; });
-  }
-  ics.forEach(function(el, i){ el.addEventListener('pointerdown', function(e){ drag = B[i]; lp = [e.clientX, e.clientY]; try { el.setPointerCapture(e.pointerId); } catch (_) {} el.style.cursor = 'grabbing'; e.preventDefault(); }); });
-  addEventListener('pointermove', function(e){ if (!drag || !lp) return; var dx = e.clientX - lp[0], dy = e.clientY - lp[1]; drag.x += dx; drag.y += dy; drag.vx = dx; drag.vy = dy; lp = [e.clientX, e.clientY]; });
-  addEventListener('pointerup', function(){ if (drag) drag.el.style.cursor = 'grab'; drag = null; lp = null; });
-  box.addEventListener('mousemove', function(e){ var r = box.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-    B.forEach(function(b){ var dx = b.x + b.w/2 - x, dy = b.y + b.h/2 - y, d = Math.hypot(dx, dy); if (d < 90 && b !== drag){ b.vx += dx/d*1.6; b.vy += dy/d*1.6 - .6; b.vr += (Math.random() - .5)*3; } }); });
-
-  build(); splitAll();
-  window.hmRelang = function(){ splitAll(); };
-  window.hmStart = function(snap){
-    t0 = performance.now(); counted = false; cur = cards.map(function(_, i){ return IN(i).slice(); });
-    if (snap){ t0 -= 5000; counted = true; cur = cards.map(function(_, i){ return L[4][i].slice(); }); }
-    home.classList.remove('hm-ready'); requestAnimationFrame(function(){ requestAnimationFrame(function(){ home.classList.add('hm-ready'); }); });
-    if (!raf) raf = requestAnimationFrame(frame);
-  };
-  window.hmStart();
-  /* used by the case morph: draw the deck once, right now, so the transition sees the final grid */
-  window.hmRender = function(){ render(performance.now()); };
-
-  /* ---------- phone motion: fan lean, words, outcome flips + counts, tile reveals ---------- */
-  var fan = home.querySelector('.hm-f-fan'), lean = 0, leanT = null, tilt = null;
-  if (fan){ var order = { '-2': 0, '-1': 1, '2': 2, '1': 3, '0': 4 };
-    [].forEach.call(fan.querySelectorAll('.hm-f-fi'), function(el){ el.style.setProperty('--d', order[el.style.getPropertyValue('--j').trim()] || 0); });
-    fan.addEventListener('touchmove', function(e){ var t = e.touches[0], r = fan.getBoundingClientRect(); leanT = ((t.clientX - r.left) / r.width - .5) * 2; }, { passive: true });
-    fan.addEventListener('touchend', function(){ leanT = null; });
-    fan.addEventListener('pointermove', function(e){ if (e.pointerType !== 'mouse') return; var r = fan.getBoundingClientRect(); leanT = ((e.clientX - r.left) / r.width - .5) * 2; });
-    fan.addEventListener('pointerleave', function(){ leanT = null; });
-    addEventListener('deviceorientation', function(e){ if (e.gamma != null) tilt = clamp(e.gamma / 25, -1, 1); }, { passive: true });
-  }
-  function countStat(b){
-    var tn = null; for (var n = b.lastChild; n; n = n.previousSibling){ if (n.nodeType === 3 && /\d/.test(n.textContent)){ tn = n; break; } }
-    if (!tn || /–/.test(b.textContent)) return;
-    var m = tn.textContent.match(/^(\D*)(\d+)(\D*)$/); if (!m) return;
-    var to = +m[2], firstNum = (b.textContent.match(/\d+/) || [0])[0], from = b.querySelector('i') ? +firstNum : 0, st = performance.now();
-    (function f(t){ var p = clamp((t - st) / 1200, 0, 1); tn.textContent = m[1] + Math.round(from + (to - from) * (1 - Math.pow(1 - p, 3))) + m[3]; if (p < 1) requestAnimationFrame(f); })(st);
-  }
-  if ('IntersectionObserver' in window){
-    var io2 = new IntersectionObserver(function(es){ es.forEach(function(e){ if (!e.isIntersecting) return; var el = e.target; el.classList.add('in');
-      if (el.classList.contains('hm-f-stat') && document.documentElement.classList.contains('hm-mm')) setTimeout(function(){ countStat(el.querySelector('b')); }, 250);
-      io2.unobserve(el); }); }, { threshold: .2 });
-    $$('.hm-f-stat').forEach(function(el){ io2.observe(el); });
-    var rvT = [].slice.call(document.querySelectorAll('.hm-ct')); rvT.forEach(function(el){ if (!RM){ el.setAttribute('data-rv', ''); io2.observe(el); } });
-  }
-  function phone(now){
-    if (!document.documentElement.classList.contains('hm-mm')) return;
-    var target = leanT != null ? leanT : (tilt != null ? tilt : Math.sin(now * .0006) * .35);
-    lean += (target - lean) * .08; if (fan) fan.style.setProperty('--lean', lean.toFixed(3));
-    var h2 = document.getElementById('hm-say');
-    if (h2){ var r = h2.getBoundingClientRect(), vh = innerHeight, p = clamp((vh * .85 - r.top) / (r.height + vh * .25), 0, 1), n = p * sayW.length;
-      sayW.forEach(function(w, i){ w.classList.toggle('on', i < n); }); }
-  }
-})();
-</script>
 <script src="hfbody.js"></script>
 <script>
 (function(){
@@ -4959,56 +4899,113 @@ html.orb-on #hm-contact{background:transparent !important}
   function f(){ tk=false; if(H.classList.contains('hm-flow')){ st.style.opacity=''; return; } var t=cs.getBoundingClientRect().top/innerHeight; var o=Math.max(0,Math.min(1,H.classList.contains('orb-on')?(t-.72)/.28:(t-.3)/.45)); st.style.opacity=o<1?o.toFixed(3):''; }
   addEventListener('scroll',function(){ if(!tk){tk=true;requestAnimationFrame(f);} },{passive:true}); f(); })();
 </script>
+
 <script>
+/* ================= HOME v3: sphere, statement, orbit, previews, timeline ================= */
 (function(){
-  var H=document.documentElement, O=document.getElementById('orb'); if(!O) return;
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var el=O.firstElementChild, home=document.getElementById('home'), cur=null, lastY=scrollY, vel=0;
-  function q(s){ return document.querySelector(s); }
-  function R(e){ return e ? e.getBoundingClientRect() : null; }
-  function mix(a,b,p){ p=Math.max(0,Math.min(1,p)); p=p*p*(3-2*p); return {x:a.x+(b.x-a.x)*p,y:a.y+(b.y-a.y)*p,s:a.s+(b.s-a.s)*p,o:a.o+(b.o-a.o)*p}; }
+  var home=document.getElementById('home'); if(!home||!home.querySelector('.hx')) return;
+  var H=document.documentElement;
+  function $(s,r){ return (r||document).querySelector(s); }
+  function $$(s,r){ return [].slice.call((r||document).querySelectorAll(s)); }
+  var red=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function narrow(){ return innerWidth<=860; }
+  function R(e){ return e.getBoundingClientRect(); }
+
+  // statement: split each language version into words; *…* marks lime words
+  $$('#hx-say > span').forEach(function(sp){
+    var key=false;
+    sp.innerHTML=sp.textContent.split(/(\s+)/).map(function(t){
+      if(!t.trim()) return t; var k=key;
+      if(t.charAt(0)==='*'){ k=key=true; t=t.slice(1); }
+      if(t.slice(-1)==='*'){ t=t.slice(0,-1); key=false; }
+      return '<span class="hx-wd'+(k?' k':'')+'">'+t+'</span>';
+    }).join('');
+  });
+
+  // pixel portraits (illustrative, not likenesses)
+  var PAL={H:'#5B3426',h:'#2A2A2E',S:'#F1C7A5',E:'#1B1B1F',M:'#C9776B',C:'#8FD6FF',c:'#F5B64C',G:'#1B1B1F'};
+  var PIX={yana:['....HHHH....','..HHHHHHHH..','.HHHHHHHHHH.','.HHSSSSSSHH.','.HSSSSSSSSH.','.HSEESSEESH.','.HSSSSSSSSH.','.HSSSMMSSSH.','.HHSSSSSSHH.','.HH.SSSS.HH.','.HCCCCCCCCH.','CCCCCCCCCCCC','CCCCCCCCCCCC','CCCCCCCCCCCC'],
+           yura:['............','...hhhhhh...','..hhhhhhhh..','..hSSSSSSh..','..SSSSSSSS..','..GGGSSGGG..','..GEGGGGEG..','..SSSSSSSS..','..SSSMMSSS..','...SSSSSS...','....SSSS....','..cccccccc..','.cccccccccc.','cccccccccccc']};
+  $$('#home [data-pav]').forEach(function(el){ var g=PIX[el.dataset.pav], r='';
+    g.forEach(function(row,y){ row.split('').forEach(function(ch,x){ if(PAL[ch]) r+='<rect x="'+x+'" y="'+y+'" width="1.02" height="1.02" fill="'+PAL[ch]+'"/>'; }); });
+    el.innerHTML='<svg viewBox="0 0 12 14" aria-hidden="true">'+r+'</svg>'; });
+
+  // dark copies of headings that cross the sphere, clipped to its circle each frame
+  var INK=$$('#home .hx-hero .hx-lab, #home .hx-hero h1, #home .hx-lede, #hx-say, #home .hx-ohd .hx-lab, #home .hx-ohd h2, #hx-leadlab, #home .hx-lead h2, #hx-side > .hx-lab, #hx-side h2, #home .hx-tl > .hx-wrap > .hx-lab, #home .hx-tl h2, #hm-contact .hx-lab, #hm-contact h2').map(function(el){
+    var c=document.createElement('div'); c.className='hx-ink'+(el.classList.contains('hx-lab')?' hx-lab':''); c.setAttribute('aria-hidden','true'); c.innerHTML=el.innerHTML;
+    el.classList.add('hx-has-ink'); el.appendChild(c); return c; });
+
+  var words=function(){ return $$('#hx-say > span:not(.hx-ink) .hx-wd').filter(function(w){ return w.offsetParent!==null; }); };
+  var inkWords=function(){ return $$('#hx-say .hx-ink .hx-wd').filter(function(w){ return w.offsetParent!==null; }); };
+  var cards=$$('#home .hx-card'), dots=$$('#home .hx-dots i'), rows=$$('#home .hx-row'), focus=$('#hx-focus'), shown=-1;
+  var secs=$$('#home [data-o]'), O=$('#home .hx-o'), cur=null, lastY=scrollY, vel=0;
+
+  function prog(e){ var r=R(e); return Math.max(0,Math.min(1,-r.top/(r.height-innerHeight))); }
+  function mix(a,b,p){ p=Math.max(0,Math.min(1,p)); p=p*p*(3-2*p); return {x:a.x+(b.x-a.x)*p,y:a.y+(b.y-a.y)*p,s:a.s+(b.s-a.s)*p}; }
   function poses(){
-    var W=innerWidth, Hh=innerHeight, vm=Math.min(W,Hh)/100, flow=H.classList.contains('hm-flow'), wide=W>=1100;
-    var h1=R(q('#home .hm-hero h1')), head=R(q(wide&&!flow?'.hm-ct-head':'#work h2')), cl=R(q('#hm-cl')), co=R(q('#hm-contact h2'));
-    var hero={x:W*(flow?.78:.7), y:h1?h1.top+h1.height*(flow?.35:.55):Hh*.3, s:(flow?78:62)*vm, o:1};
-    var work = head ? (wide&&!flow ? {x:head.left+head.width*.42, y:head.top+head.height*.42, s:34*vm, o:1}
-                                   : {x:W*.82, y:head.top+head.height*.5, s:46*vm, o:1}) : hero;
-    var cloud = cl ? {x:Math.min(W*.9, cl.right+W*.02), y:cl.top+cl.height*.5, s:(flow?52:40)*vm, o:1} : work;
-    var cont = co ? {x:co.left+co.width*.5, y:co.top+co.height*.5, s:(flow?110:82)*vm, o:1} : cloud;
-    return {W:W,Hh:Hh,vm:vm,flow:flow,hero:hero,work:work,cloud:cloud,cont:cont,head:head,cl:cl,co:co,h1:h1};
-  }
-  function byP(p,P){
-    var W=p.W,Hh=p.Hh,vm=p.vm;
-    var K=[p.hero,{x:W*.72,y:Hh*.56,s:46*vm,o:1},{x:W*.3,y:Hh*.56,s:46*vm,o:1},{x:W*.5,y:Hh*.56,s:70*vm,o:.9},{x:W*.5,y:Hh*.5,s:58*vm,o:.9}];
-    P=Math.max(0,Math.min(4,P||0)); var k=Math.min(3,Math.floor(P)); return mix(K[k],K[k+1],P-k);
-  }
-  function chain(stops, t){
-    // stops: [{c:viewport y of the anchor, p:pose}], in page order; t: viewport centre
-    if(stops[0].c>t) return stops[0].p;
-    for(var i=0;i<stops.length-1;i++){ if(stops[i+1].c>t) return mix(stops[i].p,stops[i+1].p,(t-stops[i].c)/(stops[i+1].c-stops[i].c)); }
-    return stops[stops.length-1].p;
+    var W=innerWidth,Hh=innerHeight,vm=Math.min(W,Hh)/100,n=narrow();
+    var h1=R($('#home .hx-hero h1')), side=R($('#hx-side')), ll=R($('#hx-leadlab')), act=rows.filter(function(r){return r.classList.contains('on');}).pop()||rows[0], ar=R(act), lineX=R($('#hx-rows')).left+Math.min(Math.max(W*.04,20),60);
+    var hero; if(n){ hero={x:W*.66,y:Hh*.3,s:80*vm}; } else { var s=Math.min(60*vm,640); hero={x:Math.min(W-s*.32,Math.max(h1.right+s*.5+56,W*.66)),y:h1.top+h1.height*.55,s:s}; }
+    return {
+      hero:hero,
+      say:n?{x:W*.88,y:Hh*.5,s:46*vm}:{x:W*.84,y:Hh*.52,s:46*vm},
+      orbit:n?{x:W*.5,y:Hh*.5,s:60*vm}:{x:W*.5,y:Hh*.56,s:50*vm},
+      lead:{x:ll.right+22,y:ll.top+ll.height/2,s:Math.max(14,2.2*vm)},
+      cases:n?{x:W*.8,y:Hh*.35,s:40*vm}:{x:side.left+side.width*.55,y:side.top+side.height*.38,s:28*vm},
+      tl:n?{x:W*.08,y:ar.top+ar.height*.3,s:14*vm}:{x:lineX,y:ar.top+42,s:9*vm},
+      ct:n?{x:W*.5,y:Hh*.5,s:120*vm}:{x:W*.5,y:Hh*.5,s:92*vm}};
   }
   function target(){
-    var p=poses(), t=p.Hh/2, sr=R(q('#hm-scroller'));
-    function mid(r){ return r ? r.top+r.height/2 : 1e9; }
-    if(!p.flow && sr && sr.bottom>p.Hh) return byP(p, window.__hmP);
-    var first = p.flow ? {c:mid(p.h1), p:p.hero} : {c:sr ? sr.bottom-p.Hh/2 : -1e9, p:byP(p,4)};
-    return chain([first,{c:mid(p.head),p:p.work},{c:mid(p.cl),p:p.cloud},{c:mid(p.co),p:p.cont}], t);
+    var p=poses(),Hh=innerHeight,T=scrollY+Hh/2;
+    var st=secs.map(function(s){ var r=R(s),top=r.top+scrollY,h=Math.min(r.height,Hh); return {E:top+h/2,X:top+r.height-h/2,p:p[s.dataset.o],k:s.dataset.o}; });
+    if(T<=st[0].E) return st[0].p;
+    for(var i=0;i<st.length;i++){
+      if(T<=st[i].X) return st[i].p;
+      if(i<st.length-1 && T<st[i+1].E){ var q=(T-st[i].X)/(st[i+1].E-st[i].X); if(st[i+1].k==='ct') q=Math.max(0,(q-.45)/.55); return mix(st[i].p,st[i+1].p,q); }
+    }
+    return st[st.length-1].p;
   }
-  function tick(){
-    requestAnimationFrame(tick);
-    var on = home.classList.contains('on') && getComputedStyle(home).display!=='none';
-    H.classList.toggle('orb-on', on);
-    if(!on){ cur=null; return; }
-    var tg=target(); if(!cur) cur={x:tg.x,y:tg.y,s:tg.s,o:tg.o};
-    var k=.085; cur.x+=(tg.x-cur.x)*k; cur.y+=(tg.y-cur.y)*k; cur.s+=(tg.s-cur.s)*k; cur.o+=(tg.o-cur.o)*k;
+  function frame(){
+    requestAnimationFrame(frame);
+    if(!home.classList.contains('on')){ cur=null; return; }
+    var n=narrow();
+    // statement words light up with the scroll
+    if(!n){ var w=words(), iw=inkWords(), sp=prog($('#home .hx-say'))*1.25*w.length; w.forEach(function(x,i){ x.classList.toggle('on',i<sp); if(iw[i]) iw[i].classList.toggle('on',i<sp); }); }
+    // orbit of outcomes; the front card's figure sits inside the sphere
+    if(!n){
+      var pr=prog($('#home .hx-orbit')), N=cards.length, W=innerWidth, rx=Math.min(W*.4,600), ry=Math.min(innerHeight*.2,170), best=0, bz=-2;
+      cards.forEach(function(c,i){ var a=(i/N)*Math.PI*2 - pr*Math.PI*2*(N-1)/N + Math.PI/2, x=Math.cos(a)*rx, z=Math.sin(a), y=z*ry, sc=.66+.3*(z+1)/2;
+        c.style.transform='translate(-50%,-50%) translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) scale('+sc.toFixed(3)+')';
+        c.style.opacity=(.06+.94*Math.pow((z+1)/2,2)).toFixed(3); c.style.zIndex=Math.round(z*10)+20; if(z>bz){ bz=z; best=i; } });
+      cards.forEach(function(c,i){ c.classList.toggle('front',i===best); }); dots.forEach(function(d,i){ d.classList.toggle('on',i===best); });
+      if(best!==shown){ shown=best; focus.innerHTML=cards[best].innerHTML; focus.classList.remove('sw'); void focus.offsetWidth; focus.classList.add('sw'); }
+    }
+    // case previews: layers drift with the scroll, the stage opens as it enters
+    $$('#home .hx-tm').forEach(function(st){ var b=R(st); if(b.bottom<-100||b.top>innerHeight+100) return;
+      var c=(b.top+b.height/2-innerHeight/2)/innerHeight;
+      st.style.setProperty('--ci',(red?0:Math.max(0,Math.min(40,(b.top-innerHeight*.72)/innerHeight*120))).toFixed(1)+'%');
+      if(!red) $$('.hx-ly',st).forEach(function(l){ l.style.setProperty('--py',(c*-60*(+l.dataset.d)).toFixed(1)+'px'); }); });
+    // timeline rows light up
+    rows.forEach(function(r){ r.classList.toggle('on',R(r).top<innerHeight*.62); });
+    // sphere
+    var tg=target(); if(!cur) cur={x:tg.x,y:tg.y,s:tg.s};
+    var k=red?1:.085; cur.x+=(tg.x-cur.x)*k; cur.y+=(tg.y-cur.y)*k; cur.s+=(tg.s-cur.s)*k;
     var dy=scrollY-lastY; lastY=scrollY; vel+=(Math.min(Math.abs(dy),80)-vel)*.12;
-    var sc=1+vel/700, s=cur.s;
-    el.style.width=el.style.height=s+'px';
-    el.style.transform='translate3d('+(cur.x-s/2)+'px,'+(cur.y-s/2)+'px,0) rotate('+(scrollY*.045)+'deg) scale('+sc.toFixed(4)+')';
-    el.style.opacity=cur.o.toFixed(3);
+    var sc=red?1:1+vel/700;
+    O.style.width=O.style.height=cur.s+'px';
+    O.style.transform='translate3d('+(cur.x-cur.s/2).toFixed(1)+'px,'+(cur.y-cur.s/2).toFixed(1)+'px,0) rotate('+(red?0:scrollY*.04).toFixed(2)+'deg) scale('+sc.toFixed(4)+')';
+    var rad=cur.s*.47*sc;
+    INK.forEach(function(c){ var b=c.parentNode.getBoundingClientRect(); if(b.bottom<-50||b.top>innerHeight+50){ c.style.clipPath='circle(0 at 0 0)'; return; }
+      c.style.clipPath='circle('+rad.toFixed(1)+'px at '+(cur.x-b.left).toFixed(1)+'px '+(cur.y-b.top).toFixed(1)+'px)'; });
   }
-  requestAnimationFrame(tick);
+  requestAnimationFrame(frame);
+  // previews lean to the cursor
+  $$('#home .hx-tm').forEach(function(st){
+    st.addEventListener('pointermove',function(e){ if(red) return; var b=R(st), x=(e.clientX-b.left)/b.width-.5, y=(e.clientY-b.top)/b.height-.5;
+      st.style.setProperty('--ty',(x*6).toFixed(2)+'deg'); st.style.setProperty('--tx',(-y*5).toFixed(2)+'deg');
+      $$('.hx-ly',st).forEach(function(l){ l.style.setProperty('--px',(x*-18*(+l.dataset.d)).toFixed(1)+'px'); }); });
+    st.addEventListener('pointerleave',function(){ st.style.setProperty('--ty','0deg'); st.style.setProperty('--tx','0deg'); $$('.hx-ly',st).forEach(function(l){ l.style.setProperty('--px','0px'); }); });
+  });
 })();
 </script>
 <script src="js/lenis.min.js" defer></script>
