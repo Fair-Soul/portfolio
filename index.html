@@ -2407,6 +2407,8 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   #home .hx-case .hx-tm{min-height:0;aspect-ratio:4/3.4;height:auto}
   #home .hx-chead h2{font-size:64px}
 }
+#home .hx-sw{inset:2%!important;border-radius:50%!important;opacity:0;pointer-events:none;background:conic-gradient(from var(--sa,0deg) at var(--sx,50%) var(--sy,50%),#C9F03C,#8FD6FF,#F08AC8,#F5B64C,#B9E6FF,#C9F03C);filter:blur(22px) hue-rotate(var(--hx-hue,0deg)) saturate(1.15);-webkit-mask:radial-gradient(closest-side,#000 62%,#0000 100%);mask:radial-gradient(closest-side,#000 62%,#0000 100%);mix-blend-mode:normal}
+@media (prefers-reduced-motion:reduce){#home .hx-sw{display:none}}
 @media (prefers-reduced-motion:reduce){#home .hx-b,#home .hx-cue i{animation:none}}
 </style>
 </head>
@@ -2431,7 +2433,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
 
 <!-- ================= HOME ================= -->
 <main id="home" class="view on">
-<div id="hx-orb" aria-hidden="true"><div class="hx-o"><i class="hx-g"></i><i class="hx-r"></i><i class="hx-r hx-r2"></i><i class="hx-b"></i><i class="hx-h"></i></div></div>
+<div id="hx-orb" aria-hidden="true"><div class="hx-o"><i class="hx-g"></i><i class="hx-r"></i><i class="hx-r hx-r2"></i><i class="hx-b"></i><i class="hx-sw"></i><i class="hx-h"></i></div></div>
 <div class="hx">
   <section class="hx-hero" data-o="hero"><div class="hx-wrap">
     <div class="hx-lab"><span class="hx-en">Design Lead · People Manager · Almaty, remote</span><span class="hx-ru">Дизайн-лид · People Manager · Алматы, удалённо</span></div>
@@ -4996,7 +4998,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   var inkWords=function(){ return $$('#hx-say .hx-ink .hx-wd').filter(function(w){ return w.offsetParent!==null; }); };
   var cards=$$('#home .hx-card'), dots=$$('#home .hx-dots i'), rows=$$('#home .hx-row'), focus=$('#hx-focus'), shown=-1;
   var secs=$$('#home [data-o]'), O=$('#home .hx-o'), cur=null, lastY=scrollY, vel=0;
-  var HL=$('#home .hx-h'), mx=-1e4, my=-1e4, pull={x:0,y:0}, hov=0, kick=0, hue=0, fine=matchMedia('(pointer: fine)').matches;
+  var HL=$('#home .hx-h'), SW=$('#home .hx-sw'), sa=0, spd=0, swo=0, pmx=-1e4, pmy=-1e4, mx=-1e4, my=-1e4, pull={x:0,y:0}, hov=0, kick=0, hue=0, fine=matchMedia('(pointer: fine)').matches;
   addEventListener('pointermove',function(e){ mx=e.clientX; my=e.clientY; },{passive:true});
   document.addEventListener('pointerleave',function(){ mx=my=-1e4; });
   function overOrb(x,y){ if(!cur) return false; var r=cur.s*.47, dx=x-cur.x-pull.x, dy=y-cur.y-pull.y; return dx*dx+dy*dy<r*r; }
@@ -5069,6 +5071,16 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
     H.classList.toggle('hx-over-orb', inside && home.classList.contains('on'));
     if(HL && !red){ var lx=Math.max(-1,Math.min(1,dxm/zone))*f, ly=Math.max(-1,Math.min(1,dym/zone))*f; HL.style.transform='translate('+(lx*cur.s*.18).toFixed(1)+'px,'+(ly*cur.s*.18).toFixed(1)+'px)'; }
     var sc=red?1:1+vel/700+hov*.04+Math.sin(kick*Math.PI)*.06*kick;
+    // the gradient swirls around the cursor: centred on it, spinning with how fast the mouse moves
+    if(SW && !red){
+      var mv=(pmx>-1e3)?Math.hypot(mx-pmx,my-pmy):0; pmx=mx; pmy=my;
+      spd+= (Math.min(mv,60)-spd)*.15; sa=(sa+spd*1.6+.15)%360;
+      swo+=((fine?f:0)-swo)*.08;
+      var th=-(scrollY*.04)*Math.PI/180, lx2=(mx-(cur.x+pull.x)), ly2=(my-(cur.y+pull.y));
+      var rx2=(lx2*Math.cos(th)-ly2*Math.sin(th))/(cur.s*sc)+.5, ry2=(lx2*Math.sin(th)+ly2*Math.cos(th))/(cur.s*sc)+.5;
+      SW.style.opacity=swo.toFixed(3);
+      if(swo>.01){ SW.style.setProperty('--sx',(Math.max(-.2,Math.min(1.2,rx2))*100).toFixed(1)+'%'); SW.style.setProperty('--sy',(Math.max(-.2,Math.min(1.2,ry2))*100).toFixed(1)+'%'); SW.style.setProperty('--sa',sa.toFixed(1)+'deg'); }
+    }
     var px=cur.x+pull.x, py=cur.y+pull.y;
     O.style.width=O.style.height=cur.s+'px';
     O.style.transform='translate3d('+(px-cur.s/2).toFixed(1)+'px,'+(py-cur.s/2).toFixed(1)+'px,0) rotate('+(red?0:scrollY*.04).toFixed(2)+'deg) scale('+sc.toFixed(4)+')';
