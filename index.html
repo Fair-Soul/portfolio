@@ -2411,7 +2411,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   #home .hx-chead h2{font-size:64px}
 }
 #home .hx-swc{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;opacity:1;-webkit-mask:radial-gradient(closest-side,#000 70%,#0000 100%);mask:radial-gradient(closest-side,#000 70%,#0000 100%)}
-#home .hx-lq{position:absolute;inset:-10%;will-change:transform;filter:saturate(calc(1.1 + var(--hv,0)*.5)) brightness(calc(1 + var(--hv,0)*.06))}
+#home .hx-lq{position:absolute;inset:-10%;will-change:transform;filter:saturate(calc(1.1 + var(--hv,0)*.8)) brightness(calc(1 + var(--hv,0)*.1))}
 #home .hx-lq span{position:absolute;width:70%;height:70%;border-radius:50%;filter:blur(30px);will-change:transform}
 #home .hx-l1{left:2%;top:44%;background:radial-gradient(closest-side,var(--c1),transparent);animation:hxD1 23s ease-in-out infinite alternate}
 #home .hx-l2{left:44%;top:4%;background:radial-gradient(closest-side,var(--c2),transparent);animation:hxD2 29s ease-in-out infinite alternate}
@@ -2426,7 +2426,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
 @property --c3{syntax:'<color>';inherits:true;initial-value:#F08AC8}
 @property --c4{syntax:'<color>';inherits:true;initial-value:#F5B64C}
 #home .hx-o{transition:--c1 1.4s ease,--c2 1.4s ease,--c3 1.4s ease,--c4 1.4s ease}
-#home .hx-spot{position:absolute;left:0;top:0;width:44%;height:44%;margin:-22% 0 0 -22%;border-radius:50%;background:radial-gradient(closest-side,#FFFFFFE6,#FFFFFF00);filter:blur(10px);opacity:0;will-change:transform,opacity;mix-blend-mode:soft-light}
+#home .hx-spot{position:absolute;left:0;top:0;width:44%;height:44%;margin:-22% 0 0 -22%;border-radius:50%;background:radial-gradient(closest-side,#FFFFFFD9,#FFFFFF00);filter:blur(8px);opacity:0;will-change:transform,opacity}
 @keyframes hxBreath{0%,100%{scale:1}50%{scale:1.03}}
 #home .hx-swc{animation:hxBreath 6s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){#home .hx-lq span,#home .hx-b{animation:none}}
@@ -5112,7 +5112,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
         var ux=(lx2*Math.cos(th)-ly2*Math.sin(th))/ss, uy=(lx2*Math.sin(th)+ly2*Math.cos(th))/ss;
         tx=Math.max(-.5,Math.min(.5,ux))*B*.6*f; ty=Math.max(-.5,Math.min(.5,uy))*B*.6*f;
         spot.x+=((ux+.5)*B-spot.x)*.25; spot.y+=((uy+.5)*B-spot.y)*.25; }
-      lq.x+=(tx-lq.x)*.07; lq.y+=(ty-lq.y)*.07; spot.o+=((f>0?hov:0)-spot.o)*.12;
+      lq.x+=(tx-lq.x)*.07; lq.y+=(ty-lq.y)*.07; spot.o+=((f>0?hov*.85:0)-spot.o)*.12;
       SW.style.transform='translate3d('+lq.x.toFixed(1)+'px,'+lq.y.toFixed(1)+'px,0)';
       O.style.setProperty('--hv',hov.toFixed(3));
       if(SPOT){ SPOT.style.opacity=spot.o.toFixed(3); SPOT.style.transform='translate3d('+spot.x.toFixed(1)+'px,'+spot.y.toFixed(1)+'px,0)'; }
