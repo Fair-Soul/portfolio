@@ -2252,8 +2252,8 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
 #home.on #hx-orb{opacity:1}
 #home .hx-o{position:absolute;left:0;top:0;width:var(--hx-ob,800px);height:var(--hx-ob,800px);will-change:transform;transform-origin:50% 50%}
 #home .hx-o i{position:absolute;inset:0;border-radius:46% 54% 52% 48% / 52% 46% 54% 48%}
-#home .hx-g{transition:filter 1.2s;inset:-18%!important;border-radius:50%!important;filter:blur(60px);opacity:.55;background:radial-gradient(closest-side,#C9F03C,#8FD6FF66 55%,#F08AC800)}
-#home .hx-b{filter:hue-rotate(var(--hx-hue,0deg));transition:filter 2.4s ease;background:radial-gradient(55% 55% at 24% 72%,#C9F03C 0,#C9F03C00 70%),radial-gradient(55% 55% at 76% 26%,#8FD6FF 0,#8FD6FF00 70%),radial-gradient(52% 52% at 80% 80%,#F08AC8 0,#F08AC800 70%),radial-gradient(40% 40% at 50% 54%,#F5B64C 0,#F5B64C00 100%),radial-gradient(70% 70% at 40% 40%,#E9F7FF 0,#E9F7FF00 70%),linear-gradient(135deg,#B9E6FF,#F7C9E6 55%,#E6F79A);animation:hxWob 32s linear infinite;will-change:transform;box-shadow:inset -30px -40px 80px #0A0B0D55,inset 20px 24px 50px #ffffff40}
+#home .hx-g{transition:filter 1.2s;inset:-18%!important;border-radius:50%!important;filter:blur(60px);opacity:.55;background:radial-gradient(closest-side,var(--c1),color-mix(in srgb,var(--c2) 45%,transparent) 55%,transparent)}
+#home .hx-b{filter:hue-rotate(var(--hx-hue,0deg));transition:filter 2.4s ease;background:radial-gradient(55% 55% at 24% 72%,var(--c1) 0,transparent 70%),radial-gradient(55% 55% at 76% 26%,var(--c2) 0,transparent 70%),radial-gradient(52% 52% at 80% 80%,var(--c3) 0,transparent 70%),radial-gradient(40% 40% at 50% 54%,var(--c4) 0,transparent 100%),radial-gradient(70% 70% at 40% 40%,#E9F7FF 0,#E9F7FF00 70%),linear-gradient(135deg,#B9E6FF,#F7C9E6 55%,#E6F79A);animation:hxWob 32s linear infinite;will-change:transform;box-shadow:inset -30px -40px 80px #0A0B0D55,inset 20px 24px 50px #ffffff40}
 #home .hx-h{inset:8% 22% 50% 12%!important;border-radius:50%!important;background:radial-gradient(closest-side,#ffffffb0,#fff0);filter:blur(8px)}
 #home .hx-r{inset:-28%!important;border-radius:50%!important;border:1px solid var(--hx-ln)}
 #home .hx-r2{inset:-58%!important;opacity:.6}
@@ -2410,17 +2410,25 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   #home .hx-case .hx-tm{min-height:0;aspect-ratio:4/3.4;height:auto}
   #home .hx-chead h2{font-size:64px}
 }
-#home .hx-swc{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;opacity:.9;-webkit-mask:radial-gradient(closest-side,#000 70%,#0000 100%);mask:radial-gradient(closest-side,#000 70%,#0000 100%)}
-#home .hx-lq{position:absolute;inset:-10%;will-change:transform;filter:hue-rotate(var(--hx-hue,0deg));transition:filter 2.4s ease}
-#home .hx-lq span{position:absolute;width:62%;height:62%;border-radius:50%;filter:blur(40px);will-change:transform}
-#home .hx-l1{left:2%;top:44%;background:radial-gradient(closest-side,#C9F03C,#C9F03C00);animation:hxD1 23s ease-in-out infinite alternate}
-#home .hx-l2{left:44%;top:4%;background:radial-gradient(closest-side,#8FD6FF,#8FD6FF00);animation:hxD2 29s ease-in-out infinite alternate}
-#home .hx-l3{left:46%;top:46%;background:radial-gradient(closest-side,#F08AC8,#F08AC800);animation:hxD3 26s ease-in-out infinite alternate}
-#home .hx-l4{left:10%;top:6%;background:radial-gradient(closest-side,#F5B64C,#F5B64C00);animation:hxD4 33s ease-in-out infinite alternate}
+#home .hx-swc{position:absolute;inset:0;border-radius:50%;overflow:hidden;pointer-events:none;opacity:1;-webkit-mask:radial-gradient(closest-side,#000 70%,#0000 100%);mask:radial-gradient(closest-side,#000 70%,#0000 100%)}
+#home .hx-lq{position:absolute;inset:-10%;will-change:transform;filter:saturate(calc(1.1 + var(--hv,0)*.5)) brightness(calc(1 + var(--hv,0)*.06))}
+#home .hx-lq span{position:absolute;width:70%;height:70%;border-radius:50%;filter:blur(30px);will-change:transform}
+#home .hx-l1{left:2%;top:44%;background:radial-gradient(closest-side,var(--c1),transparent);animation:hxD1 23s ease-in-out infinite alternate}
+#home .hx-l2{left:44%;top:4%;background:radial-gradient(closest-side,var(--c2),transparent);animation:hxD2 29s ease-in-out infinite alternate}
+#home .hx-l3{left:46%;top:46%;background:radial-gradient(closest-side,var(--c3),transparent);animation:hxD3 26s ease-in-out infinite alternate}
+#home .hx-l4{left:10%;top:6%;background:radial-gradient(closest-side,var(--c4),transparent);animation:hxD4 33s ease-in-out infinite alternate}
 @keyframes hxD1{to{transform:translate(38%,-34%) scale(1.15)}}
 @keyframes hxD2{to{transform:translate(-36%,40%) scale(.9)}}
 @keyframes hxD3{to{transform:translate(-40%,-28%) scale(1.12)}}
 @keyframes hxD4{to{transform:translate(34%,42%) scale(.95)}}
+@property --c1{syntax:'<color>';inherits:true;initial-value:#C9F03C}
+@property --c2{syntax:'<color>';inherits:true;initial-value:#8FD6FF}
+@property --c3{syntax:'<color>';inherits:true;initial-value:#F08AC8}
+@property --c4{syntax:'<color>';inherits:true;initial-value:#F5B64C}
+#home .hx-o{transition:--c1 1.4s ease,--c2 1.4s ease,--c3 1.4s ease,--c4 1.4s ease}
+#home .hx-spot{position:absolute;left:0;top:0;width:44%;height:44%;margin:-22% 0 0 -22%;border-radius:50%;background:radial-gradient(closest-side,#FFFFFFE6,#FFFFFF00);filter:blur(10px);opacity:0;will-change:transform,opacity;mix-blend-mode:soft-light}
+@keyframes hxBreath{0%,100%{scale:1}50%{scale:1.03}}
+#home .hx-swc{animation:hxBreath 6s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){#home .hx-lq span,#home .hx-b{animation:none}}
 @media (prefers-reduced-motion:reduce){#home .hx-b,#home .hx-cue i{animation:none}}
 </style>
@@ -2446,7 +2454,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
 
 <!-- ================= HOME ================= -->
 <main id="home" class="view on">
-<div id="hx-orb" aria-hidden="true"><div class="hx-o"><i class="hx-g"></i><i class="hx-r"></i><i class="hx-r hx-r2"></i><i class="hx-b"></i><span class="hx-swc"><span class="hx-lq"><span class="hx-l1"></span><span class="hx-l2"></span><span class="hx-l3"></span><span class="hx-l4"></span></span></span><i class="hx-h"></i></div></div>
+<div id="hx-orb" aria-hidden="true"><div class="hx-o"><i class="hx-g"></i><i class="hx-r"></i><i class="hx-r hx-r2"></i><i class="hx-b"></i><span class="hx-swc"><span class="hx-lq"><span class="hx-l1"></span><span class="hx-l2"></span><span class="hx-l3"></span><span class="hx-l4"></span></span><span class="hx-spot"></span></span><i class="hx-h"></i></div></div>
 <div class="hx">
   <section class="hx-hero" data-o="hero"><div class="hx-wrap">
     <div class="hx-lab"><span class="hx-en">Design Lead · People Manager · Almaty, remote</span><span class="hx-ru">Дизайн-лид · People Manager · Алматы, удалённо</span></div>
@@ -5011,6 +5019,8 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   var inkWords=function(){ return $$('#hx-say .hx-ink .hx-wd').filter(function(w){ return w.offsetParent!==null; }); };
   var cards=$$('#home .hx-card'), dots=$$('#home .hx-dots i'), rows=$$('#home .hx-row'), focus=$('#hx-focus'), shown=-1;
   var secs=$$('#home [data-o]'), O=$('#home .hx-o'), cur=null, lastY=scrollY, vel=0;
+  var PALS=[['#C9F03C','#8FD6FF','#F08AC8','#F5B64C'],['#FF7A59','#FFC24B','#F06BB0','#B78BFF'],['#3FD0FF','#5B7CFF','#7CF2C8','#C9F03C'],['#FF6FD8','#A98BFF','#6FE3FF','#FFE27A'],['#9BFF6A','#2EE6C5','#FFD166','#FF8FAB']], pal=0;
+  var SPOT=$('#home .hx-spot'), spot={x:0,y:0,o:0};
   var HL=$('#home .hx-h'), SW=$('#home .hx-lq'), lq={x:0,y:0}, sa=0, spd=0, swo=0, pmx=-1e4, pmy=-1e4, mx=-1e4, my=-1e4, pull={x:0,y:0}, hov=0, kick=0, hue=0, fine=matchMedia('(pointer: fine)').matches;
   addEventListener('pointermove',function(e){ mx=e.clientX; my=e.clientY; },{passive:true});
   document.addEventListener('pointerleave',function(){ mx=my=-1e4; });
@@ -5019,7 +5029,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   addEventListener('pointerdown',function(e){
     if(!home.classList.contains('on')||!overOrb(e.clientX,e.clientY)) return;
     if(e.target.closest('a,button,input,label,.hx-card,.hx-tm,.hx-case')) return;
-    hue=(hue+30)%360; home.style.setProperty('--hx-hue',hue+'deg'); kick=1;
+    pal=(pal+1)%PALS.length; var P=PALS[pal]; O.style.setProperty('--c1',P[0]); O.style.setProperty('--c2',P[1]); O.style.setProperty('--c3',P[2]); O.style.setProperty('--c4',P[3]); kick=1;
     if(!red){ var w=document.createElement('i'); w.className='hx-wave'; O.appendChild(w); setTimeout(function(){ w.remove(); },1200); }
   });
 
@@ -5092,16 +5102,20 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
     pull.x+=(dxm*.12*f-pull.x)*.12; pull.y+=(dym*.12*f-pull.y)*.12;
     var inside=fine&&dm<r0; hov+=((inside?1:0)-hov)*.1; kick*=.9;
     if(H.classList.contains('hx-over-orb')!==inside) H.classList.toggle('hx-over-orb', inside);
-    var sc=red?1:1+vel/700+hov*.04+Math.sin(kick*Math.PI)*.06*kick;
+    var sc=red?1:1+vel/700+hov*.08+Math.sin(kick*Math.PI)*.08*kick;
     if(HL && !red){ var lx=Math.max(-1,Math.min(1,dxm/zone))*f, ly=Math.max(-1,Math.min(1,dym/zone))*f; HL.style.transform='translate('+(lx*B*.18).toFixed(1)+'px,'+(ly*B*.18).toFixed(1)+'px)'; }
     var rot=red?0:scrollY*.04;
     // liquid inside the sphere: soft colour pools drift on their own and are slowly dragged toward the cursor
     if(SW && !red){
       var tx=0, ty=0;
       if(f>0){ var th=-rot*Math.PI/180, lx2=mx-(cur.x+pull.x), ly2=my-(cur.y+pull.y), ss=cur.s*sc;
-        tx=Math.max(-.5,Math.min(.5,(lx2*Math.cos(th)-ly2*Math.sin(th))/ss))*B*.38*f; ty=Math.max(-.5,Math.min(.5,(lx2*Math.sin(th)+ly2*Math.cos(th))/ss))*B*.38*f; }
-      lq.x+=(tx-lq.x)*.035; lq.y+=(ty-lq.y)*.035;
+        var ux=(lx2*Math.cos(th)-ly2*Math.sin(th))/ss, uy=(lx2*Math.sin(th)+ly2*Math.cos(th))/ss;
+        tx=Math.max(-.5,Math.min(.5,ux))*B*.6*f; ty=Math.max(-.5,Math.min(.5,uy))*B*.6*f;
+        spot.x+=((ux+.5)*B-spot.x)*.25; spot.y+=((uy+.5)*B-spot.y)*.25; }
+      lq.x+=(tx-lq.x)*.07; lq.y+=(ty-lq.y)*.07; spot.o+=((f>0?hov:0)-spot.o)*.12;
       SW.style.transform='translate3d('+lq.x.toFixed(1)+'px,'+lq.y.toFixed(1)+'px,0)';
+      O.style.setProperty('--hv',hov.toFixed(3));
+      if(SPOT){ SPOT.style.opacity=spot.o.toFixed(3); SPOT.style.transform='translate3d('+spot.x.toFixed(1)+'px,'+spot.y.toFixed(1)+'px,0)'; }
     }
     var px=cur.x+pull.x, py=cur.y+pull.y;
     O.style.transform='translate3d('+(px-B/2).toFixed(1)+'px,'+(py-B/2).toFixed(1)+'px,0) rotate('+rot.toFixed(2)+'deg) scale('+(cur.s*sc/B).toFixed(4)+')';
