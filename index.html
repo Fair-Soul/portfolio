@@ -2375,6 +2375,38 @@ html.is-home .nav .cta{background:#F6F5F1!important;color:#0A0B0D!important}
 @keyframes hxWave{from{transform:scale(1);opacity:.9}to{transform:scale(1.9);opacity:0}}
 html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
 @media (prefers-reduced-motion:reduce){#home .hx-wave{display:none}}
+
+/* cases v2: big stacked project cards, Healthify first */
+#home .hx-cases{padding:80px 0 140px}
+#home .hx-chead{margin-bottom:56px}
+#home .hx-chead h2{font-size:clamp(64px,9vw,150px);margin:12px 0 18px;letter-spacing:-.055em}
+#home .hx-crow{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px}
+#home .hx-crow .hx-btn{margin-top:0}
+#home .hx-stack{display:grid;gap:14vh}
+#home .hx-case{position:sticky;top:calc(84px + var(--i)*14px);display:block;color:var(--fg);text-decoration:none}
+#home .hx-cin{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:min(78vh,760px);border-radius:28px;overflow:hidden;background:var(--bg);transform-origin:50% 0;transform:scale(var(--sc,1));filter:brightness(var(--br,1));box-shadow:0 -20px 60px -30px #000000AA;will-change:transform}
+#home .hx-dark .hx-cin{box-shadow:inset 0 0 0 1px #F6F5F11F,0 -20px 60px -30px #000000AA}
+#home .hx-ci{display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:clamp(28px,3.4vw,52px)}
+#home .hx-ci .hx-lab{color:var(--fg);opacity:.65}
+#home .hx-ci h3{font-size:clamp(48px,5.6vw,96px);letter-spacing:-.055em;line-height:.92;margin-top:auto}
+#home .hx-cd{margin:0;font-size:clamp(17px,1.3vw,20px);line-height:1.45;max-width:30ch;opacity:.85}
+#home .hx-k{display:flex;align-items:baseline;gap:14px;border-top:1px solid color-mix(in srgb,var(--fg) 18%,transparent);padding-top:18px}
+#home .hx-k b{font:600 clamp(44px,4.4vw,72px)/.9 Archivo,sans-serif;letter-spacing:-.05em}
+#home .hx-dark .hx-k b{color:var(--hx-lime)}
+#home .hx-k span{font-size:15px;line-height:1.35;max-width:22ch;opacity:.75}
+#home .hx-view{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:14px 20px;border-radius:99px;background:var(--fg);color:var(--bg);font:600 16px/1 "Golos Text",sans-serif;transition:gap .5s var(--hx-e)}
+#home .hx-dark .hx-view{background:var(--hx-lime);color:#0A0B0D}
+#home .hx-case:hover .hx-view{gap:16px}
+#home .hx-case .hx-tm{position:relative;border-radius:0;aspect-ratio:auto;height:100%;min-height:420px;clip-path:none;background:transparent}
+#home .hx-case:hover .hx-ly{--ls:1.04}
+@media (max-width:860px){
+  #home .hx-stack{gap:28px}
+  #home .hx-case{position:relative;top:auto}
+  #home .hx-cin{grid-template-columns:1fr;min-height:0;transform:none!important;filter:none!important}
+  #home .hx-ci h3{margin-top:12px}
+  #home .hx-case .hx-tm{min-height:0;aspect-ratio:4/3.4;height:auto}
+  #home .hx-chead h2{font-size:64px}
+}
 @media (prefers-reduced-motion:reduce){#home .hx-b,#home .hx-cue i{animation:none}}
 </style>
 </head>
@@ -2435,14 +2467,31 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
     </div>
   </div></section>
 
-  <section class="hx-cases" id="work" data-o="cases"><div class="hx-wrap hx-g3">
-    <div class="hx-side" id="hx-side"><div class="hx-lab"><span class="hx-en">Selected work</span><span class="hx-ru">Избранные работы</span></div><h2><span class="hx-en">Cases</span><span class="hx-ru">Кейсы</span></h2><div class="hx-lab"><span class="hx-en">5 projects · 2022–2026</span><span class="hx-ru">5 проектов · 2022–2026</span></div><a class="hx-btn hx-btn-s" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener"><span class="hx-en">Have a project? Let’s talk →</span><span class="hx-ru">Есть проект? Давай обсудим →</span></a></div>
-    <div class="hx-tiles">
-      <a class="hx-tile hx-w" href="#aezakmiso"><div class="hx-tm" style="background:#FF4F2A"><img class="hx-ly" src="img/home/aso-niche.webp" alt="" loading="lazy" data-d=".6" style="left:52%;top:24%;width:40%;--r:3deg"><img class="hx-ly" src="img/home/aso-positions.webp" alt="" loading="lazy" data-d="1" style="left:6%;top:16%;width:50%;--r:-2deg"><img class="hx-ly" src="img/home/aso-kpi.webp" alt="" loading="lazy" data-d="1.6" style="left:44%;top:6%;width:34%;--r:0deg"><img class="hx-ly" src="img/home/aso-moves.webp" alt="" loading="lazy" data-d="2.2" style="left:30%;top:62%;width:42%;--r:1deg"><span class="hx-hook"><span class="hx-en">30+ people use it daily</span><span class="hx-ru">30+ человек каждый день</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>AezakmiSO</h3><p><span class="hx-en">Internal ASO dashboard · design + build</span><span class="hx-ru">Внутренний ASO-дашборд · дизайн и разработка</span></p></div></a>
-      <a class="hx-tile" href="#jks"><div class="hx-tm" style="background:#0B0B0C"><img class="hx-ly" src="img/home/ct-jks.webp" alt="" loading="lazy" data-d=".8" style="left:8%;top:14%;width:76%;--r:0deg"><img class="hx-ly" src="img/home/jks-mobile.webp" alt="" loading="lazy" data-d="2" style="left:70%;top:30%;width:24%;--r:3deg"><span class="hx-hook"><span class="hx-en">+30% conversion</span><span class="hx-ru">+30% к конверсии</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>JKS</h3><p><span class="hx-en">Elefanto · media agency website</span><span class="hx-ru">Elefanto · сайт медиаагентства</span></p></div></a>
-      <a class="hx-tile" href="#indiedive"><div class="hx-tm" style="background:#151515"><img class="hx-ly" src="img/home/idv-logo.webp" alt="" loading="lazy" data-d=".5" style="left:12%;top:10%;width:76%;--r:0deg"><img class="hx-ly" src="img/home/idv-article.webp" alt="" loading="lazy" data-d="1.2" style="left:10%;top:34%;width:38%;--r:-3deg"><img class="hx-ly" src="img/home/idv-mobile.webp" alt="" loading="lazy" data-d="2" style="left:56%;top:26%;width:32%;--r:3deg"><span class="hx-hook"><span class="hx-en">Web + mobile</span><span class="hx-ru">Веб + мобайл</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>Indie Dive</h3><p><span class="hx-en">Client project · indie games media · 2025</span><span class="hx-ru">Клиентский проект · медиа об инди-играх · 2025</span></p></div></a>
-      <a class="hx-tile" href="#healthify"><div class="hx-tm" style="background:#E9E6DF"><img class="hx-ly" src="img/home/ct-hf-a.webp" alt="" loading="lazy" data-d=".9" style="left:8%;top:18%;width:28%;--r:-7deg"><img class="hx-ly" src="img/home/ct-hf-b.webp" alt="" loading="lazy" data-d=".9" style="left:64%;top:18%;width:28%;--r:7deg"><img class="hx-ly" src="img/home/ct-hf-c.webp" alt="" loading="lazy" data-d="2" style="left:35%;top:9%;width:30%;--r:0deg"><span class="hx-hook"><span class="hx-en">Phone, watch, lock screen</span><span class="hx-ru">Телефон, часы, экран блокировки</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>Healthify AI</h3><p><span class="hx-en">Mobile app · AI health tracker · 2026</span><span class="hx-ru">Мобильное приложение · ИИ-трекер здоровья · 2026</span></p></div></a>
-      <a class="hx-tile" href="#kolesa"><div class="hx-tm" style="background:#0E1A33"><img class="hx-ly" src="img/home/ct-kol-b.webp" alt="" loading="lazy" data-d=".9" style="left:8%;top:20%;width:28%;--r:-6deg"><img class="hx-ly" src="img/home/ct-kol-a.webp" alt="" loading="lazy" data-d=".9" style="left:64%;top:20%;width:28%;--r:6deg"><img class="hx-ly" src="img/home/kol-history.webp" alt="" loading="lazy" data-d="2" style="left:36%;top:10%;width:28%;--r:0deg"><span class="hx-hook"><span class="hx-en">Deal inside the chat</span><span class="hx-ru">Сделка внутри чата</span></span><span class="hx-go"><span class="hx-en">View case →</span><span class="hx-ru">Смотреть кейс →</span></span></div><div class="hx-tmeta"><h3>Kolesa.kz</h3><p><span class="hx-en">UX case · buyer trust, from search to deal</span><span class="hx-ru">UX-кейс · доверие покупателя от поиска до сделки</span></p></div></a>
+  <section class="hx-cases" id="work" data-o="cases"><div class="hx-wrap">
+    <div class="hx-chead" id="hx-chead"><div class="hx-lab"><span class="hx-en">Selected work</span><span class="hx-ru">Избранные работы</span></div><h2><span class="hx-en">Cases</span><span class="hx-ru">Кейсы</span></h2>
+      <div class="hx-crow"><div class="hx-lab"><span class="hx-en">5 projects · 2022–2026</span><span class="hx-ru">5 проектов · 2022–2026</span></div><a class="hx-btn hx-btn-s" href="https://t.me/fairsoul_uxui" target="_blank" rel="noopener"><span class="hx-en">Have a project? Let’s talk →</span><span class="hx-ru">Есть проект? Давай обсудим →</span></a></div></div>
+    <div class="hx-stack">
+      <a class="hx-case" href="#healthify" style="--bg:#E9E6DF;--fg:#0A0B0D;--i:0"><div class="hx-cin">
+        <div class="hx-ci"><div class="hx-lab"><span class="hx-en">Mobile app · AI health · 2026</span><span class="hx-ru">Мобильное приложение · ИИ и здоровье · 2026</span></div><h3>Healthify AI</h3><p class="hx-cd"><span class="hx-en">An AI companion that turns wearable data into plain answers about your body.</span><span class="hx-ru">ИИ-помощник, который переводит данные с трекера в понятные ответы о твоём теле.</span></p>
+          <div class="hx-k"><b>4</b><span><span class="hx-en">surfaces: phone, lock screen, watch, band</span><span class="hx-ru">поверхности: телефон, экран блокировки, часы, браслет</span></span></div>
+          <span class="hx-view"><span class="hx-en">View case</span><span class="hx-ru">Смотреть кейс</span> <i>→</i></span></div>
+        <div class="hx-tm"><img class="hx-ly" src="img/home/ct-hf-a.webp" alt="" loading="lazy" data-d="0.9" style="left:4%;top:14%;width:32%;--r:-7deg"><img class="hx-ly" src="img/home/ct-hf-b.webp" alt="" loading="lazy" data-d="0.9" style="left:64%;top:14%;width:32%;--r:7deg"><img class="hx-ly" src="img/home/ct-hf-c.webp" alt="" loading="lazy" data-d="2" style="left:32%;top:6%;width:36%;--r:0deg"></div></div></a><a class="hx-case" href="#aezakmiso" style="--bg:#FF4F2A;--fg:#0A0B0D;--i:1"><div class="hx-cin">
+        <div class="hx-ci"><div class="hx-lab"><span class="hx-en">Internal tool · design + build</span><span class="hx-ru">Внутренний инструмент · дизайн и разработка</span></div><h3>AezakmiSO</h3><p class="hx-cd"><span class="hx-en">An in-house ASO dashboard for Google Play and the App Store. I designed and built it.</span><span class="hx-ru">Внутренний ASO-дашборд для Google Play и App Store. Спроектировал и собрал сам.</span></p>
+          <div class="hx-k"><b>30+</b><span><span class="hx-en">people use it every day</span><span class="hx-ru">человек пользуются каждый день</span></span></div>
+          <span class="hx-view"><span class="hx-en">View case</span><span class="hx-ru">Смотреть кейс</span> <i>→</i></span></div>
+        <div class="hx-tm"><img class="hx-ly" src="img/home/aso-niche.webp" alt="" loading="lazy" data-d="0.6" style="left:50%;top:26%;width:48%;--r:3deg"><img class="hx-ly" src="img/home/aso-positions.webp" alt="" loading="lazy" data-d="1" style="left:2%;top:14%;width:60%;--r:-2deg"><img class="hx-ly" src="img/home/aso-kpi.webp" alt="" loading="lazy" data-d="1.6" style="left:40%;top:4%;width:42%;--r:0deg"><img class="hx-ly" src="img/home/aso-moves.webp" alt="" loading="lazy" data-d="2.2" style="left:22%;top:64%;width:52%;--r:1deg"></div></div></a><a class="hx-case hx-dark" href="#jks" style="--bg:#0B0B0C;--fg:#F6F5F1;--i:2"><div class="hx-cin">
+        <div class="hx-ci"><div class="hx-lab"><span class="hx-en">Website · Elefanto · 2022</span><span class="hx-ru">Сайт · Elefanto · 2022</span></div><h3>JKS</h3><p class="hx-cd"><span class="hx-en">The website of one of Kazakhstan’s largest media agencies, made at Elefanto in 20+ iterations.</span><span class="hx-ru">Сайт одного из крупнейших медиаагентств Казахстана, сделанный в Elefanto за 20+ итераций.</span></p>
+          <div class="hx-k"><b>+30%</b><span><span class="hx-en">conversion into requests</span><span class="hx-ru">к конверсии в заявки</span></span></div>
+          <span class="hx-view"><span class="hx-en">View case</span><span class="hx-ru">Смотреть кейс</span> <i>→</i></span></div>
+        <div class="hx-tm"><img class="hx-ly" src="img/home/ct-jks.webp" alt="" loading="lazy" data-d="0.8" style="left:4%;top:14%;width:82%;--r:0deg"><img class="hx-ly" src="img/home/jks-mobile.webp" alt="" loading="lazy" data-d="2" style="left:68%;top:30%;width:28%;--r:3deg"></div></div></a><a class="hx-case hx-dark" href="#indiedive" style="--bg:#151515;--fg:#F6F5F1;--i:3"><div class="hx-cin">
+        <div class="hx-ci"><div class="hx-lab"><span class="hx-en">Client project · web + mobile · 2025</span><span class="hx-ru">Клиентский проект · веб и мобайл · 2025</span></div><h3>Indie Dive</h3><p class="hx-cd"><span class="hx-en">A news and community site about indie games, designed for a freelance client.</span><span class="hx-ru">Сайт новостей и сообщества про инди-игры, сделанный для клиента с фриланса.</span></p>
+          <div class="hx-k"><b>12</b><span><span class="hx-en">components build every page</span><span class="hx-ru">компонентов собирают все страницы</span></span></div>
+          <span class="hx-view"><span class="hx-en">View case</span><span class="hx-ru">Смотреть кейс</span> <i>→</i></span></div>
+        <div class="hx-tm"><img class="hx-ly" src="img/home/idv-logo.webp" alt="" loading="lazy" data-d="0.5" style="left:6%;top:8%;width:88%;--r:0deg"><img class="hx-ly" src="img/home/idv-article.webp" alt="" loading="lazy" data-d="1.2" style="left:4%;top:32%;width:46%;--r:-3deg"><img class="hx-ly" src="img/home/idv-mobile.webp" alt="" loading="lazy" data-d="2" style="left:54%;top:24%;width:40%;--r:3deg"></div></div></a><a class="hx-case hx-dark" href="#kolesa" style="--bg:#0E1A33;--fg:#F6F5F1;--i:4"><div class="hx-cin">
+        <div class="hx-ci"><div class="hx-lab"><span class="hx-en">UX case · 2026</span><span class="hx-ru">UX-кейс · 2026</span></div><h3>Kolesa.kz</h3><p class="hx-cd"><span class="hx-en">Buyer trust on Kolesa.kz: the chat becomes a guided deal, from the first question to the review.</span><span class="hx-ru">Доверие покупателя на Kolesa.kz: чат становится сделкой по шагам, от первого вопроса до отзыва.</span></p>
+          <div class="hx-k"><b>5</b><span><span class="hx-en">steps of a deal inside the chat</span><span class="hx-ru">шагов сделки внутри чата</span></span></div>
+          <span class="hx-view"><span class="hx-en">View case</span><span class="hx-ru">Смотреть кейс</span> <i>→</i></span></div>
+        <div class="hx-tm"><img class="hx-ly" src="img/home/ct-kol-b.webp" alt="" loading="lazy" data-d="0.9" style="left:4%;top:18%;width:32%;--r:-6deg"><img class="hx-ly" src="img/home/ct-kol-a.webp" alt="" loading="lazy" data-d="0.9" style="left:64%;top:18%;width:32%;--r:6deg"><img class="hx-ly" src="img/home/kol-history.webp" alt="" loading="lazy" data-d="2" style="left:32%;top:8%;width:36%;--r:0deg"></div></div></a>
     </div>
   </div></section>
 
@@ -3129,7 +3178,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
     <div class="wrap">
       <div class="hf-end">
         <span class="mono">Healthify AI · 2026</span>
-        <a class="hf-btn" href="#kolesa">Next case: Kolesa.kz <b><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a>
+        <a class="hf-btn" href="#aezakmiso">Next case: AezakmiSO <b><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></b></a>
       </div>
     </div>
   </section>
@@ -3416,7 +3465,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   <section class="idv-sec" style="padding-top:clamp(48px,6vw,80px)">
     <div class="wrap">
       <p class="idv-fine" style="margin-top:0">Game titles and cover art are sample content and belong to their owners. Headlines in the mockups are placeholders, not real news.</p>
-      <div class="idv-end"><a class="idv-btn ghost" href="#work">All work</a><a class="idv-btn" href="#healthify">Next case: Healthify AI <svg class="arr" aria-hidden="true"><use href="#arr"/></svg></a></div>
+      <div class="idv-end"><a class="idv-btn ghost" href="#work">All work</a><a class="idv-btn" href="#kolesa">Next case: Kolesa.kz <svg class="arr" aria-hidden="true"><use href="#arr"/></svg></a></div>
     </div>
   </section>
 </main>
@@ -3764,7 +3813,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
     </div>
   </section>
 
-  <a class="kl-next wrap" href="#aezakmiso"><span class="mono">Next case</span><b>AezakmiSO →</b></a>
+  <a class="kl-next wrap" href="#healthify"><span class="mono">Next case</span><b>Healthify AI →</b></a>
 </main>
 
 
@@ -4939,7 +4988,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
     el.innerHTML='<svg viewBox="0 0 12 14" aria-hidden="true">'+r+'</svg>'; });
 
   // dark copies of headings that cross the sphere, clipped to its circle each frame
-  var INK=$$('#home .hx-hero .hx-lab, #home .hx-hero h1, #home .hx-lede, #hx-say, #home .hx-ohd .hx-lab, #home .hx-ohd h2, #hx-leadlab, #home .hx-lead h2, #hx-side > .hx-lab, #hx-side h2, #home .hx-tl > .hx-wrap > .hx-lab, #home .hx-tl h2, #hm-contact .hx-lab, #hm-contact h2').map(function(el){
+  var INK=$$('#home .hx-hero .hx-lab, #home .hx-hero h1, #home .hx-lede, #hx-say, #home .hx-ohd .hx-lab, #home .hx-ohd h2, #hx-leadlab, #home .hx-lead h2, #hx-chead > .hx-lab, #hx-chead h2, #home .hx-tl > .hx-wrap > .hx-lab, #home .hx-tl h2, #hm-contact .hx-lab, #hm-contact h2').map(function(el){
     var c=document.createElement('div'); c.className='hx-ink'+(el.classList.contains('hx-lab')?' hx-lab':''); c.setAttribute('aria-hidden','true'); c.innerHTML=el.innerHTML;
     el.classList.add('hx-has-ink'); el.appendChild(c); return c; });
 
@@ -4954,7 +5003,7 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   // tap or click on the sphere: a wave, a little bounce and the colours turn
   addEventListener('pointerdown',function(e){
     if(!home.classList.contains('on')||!overOrb(e.clientX,e.clientY)) return;
-    if(e.target.closest('a,button,input,label,.hx-card,.hx-tm')) return;
+    if(e.target.closest('a,button,input,label,.hx-card,.hx-tm,.hx-case')) return;
     hue=(hue+55)%360; home.style.setProperty('--hx-hue',hue+'deg'); kick=1;
     if(!red){ var w=document.createElement('i'); w.className='hx-wave'; O.appendChild(w); setTimeout(function(){ w.remove(); },1200); }
   });
@@ -4963,14 +5012,14 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
   function mix(a,b,p){ p=Math.max(0,Math.min(1,p)); p=p*p*(3-2*p); return {x:a.x+(b.x-a.x)*p,y:a.y+(b.y-a.y)*p,s:a.s+(b.s-a.s)*p}; }
   function poses(){
     var W=innerWidth,Hh=innerHeight,vm=Math.min(W,Hh)/100,n=narrow();
-    var h1=R($('#home .hx-hero h1')), side=R($('#hx-side')), ll=R($('#hx-leadlab')), act=rows.filter(function(r){return r.classList.contains('on');}).pop()||rows[0], ar=R(act), lineX=R($('#hx-rows')).left+Math.min(Math.max(W*.04,20),60);
+    var h1=R($('#home .hx-hero h1')), ch=R($('#hx-chead')), cards2=$$('#home .hx-case'), ac=cards2.filter(function(c){ return R(c).top<innerHeight*.5; }).pop(), acr=ac?R(ac):null, ll=R($('#hx-leadlab')), act=rows.filter(function(r){return r.classList.contains('on');}).pop()||rows[0], ar=R(act), lineX=R($('#hx-rows')).left+Math.min(Math.max(W*.04,20),60);
     var hero; if(n){ hero={x:W*.66,y:Hh*.3,s:80*vm}; } else { var s=Math.min(60*vm,640); hero={x:Math.min(W-s*.32,Math.max(h1.right+s*.5+56,W*.66)),y:h1.top+h1.height*.55,s:s}; }
     return {
       hero:hero,
       say:n?{x:W*.88,y:Hh*.5,s:46*vm}:{x:W*.84,y:Hh*.52,s:46*vm},
       orbit:n?{x:W*.5,y:Hh*.5,s:60*vm}:{x:W*.5,y:Hh*.56,s:50*vm},
       lead:{x:ll.right+22,y:ll.top+ll.height/2,s:Math.max(14,2.2*vm)},
-      cases:n?{x:W*.8,y:Hh*.35,s:40*vm}:{x:side.left+side.width*.55,y:side.top+side.height*.38,s:28*vm},
+      cases:(ch.bottom>Hh*.35||!acr)?{x:Math.min(W*.86,ch.left+ch.width*.62),y:ch.top+ch.height*.45,s:(n?44:34)*vm}:{x:acr.right-(n?20:36),y:acr.top+(n?30:50),s:(n?22:18)*vm},
       tl:n?{x:W*.08,y:ar.top+ar.height*.3,s:14*vm}:{x:lineX,y:ar.top+42,s:9*vm},
       ct:n?{x:W*.5,y:Hh*.5,s:120*vm}:{x:W*.5,y:Hh*.5,s:92*vm}};
   }
@@ -5004,6 +5053,9 @@ html.hx-over-orb,html.hx-over-orb body{cursor:pointer}
       var c=(b.top+b.height/2-innerHeight/2)/innerHeight;
       st.style.setProperty('--ci',(red?0:Math.max(0,Math.min(40,(b.top-innerHeight*.72)/innerHeight*120))).toFixed(1)+'%');
       if(!red) $$('.hx-ly',st).forEach(function(l){ l.style.setProperty('--py',(c*-60*(+l.dataset.d)).toFixed(1)+'px'); }); });
+    // stacked cases: a card shrinks and dims as the next one slides over it
+    if(!n){ var cs=$$('#home .hx-case'); cs.forEach(function(c,i){ var inn=c.firstElementChild, nx=cs[i+1]; if(!nx){ inn.style.setProperty('--sc',1); inn.style.setProperty('--br',1); return; }
+      var a=R(c), b=R(nx), p=Math.max(0,Math.min(1,(a.bottom-b.top)/a.height)); inn.style.setProperty('--sc',(1-p*.06).toFixed(4)); inn.style.setProperty('--br',(1-p*.4).toFixed(3)); }); }
     // timeline rows light up
     rows.forEach(function(r){ r.classList.toggle('on',R(r).top<innerHeight*.62); });
     // sphere
