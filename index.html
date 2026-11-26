@@ -2288,6 +2288,11 @@ html:not(.hm-flow) .hm-cases.hm-cases2{display:block}
   .hm-cases2 .hm-ct-side{display:none}
 }
 @media (prefers-reduced-motion:reduce){.hm-sc-in{transform:none}.hm-sc-mid,.hm-sc-bot,.hm-sc-top{transform:none;opacity:1}}
+
+/* case cards: no lime hover outline on the screens half (showed as a stray line), readable label row */
+.hm-sc:hover .hm-ct-media,.hm-sc .hm-ct-media{box-shadow:none!important;outline:0}
+.hm-sc .hm-sc-top .hm-mono{color:var(--fg)!important;opacity:1!important;font-size:12px}
+.hm-sc .hm-sc-top{opacity:.72!important}
 </style>
 </head>
 <body>
