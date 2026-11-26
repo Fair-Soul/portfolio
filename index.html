@@ -2299,6 +2299,8 @@ html:not(.hm-flow) .hm-cases.hm-cases2{display:block}
 .hm-card .hm-bub{left:50%!important;right:auto!important;top:auto!important;bottom:-15px;border-radius:12px;transform:translateX(-50%) translateZ(40px) translateY(-6px) scale(.9)}
 .hm-card.hv .hm-bub{transform:translateX(-50%) translateZ(40px)}
 .hm-hint{white-space:nowrap}
+
+.hm-hero .hm-free,.hm-hero a{pointer-events:auto}
 </style>
 </head>
 <body>
@@ -4860,7 +4862,7 @@ html:not(.hm-flow) .hm-cases.hm-cases2{display:block}
     if (stageOn){
       txt.forEach(function(t){ var kk = +t.dataset.k, d = Pc - kk;
         var o = kk === 0 ? clamp(1 - d*2.4, 0, 1) : kk >= 3 ? clamp(1 - Math.abs(Math.min(d, 0))*2.4, 0, 1) : clamp(1 - Math.abs(d)*2.4, 0, 1);
-        t.style.opacity = o; var base = t.classList.contains('hm-say') && !narrow ? 'translateY(-50%) ' : '';
+        t.style.opacity = o; t.style.visibility = o < .03 ? 'hidden' : ''; var base = t.classList.contains('hm-say') && !narrow ? 'translateY(-50%) ' : '';
         t.style.transform = base + 'translateY(' + (-d*60).toFixed(1) + 'px)'; });
       var sp = clamp((R - .85) / .35, 0, 1) * sayW.length; sayW.forEach(function(w, i){ w.classList.toggle('on', i < sp); });
       if (P > 2.85 && !counted){ counted = true; count(); } if (P < 2.4) counted = false;
